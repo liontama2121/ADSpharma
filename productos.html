@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio — ADS PHARMA</title>
+  <meta name="description" content="Portafolio completo de medicamentos inyectables de ADS PHARMA. Filtra por línea terapéutica y consulta la ficha clínica de cada producto." />
+  <link rel="icon" type="image/webp" href="image/logo.webp" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/productos.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="image/logo.webp" alt="ADS PHARMA" />
+        <span>ADS&nbsp;PHARMA</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html" class="active">Portafolio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <a class="nav-wa" href="https://wa.me/573203035503?text=Hola%20ADS%20PHARMA%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20su%20portafolio." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.9 11.9 0 0 0 3 18.5L1.5 24l5.7-1.5A11.9 11.9 0 1 0 20.5 3.5Zm-8.4 18.3a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.4.9.9-3.3-.2-.4a9.9 9.9 0 1 1 8.1 4.4Zm5.4-7.4c-.3-.1-1.8-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5a.6.6 0 0 0 0-.5l-1-2.5c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.2 3.2 0 0 0-1 2.4c0 1.4 1 2.8 1.2 3a11.7 11.7 0 0 0 4.5 4 5 5 0 0 0 3.1.7c.8 0 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.2-.1-.4-.2-.7-.4Z"/></svg>
+        WhatsApp
+      </a>
+      <button class="nav-burger" id="navBurger" aria-label="Menú"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="portafolio-head container">
+      <span class="section-eyebrow">Portafolio</span>
+      <h1>Medicamentos inyectables para el cuidado vital.</h1>
+      <p>25 productos en seis líneas terapéuticas. Toda la información clínica de referencia, lista para consulta del profesional de la salud.</p>
+    </section>
+
+    <div class="toolbar">
+      <div class="container toolbar-inner">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="search" id="search" placeholder="Buscar producto o principio activo..." aria-label="Buscar" />
+        </div>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+
+    <section class="container">
+      <div class="productos-grid" id="productosGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a class="nav-logo" href="index.html"><img src="image/logo.webp" alt="ADS PHARMA" /><span>ADS PHARMA</span></a>
+          <p>Somos el instrumento en las manos que salvan vidas.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Sitio</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Portafolio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Líneas</h4>
+          <ul>
+            <li><a href="productos.html?linea=cardiovascular">Cardiovascular</a></li>
+            <li><a href="productos.html?linea=anestesicos">Anestésicos</a></li>
+            <li><a href="productos.html?linea=antibioticos">Antibióticos</a></li>
+            <li><a href="productos.html?linea=antidotos">Antídotos</a></li>
+            <li><a href="productos.html?linea=neuro">Antiepiléptico</a></li>
+            <li><a href="productos.html?linea=respiratorio">Respiratorio</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li>Calle 102A No. 70 - 77/79, Bogotá</li>
+            <li>(601) 745 0880</li>
+            <li>320 303 5503</li>
+            <li><a href="mailto:comunicaciones@adspharma.com.co">comunicaciones@adspharma.com.co</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        Información dirigida exclusivamente a profesionales de la salud e instituciones. Los medicamentos aquí presentados son de uso delicado y requieren prescripción y supervisión médica. La información de dosificación es de referencia y no reemplaza el criterio médico ni la ficha técnica oficial aprobada por el INVIMA. ADS PHARMA S.A.S. no comercializa medicamentos directamente al público a través de este sitio.
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 ADS PHARMA S.A.S.</span>
+        <span>Hecho con amor por <a href="#">JuanCode</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <aside class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div id="modalContent"></div>
+  </aside>
+
+  <a class="wa-floating" href="https://wa.me/573203035503?text=Hola%20ADS%20PHARMA%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20su%20portafolio." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.9 11.9 0 0 0 3 18.5L1.5 24l5.7-1.5A11.9 11.9 0 1 0 20.5 3.5Zm-8.4 18.3a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.4.9.9-3.3-.2-.4a9.9 9.9 0 1 1 8.1 4.4Zm5.4-7.4c-.3-.1-1.8-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5a.6.6 0 0 0 0-.5l-1-2.5c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4a3.2 3.2 0 0 0-1 2.4c0 1.4 1 2.8 1.2 3a11.7 11.7 0 0 0 4.5 4 5 5 0 0 0 3.1.7c.8 0 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.2-.1-.4-.2-.7-.4Z"/></svg>
+    <span class="wa-tooltip">Escríbenos</span>
+  </a>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/productos.js"></script>
+</body>
+</html>
