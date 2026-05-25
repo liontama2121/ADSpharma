@@ -27,12 +27,6 @@
     reveals.forEach(el => el.classList.add("in"));
   }
 
-  // Hero título: stagger por palabra
-  const words = document.querySelectorAll(".hero-title .word");
-  words.forEach((w, i) => {
-    w.style.animationDelay = (0.08 * i) + "s";
-  });
-
   // Partículas hero
   const canvas = document.getElementById("heroCanvas");
   if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -49,7 +43,8 @@
     }
     function init() {
       particles = [];
-      const n = Math.max(20, Math.min(48, Math.floor(w / 36)));
+      const density = (w * h) / 14000;
+      const n = Math.max(60, Math.min(140, Math.floor(density)));
       for (let i = 0; i < n; i++) {
         particles.push({
           x: Math.random() * w,
@@ -57,7 +52,7 @@
           vx: (Math.random() - 0.5) * 0.2,
           vy: (Math.random() - 0.5) * 0.2,
           r: 0.6 + Math.random() * 1.4,
-          a: 0.2 + Math.random() * 0.4
+          a: 0.25 + Math.random() * 0.45
         });
       }
     }

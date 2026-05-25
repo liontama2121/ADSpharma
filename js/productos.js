@@ -79,18 +79,21 @@
       card.style.setProperty("--linea-color", color);
       card.dataset.id = p.id;
       card.style.animationDelay = (i * 0.04) + "s";
+      const placeholderHTML = `<div class="placeholder">${escapeHTML(p.nombre)}</div>`;
       const img = p.imagen
-        ? `<img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" loading="lazy" />`
-        : `<div class="placeholder">${escapeHTML(p.nombre.charAt(0))}</div>`;
+        ? `<img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" loading="lazy" onerror="this.outerHTML='${placeholderHTML.replace(/'/g, "\\'")}'" />`
+        : placeholderHTML;
       card.innerHTML = `
         <div class="img-wrap">${img}</div>
-        <div class="nombre">${escapeHTML(p.nombre)}</div>
-        <div class="pa">${escapeHTML(p.principioActivo || "")}</div>
-        <div class="footer-row">
-          <span class="tag-linea">${escapeHTML(tag)}</span>
-          <span class="ver-mas">Ver detalle →</span>
+        <div class="card-body">
+          <div class="nombre">${escapeHTML(p.nombre)}</div>
+          <div class="pa">${escapeHTML(p.principioActivo || "")}</div>
+          <div class="footer-row">
+            <span class="tag-linea">${escapeHTML(tag)}</span>
+            <span class="ver-mas">Ver detalle →</span>
+          </div>
+          <div class="registro">${escapeHTML(p.registro || "")}</div>
         </div>
-        <div class="registro">${escapeHTML(p.registro || "")}</div>
       `;
       card.addEventListener("click", () => openModal(p.id, card));
       card.addEventListener("keydown", e => {
@@ -141,46 +144,47 @@
 
     modal.style.setProperty("--linea-color", color);
 
+    const modalPh = `<div class="modal-placeholder">${escapeHTML(p.nombre.charAt(0))}</div>`;
     const img = p.imagen
-      ? `<img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" />`
-      : `<div class="placeholder">${escapeHTML(p.nombre.charAt(0))}</div>`;
+      ? `<img class="modal-img" src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" onerror="this.outerHTML='${modalPh.replace(/'/g, "\\'")}'" />`
+      : modalPh;
 
     const waText = encodeURIComponent(
       `Hola ADS PHARMA, me interesa el producto ${p.nombre} (${p.registro || ""}). ¿Me pueden dar más información?`
     );
     const waHref = `https://wa.me/573203035503?text=${waText}`;
 
-    modalContent.innerHTML = `
-      <div class="modal-hero">
-        <div class="img-glow">${img}</div>
-        <div class="meta-row">
-          <span class="tag-linea">${escapeHTML(lineaNombre)}</span>
-          ${p.registro ? `<span class="badge-registro">${escapeHTML(p.registro)}</span>` : ""}
-        </div>
-        <h2 id="modalTitle">${escapeHTML(p.nombre)}</h2>
-        <div class="pa-mono">${escapeHTML(p.principioActivo || "")}</div>
-        ${p.presentacion ? `<p>${escapeHTML(p.presentacion)}</p>` : ""}
-      </div>
-      <div class="modal-body">
-        ${buildSection("Indicaciones", p.indicaciones)}
-        ${buildSection("Dosis y administración", p.dosis)}
-        ${buildSection("Contraindicaciones", p.contraindicaciones)}
-        ${buildSection("Precauciones y advertencias", p.precauciones)}
-        ${buildSection("RAM / Efectos adversos", p.ram)}
-        ${buildSection("Disolución y soluciones compatibles", p.disolucion)}
-        ${buildTabla(p.tabla)}
+    const sections =
+      buildSection("Indicaciones", p.indicaciones) +
+      buildSection("Dosis y administración", p.dosis) +
+      buildSection("Contraindicaciones", p.contraindicaciones) +
+      buildSection("Precauciones y advertencias", p.precauciones) +
+      buildSection("RAM / Efectos adversos", p.ram) +
+      buildSection("Disolución y soluciones compatibles", p.disolucion) +
+      buildTabla(p.tabla);
 
-        <div class="modal-footer-cta">
-          <p>¿Necesitas información clínica completa o cotización institucional?</p>
-          <a class="btn btn-wa" href="${waHref}" target="_blank" rel="noopener">
+    modalContent.innerHTML = `
+      <div class="modal-grid">
+        <div class="modal-col-image">
+          <div class="modal-img-wrap">${img}</div>
+          <span class="tag-linea">${escapeHTML(lineaNombre)}</span>
+          <h2 id="modalTitle">${escapeHTML(p.nombre)}</h2>
+          <div class="pa-mono">${escapeHTML(p.principioActivo || "")}</div>
+          ${p.presentacion ? `<p class="modal-presentacion">${escapeHTML(p.presentacion)}</p>` : ""}
+          ${p.registro ? `<span class="badge-registro">${escapeHTML(p.registro)}</span>` : ""}
+          <a class="btn btn-wa modal-wa" href="${waHref}" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.9 11.9 0 0 0 3 18.5L1.5 24l5.7-1.5A11.9 11.9 0 1 0 20.5 3.5Zm-8.4 18.3a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.4.9.9-3.3-.2-.4a9.9 9.9 0 1 1 8.1 4.4Z"/></svg>
-            Solicitar información por WhatsApp
+            Solicitar info por WhatsApp
           </a>
         </div>
 
-        <div class="modal-disclaimer">
-          Información dirigida exclusivamente a profesionales de la salud e instituciones. Los medicamentos aquí presentados son de uso delicado y requieren prescripción y supervisión médica. La información de dosificación es de referencia y no reemplaza el criterio médico ni la ficha técnica oficial aprobada por el INVIMA. ADS PHARMA S.A.S. no comercializa medicamentos directamente al público a través de este sitio.
+        <div class="modal-col-sections">
+          ${sections || `<p class="modal-empty">Sin información clínica adicional disponible.</p>`}
         </div>
+      </div>
+
+      <div class="modal-disclaimer">
+        Información dirigida exclusivamente a profesionales de la salud e instituciones. Los medicamentos aquí presentados son de uso delicado y requieren prescripción y supervisión médica. La información de dosificación es de referencia y no reemplaza el criterio médico ni la ficha técnica oficial aprobada por el INVIMA. ADS PHARMA S.A.S. no comercializa medicamentos directamente al público a través de este sitio.
       </div>
     `;
 

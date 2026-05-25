@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=6" />
 
   <script type="application/ld+json">
   {
@@ -68,10 +68,18 @@
   <main>
 
     <!-- Hero -->
-    <section class="hero container">
+    <section class="hero">
+      <div class="hero-orbs" aria-hidden="true">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-orb hero-orb-4"></div>
+        <div class="hero-orb hero-orb-5"></div>
+      </div>
       <canvas class="hero-canvas" id="heroCanvas"></canvas>
+      <div class="container hero-container">
       <div class="hero-grid">
-        <div>
+        <div class="hero-text">
           <span class="hero-eyebrow"><span class="dot"></span>Laboratorio farmacéutico · Colombia</span>
           <h1 class="hero-title" id="heroTitle">
             <span class="word">El</span> <span class="word">instrumento</span>
@@ -86,12 +94,13 @@
             </a>
             <a class="btn btn-ghost" href="#contacto">Contáctanos</a>
           </div>
+          <div class="hero-divider" aria-hidden="true"></div>
         </div>
         <div class="hero-visual" aria-hidden="true">
-          <img class="hero-vial" src="image/Amiodarona@3x-8.webp" alt="" loading="eager" />
-          <img class="hero-vial" src="image/Docarip@3x-8.webp" alt="" loading="eager" />
-          <img class="hero-vial" src="image/Diazenil@3x-8.webp" alt="" loading="eager" />
+          <div class="hero-logo-glow"></div>
+          <img class="hero-logo" src="image/logo_home.webp" alt="ADS PHARMA" loading="eager" />
         </div>
+      </div>
       </div>
     </section>
 
@@ -303,8 +312,8 @@
     <span class="wa-tooltip">Escríbenos</span>
   </a>
 
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/data.js?v=5"></script>
+  <script src="js/main.js?v=4"></script>
   <script>
     // Render destacados
     (function () {
