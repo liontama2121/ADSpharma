@@ -27,6 +27,56 @@
     reveals.forEach(el => el.classList.add("in"));
   }
 
+  // Carruseles horizontales (flechas desktop + drag + swipe táctil nativo)
+  document.querySelectorAll(".carousel").forEach(car => {
+    const track = car.querySelector(".car-track");
+    const prev = car.querySelector(".car-prev");
+    const next = car.querySelector(".car-next");
+    if (!track) return;
+
+    function step() {
+      const first = track.querySelector(":scope > *");
+      const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || "18") || 18;
+      const cardW = first ? first.getBoundingClientRect().width : track.clientWidth * 0.8;
+      return Math.max(cardW + gap, track.clientWidth * 0.8);
+    }
+    function updateBtns() {
+      const max = track.scrollWidth - track.clientWidth - 1;
+      if (prev) prev.disabled = track.scrollLeft <= 1;
+      if (next) next.disabled = track.scrollLeft >= max;
+    }
+    if (prev) prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
+    if (next) next.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
+    track.addEventListener("scroll", updateBtns, { passive: true });
+    window.addEventListener("resize", updateBtns);
+
+    // Drag con mouse (desktop). El swipe táctil ya funciona por overflow nativo.
+    let down = false, startX = 0, startScroll = 0, moved = 0;
+    track.addEventListener("pointerdown", e => {
+      if (e.pointerType !== "mouse") return;
+      down = true; moved = 0;
+      startX = e.clientX; startScroll = track.scrollLeft;
+      track.classList.add("dragging");
+    });
+    track.addEventListener("pointermove", e => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      moved = Math.abs(dx);
+      track.scrollLeft = startScroll - dx;
+    });
+    function endDrag() {
+      if (!down) return;
+      down = false;
+      track.classList.remove("dragging");
+    }
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointerleave", endDrag);
+    // Evita que el click navegue tras un drag real
+    track.addEventListener("click", e => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+
+    requestAnimationFrame(updateBtns);
+  });
+
   // Partículas hero
   const canvas = document.getElementById("heroCanvas");
   if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

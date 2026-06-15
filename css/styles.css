@@ -26,6 +26,12 @@
   --glow-cyan: #25B7E8;
   --wa: #25D366;
 
+  /* Sistema de color para títulos H1 por sección (correcciones cliente) */
+  --h-azul: #4DA8FF;
+  --h-naranja: #FF8A3D;
+  --h-morado: #9B6DFF;
+  --h-verde: #2ED47A;
+
   --shadow-lg: 0 20px 60px -20px rgba(0, 0, 0, 0.65);
   --radius-md: 14px;
   --radius-lg: 22px;
@@ -41,7 +47,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: "Manrope", system-ui, sans-serif;
+  font-family: "Montserrat", system-ui, sans-serif;
   font-weight: 400;
   background: var(--bg-900);
   color: var(--text-hi);
@@ -77,19 +83,43 @@ body::after {
 main, header, footer, section { position: relative; z-index: 2; }
 
 h1, h2, h3, h4 {
-  font-family: "Sora", "Space Grotesk", sans-serif;
+  font-family: "Nunito", "Sora", sans-serif;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   line-height: 1.15;
   color: var(--text-hi);
 }
 
-h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); }
-h2 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); }
-h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
-h4 { font-size: 1.05rem; }
+h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); font-weight: 800; }   /* Nunito Bold */
+h2 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); font-weight: 600; } /* Nunito Semibold/Medium */
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 500; }   /* Nunito Medium */
+h4 { font-size: 1.05rem; font-weight: 600; }
 
-p { color: var(--text-mid); }
+p { color: var(--text-mid); font-family: "Montserrat", sans-serif; }
+
+/* === Color de títulos H1 por sección === */
+.h-azul   { color: var(--h-azul);   background: none; -webkit-text-fill-color: var(--h-azul); }
+.h-naranja{ color: var(--h-naranja);background: none; -webkit-text-fill-color: var(--h-naranja); }
+.h-morado { color: var(--h-morado); background: none; -webkit-text-fill-color: var(--h-morado); }
+.h-verde  { color: var(--h-verde);  background: none; -webkit-text-fill-color: var(--h-verde); }
+
+/* H1 de sección (antes era el eyebrow). Más pequeño que el hero. */
+.sec-title {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+/* H2 secundario: siempre blanco */
+.sec-sub {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  color: var(--text-hi);
+  -webkit-text-fill-color: var(--text-hi);
+  background: none;
+  margin-bottom: 16px;
+}
 
 a { color: inherit; text-decoration: none; transition: color var(--t-fast); }
 
@@ -326,9 +356,9 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
 }
 
 .hero-title {
-  font-family: "Sora", "Space Grotesk", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.025em;
   margin: 0;
@@ -355,6 +385,14 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
 .hero-title .word:nth-child(6) { animation-delay: 0.45s; }
 .hero-title .word:nth-child(7) { animation-delay: 0.53s; }
 .hero-title .word:nth-child(8) { animation-delay: 0.61s; }
+
+/* Hero title sólido (azul, sin degradado) */
+.hero-title.solid,
+.hero-title.solid .word {
+  background: none;
+  -webkit-text-fill-color: var(--h-azul);
+  color: var(--h-azul);
+}
 
 @keyframes rise {
   to { opacity: 1; transform: translateY(0); }
@@ -387,8 +425,16 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
   border: 1px solid transparent;
   cursor: pointer;
   transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
-  font-family: inherit;
+  font-family: "Nunito", sans-serif;   /* botones en Nunito Medium */
+  font-weight: 600;
 }
+/* Botón naranja (correcciones cliente) */
+.btn-orange {
+  color: #2a1200;
+  background: linear-gradient(120deg, var(--cardio-2) 0%, var(--cardio) 100%);
+  box-shadow: 0 12px 36px -14px rgba(255,138,61,0.6);
+}
+.btn-orange:hover { transform: translateY(-2px); box-shadow: 0 18px 44px -12px rgba(255,138,61,0.85); }
 .btn-primary {
   color: #fff;
   background: var(--brand);
@@ -473,13 +519,10 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
   text-transform: uppercase;
   margin-bottom: 14px;
 }
-.section-head { margin-bottom: 50px; max-width: 740px; }
+.section-head { margin-bottom: 50px; max-width: 880px; }
 .section-head h2 {
   margin-bottom: 16px;
-  background: var(--brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--text-hi);
 }
 
 /* === Líneas terapéuticas === */
@@ -688,11 +731,9 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
 }
 .cta-contacto h2 {
   margin-bottom: 18px;
-  background: var(--brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--text-hi);
 }
+.cta-contacto .sec-title { margin-left: auto; margin-right: auto; }
 .cta-contacto p { margin-bottom: 30px; font-size: 1.1rem; }
 .cta-info {
   display: grid;
@@ -709,12 +750,13 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
   backdrop-filter: blur(10px);
 }
 .cta-info-item .label {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.72rem;
-  color: var(--text-low);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-hi);
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 8px;
 }
 .cta-info-item .value { color: var(--text-hi); font-size: 0.95rem; }
 
@@ -853,10 +895,116 @@ footer {
   padding: clamp(80px, 11vw, 140px) 0 clamp(40px, 5vw, 70px);
   text-align: center;
 }
-.hero-sm h1 {
-  background: var(--brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.hero-sm h1 { color: var(--text-hi); }
+.hero-sm p { max-width: 720px; margin: 18px auto 0; }
+.hero-sm .sec-title { margin: 0 auto; }
+.hero-sm .sec-sub { margin: 12px auto 0; }
+
+/* === Redes sociales en navbar === */
+.nav-social { display: inline-flex; align-items: center; gap: 8px; }
+.nav-social a {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--text-mid);
+  transition: color var(--t-fast), border-color var(--t-fast), transform var(--t-fast), background var(--t-fast);
 }
-.hero-sm p { max-width: 640px; margin: 18px auto 0; }
+.nav-social a:hover { color: var(--text-hi); border-color: rgba(255,255,255,0.28); transform: translateY(-1px); background: rgba(255,255,255,0.06); }
+.nav-social svg { width: 18px; height: 18px; }
+@media (max-width: 860px) {
+  .nav-social { display: none; }
+  .nav.open .nav-social { display: inline-flex; align-self: flex-start; margin-top: 10px; }
+}
+
+/* === Badge hero como enlace a mapa === */
+a.hero-eyebrow { transition: border-color var(--t-fast), color var(--t-fast); }
+a.hero-eyebrow:hover { border-color: rgba(77,168,255,0.5); color: var(--text-hi); }
+
+/* === Carrusel horizontal (líneas / destacados) === */
+.carousel { position: relative; }
+.car-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 6px 2px 18px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  cursor: grab;
+}
+.car-track::-webkit-scrollbar { display: none; }
+.car-track.dragging { cursor: grabbing; scroll-behavior: auto; scroll-snap-type: none; }
+.car-track > * {
+  scroll-snap-align: start;
+  flex: 0 0 clamp(240px, 80%, 300px);
+}
+@media (min-width: 720px)  { .car-track > * { flex-basis: calc((100% - 36px) / 3); } }
+@media (min-width: 1100px) { .car-track > * { flex-basis: calc((100% - 72px) / 4); } }
+.car-track a, .car-track .mini-card { height: 100%; }
+
+.car-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  color: var(--text-hi);
+  display: grid; place-items: center;
+  cursor: pointer;
+  z-index: 6;
+  backdrop-filter: blur(10px);
+  transition: background var(--t-fast), border-color var(--t-fast), opacity var(--t-fast);
+}
+.car-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); }
+.car-btn:disabled { opacity: 0.25; cursor: default; }
+.car-btn svg { width: 20px; height: 20px; }
+.car-prev { left: -10px; }
+.car-next { right: -10px; }
+@media (max-width: 760px) { .car-btn { display: none; } }
+
+/* === Tarjeta línea dentro del carrusel: igualar altura === */
+.car-track .linea-card { display: block; }
+
+/* === Descripción de producto destacado (blanco, Montserrat) === */
+.mini-card .desc {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.82rem;
+  color: var(--text-hi);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* === Encabezados de footer como H3 Nunito Medium blanco === */
+.footer-col h3 {
+  font-size: 1rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  color: var(--text-hi);
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 14px;
+}
+
+/* === Fix correo desbordado en tarjetas de contacto y footer === */
+.cta-info-item .value a,
+.cta-info-item .value,
+.footer-col li a,
+.footer-col li {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.cta-info-item .value .mail {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* === Subtítulo bajo H1 de sección suelto === */
+.sec-lead { max-width: 880px; margin-bottom: 30px; }
+.sec-lead .sec-sub { margin-bottom: 0; }
+.under { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; color: var(--text-hi); }

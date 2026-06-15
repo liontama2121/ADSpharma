@@ -515,6 +515,31 @@ const PRODUCTOS = [
   }
 ];
 
+// Imágenes de apoyo visual de ADS PHARMA. Renders de producto dedicados +
+// imagen contextual (Artboard) para los que aún no tienen foto propia.
+const IMAGENES = {
+  docarip: "image/Docarip@3x-8.webp",
+  noltron: "image/Noltron@3x-8.webp",
+  amiodarona: "image/Amiodarona@3x-8.webp",
+  dexmedetomidina: "image/Dexmedetomidina@3x-8.webp",
+  ciprofloxacina: "image/Ciprofloxacina@3x-8.webp",
+  diazenil: "image/Diazenil@3x-8.webp",
+  miocurim: "image/Miocurim@3x-8.webp",
+  vasopresina: "image/Vasopresina@3x-8.webp",
+  "bromuro-rocuronio": "image/Bromuro@3x-8.webp",
+  diblorec: "image/Diblorec@3x-8.webp",
+  floxanar: "image/Floxanar@3x-8.webp",
+  myoritmo: "image/Myoritmo@3x-8.webp",
+  nitroglicerina: "image/Nitroglicerina@3x-8.webp"
+};
+const IMG_CONTEXTO = "image/Artboard-1@3x-8.webp";
+PRODUCTOS.forEach(p => {
+  if (!p.imagen) {
+    p.imagen = IMAGENES[p.id] || IMG_CONTEXTO;
+    p.imagenContexto = !IMAGENES[p.id];   // true = imagen genérica de apoyo
+  }
+});
+
 const CLIENTES_INSTITUCIONALES = [
   "Méderi", "CAFAM", "Cruz Verde", "SyD Colombia",
   "Hospital Universitario de Santander", "Fundación Santa Fe de Bogotá",

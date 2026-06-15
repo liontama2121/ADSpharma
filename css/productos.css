@@ -5,11 +5,16 @@
   padding-bottom: 30px;
 }
 .portafolio-head h1 {
-  background: var(--brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--h-naranja);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
   margin-bottom: 14px;
+}
+.portafolio-head .sub {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  color: var(--text-hi);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
 }
 .portafolio-head p {
   max-width: 640px;
@@ -154,12 +159,35 @@
 }
 
 .producto-card .nombre {
-  font-family: "Sora", sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;            /* título medicamento en Nunito Bold */
+  font-size: 1.08rem;
   margin-bottom: 6px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   color: var(--text-hi);
+}
+.producto-card .desc {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.84rem;
+  color: var(--text-hi);       /* descripción blanca */
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+/* Imagen contextual de apoyo sobre el render del producto */
+.producto-card .img-wrap.has-context {
+  background:
+    radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--linea-color) 26%, transparent), transparent 70%),
+    var(--bg-800);
+}
+.producto-card .ctx-label {
+  position: absolute; left: 10px; bottom: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-hi);
+  background: rgba(0,0,0,0.45);
+  border: 1px solid var(--glass-border);
+  padding: 3px 8px; border-radius: 999px;
+  backdrop-filter: blur(6px);
 }
 .producto-card .pa {
   font-family: "JetBrains Mono", monospace;

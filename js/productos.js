@@ -83,11 +83,15 @@
       const img = p.imagen
         ? `<img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" loading="lazy" onerror="this.outerHTML='${placeholderHTML.replace(/'/g, "\\'")}'" />`
         : placeholderHTML;
+      const ctxClass = p.imagenContexto ? " has-context" : "";
+      const ctxLabel = p.imagenContexto ? `<span class="ctx-label">ADS PHARMA</span>` : "";
+      const desc = escapeHTML((p.indicaciones || "").split(/[.;]/)[0].trim());
       card.innerHTML = `
-        <div class="img-wrap">${img}</div>
+        <div class="img-wrap${ctxClass}">${img}${ctxLabel}</div>
         <div class="card-body">
           <div class="nombre">${escapeHTML(p.nombre)}</div>
           <div class="pa">${escapeHTML(p.principioActivo || "")}</div>
+          ${desc ? `<div class="desc">${desc}.</div>` : ""}
           <div class="footer-row">
             <span class="tag-linea">${escapeHTML(tag)}</span>
             <span class="ver-mas">Ver detalle →</span>
