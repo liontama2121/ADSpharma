@@ -97,6 +97,10 @@ h4 { font-size: 1.05rem; font-weight: 600; }
 
 p { color: var(--text-mid); font-family: "Montserrat", sans-serif; }
 
+/* === Imágenes responsive (celular + PC) === */
+img { max-width: 100%; height: auto; }
+img, svg { display: block; }
+
 /* === Color de títulos H1 por sección === */
 .h-azul   { color: var(--h-azul);   background: none; -webkit-text-fill-color: var(--h-azul); }
 .h-naranja{ color: var(--h-naranja);background: none; -webkit-text-fill-color: var(--h-naranja); }
@@ -108,16 +112,18 @@ p { color: var(--text-mid); font-family: "Montserrat", sans-serif; }
   font-family: "Nunito", sans-serif;
   font-weight: 800;
   font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.1;
-  margin-bottom: 10px;
+  line-height: 1.2;
+  margin-bottom: 18px;
 }
-/* H2 secundario: siempre blanco */
+/* H2 secundario: siempre blanco. Separado del título. */
 .sec-sub {
   font-family: "Nunito", sans-serif;
   font-weight: 600;
   color: var(--text-hi);
   -webkit-text-fill-color: var(--text-hi);
   background: none;
+  line-height: 1.3;
+  margin-top: 4px;
   margin-bottom: 16px;
 }
 
@@ -359,8 +365,8 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
   font-family: "Nunito", sans-serif;
   font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
   margin: 0;
   background: var(--brand);
   -webkit-background-clip: text;

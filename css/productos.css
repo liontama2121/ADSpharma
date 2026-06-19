@@ -113,7 +113,7 @@
 }
 
 .producto-card .img-wrap {
-  height: 200px;
+  height: clamp(170px, 28vw, 220px);
   width: 100%;
   display: grid; place-items: center;
   background: var(--bg-800);
