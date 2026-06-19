@@ -419,7 +419,8 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
   .hero-text { order: 2; align-items: center; gap: 1.2rem; }
   .hero-visual { order: 1; min-height: 0; padding: 10px; }
   .hero-sub { margin-left: auto; margin-right: auto; }
-  .hero-ctas { justify-content: center; }
+  .hero-ctas { justify-content: center; margin-top: 0.9rem; gap: 12px; row-gap: 12px; width: 100%; }
+  .hero-ctas .btn { flex: 1 1 100%; justify-content: center; }
 }
 
 .btn {
@@ -1008,6 +1009,14 @@ a.hero-eyebrow:hover { border-color: rgba(77,168,255,0.5); color: var(--text-hi)
   line-height: 1.5;
   word-break: break-word;
   overflow-wrap: anywhere;
+}
+
+/* === Espaciado de botones en celular === */
+@media (max-width: 768px) {
+  .btn { padding: 14px 24px; }
+  /* botón suelto al final de una sección con su propio aire */
+  .btn-orange, .btn-wa { margin-top: 8px; }
+  .cta-contacto .btn { margin-top: 8px; }
 }
 
 /* === Subtítulo bajo H1 de sección suelto === */
