@@ -85,18 +85,17 @@
         : placeholderHTML;
       const ctxClass = p.imagenContexto ? " has-context" : "";
       const ctxLabel = p.imagenContexto ? `<span class="ctx-label">ADS PHARMA</span>` : "";
-      const desc = escapeHTML((p.indicaciones || "").split(/[.;]/)[0].trim());
+      // Ronda 2: la card solo muestra nombre + presentación técnica.
+      // Toda la info clínica va en el modal de detalle.
       card.innerHTML = `
         <div class="img-wrap${ctxClass}">${img}${ctxLabel}</div>
         <div class="card-body">
           <div class="nombre">${escapeHTML(p.nombre)}</div>
-          <div class="pa">${escapeHTML(p.principioActivo || "")}</div>
-          ${desc ? `<div class="desc">${desc}.</div>` : ""}
+          <div class="presentacion">${escapeHTML(p.principioActivo || "")}</div>
           <div class="footer-row">
             <span class="tag-linea">${escapeHTML(tag)}</span>
             <span class="ver-mas">Ver detalle →</span>
           </div>
-          <div class="registro">${escapeHTML(p.registro || "")}</div>
         </div>
       `;
       card.addEventListener("click", () => openModal(p.id, card));

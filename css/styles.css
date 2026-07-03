@@ -26,11 +26,16 @@
   --glow-cyan: #25B7E8;
   --wa: #25D366;
 
-  /* Sistema de color para títulos H1 por sección (correcciones cliente) */
-  --h-azul: #4DA8FF;
-  --h-naranja: #FF8A3D;
-  --h-morado: #9B6DFF;
-  --h-verde: #2ED47A;
+  /* Ronda 2: TODOS los H1 en azul corporativo.
+     Nota: el cliente sugirió #1D5C8A, pero sobre el fondo casi negro
+     queda muy oscuro/bajo contraste; usamos el azul de marca legible.
+     Para cambiarlo, edita solo --h1-azul. */
+  --h1-azul: #4DA8FF;
+  /* Alias antiguos → todos apuntan al azul único */
+  --h-azul: var(--h1-azul);
+  --h-naranja: var(--h1-azul);
+  --h-morado: var(--h1-azul);
+  --h-verde: var(--h1-azul);
 
   --shadow-lg: 0 20px 60px -20px rgba(0, 0, 0, 0.65);
   --radius-md: 14px;
@@ -90,9 +95,10 @@ h1, h2, h3, h4 {
   color: var(--text-hi);
 }
 
-h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); font-weight: 800; }   /* Nunito Bold */
-h2 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); font-weight: 600; } /* Nunito Semibold/Medium */
-h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 500; }   /* Nunito Medium */
+/* Jerarquía clara: H1 > H2 > H3 (ronda 2) */
+h1 { font-size: clamp(2.4rem, 5vw, 4rem);   font-weight: 800; }  /* Nunito Bold, azul */
+h2 { font-size: clamp(1.4rem, 2.8vw, 2.2rem); font-weight: 600; } /* Nunito Semibold, blanco */
+h3 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 500; } /* Nunito Medium, blanco */
 h4 { font-size: 1.05rem; font-weight: 600; }
 
 p { color: var(--text-mid); font-family: "Montserrat", sans-serif; }
@@ -101,18 +107,25 @@ p { color: var(--text-mid); font-family: "Montserrat", sans-serif; }
 img { max-width: 100%; height: auto; }
 img, svg { display: block; }
 
-/* === Color de títulos H1 por sección === */
-.h-azul   { color: var(--h-azul);   background: none; -webkit-text-fill-color: var(--h-azul); }
-.h-naranja{ color: var(--h-naranja);background: none; -webkit-text-fill-color: var(--h-naranja); }
-.h-morado { color: var(--h-morado); background: none; -webkit-text-fill-color: var(--h-morado); }
-.h-verde  { color: var(--h-verde);  background: none; -webkit-text-fill-color: var(--h-verde); }
+/* === TODOS los H1 en azul (ronda 2) === */
+h1,
+.sec-title,
+.hero-title,
+.portafolio-head h1,
+.h-azul, .h-naranja, .h-morado, .h-verde {
+  color: var(--h1-azul);
+  background: none;
+  -webkit-text-fill-color: var(--h1-azul);
+  background-clip: initial;
+  -webkit-background-clip: initial;
+}
 
 /* H1 de sección (antes era el eyebrow). Más pequeño que el hero. */
 .sec-title {
   font-family: "Nunito", sans-serif;
   font-weight: 800;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.2;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.15;
   margin-bottom: 18px;
 }
 /* H2 secundario: siempre blanco. Separado del título. */
@@ -392,12 +405,14 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
 .hero-title .word:nth-child(7) { animation-delay: 0.53s; }
 .hero-title .word:nth-child(8) { animation-delay: 0.61s; }
 
-/* Hero title sólido (azul, sin degradado) */
+/* Hero title siempre azul sólido, sin degradado (ronda 2) */
+.hero-title,
+.hero-title .word,
 .hero-title.solid,
 .hero-title.solid .word {
   background: none;
-  -webkit-text-fill-color: var(--h-azul);
-  color: var(--h-azul);
+  -webkit-text-fill-color: var(--h1-azul);
+  color: var(--h1-azul);
 }
 
 @keyframes rise {
@@ -538,26 +553,21 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
 }
+/* Tarjetas de líneas UNIFICADAS (ronda 2): mismo fondo/borde neutro.
+   El color de la línea queda solo como una línea fina superior. */
 .linea-card {
   position: relative;
   padding: 28px 24px;
   background: var(--glass);
   border: 1px solid var(--glass-border);
+  border-top: 3px solid var(--linea-color, var(--glass-border));
   border-radius: var(--radius-lg);
   backdrop-filter: blur(10px);
   cursor: pointer;
   overflow: hidden;
   transition: transform var(--t-med), border-color var(--t-med);
 }
-.linea-card::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at top left, var(--linea-color, var(--glow-cyan)) 0%, transparent 60%);
-  opacity: 0; transition: opacity var(--t-med);
-  mix-blend-mode: screen;
-}
-.linea-card:hover { transform: translateY(-4px); border-color: var(--linea-color, var(--glow-cyan)); }
-.linea-card:hover::before { opacity: 0.22; }
+.linea-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); border-top-color: var(--linea-color, var(--glass-border)); }
 .linea-icon {
   width: 44px; height: 44px;
   border-radius: 12px;
@@ -565,7 +575,7 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--glass-border);
   margin-bottom: 18px;
-  color: var(--linea-color);
+  color: var(--text-hi);
 }
 .linea-icon svg { width: 22px; height: 22px; }
 .linea-card h3 { margin-bottom: 6px; font-size: 1.1rem; }
@@ -594,7 +604,14 @@ section { padding: clamp(60px, 9vw, 120px) 0; }
   color: var(--text-low);
   margin-bottom: 14px;
 }
-.glass-card h3 { margin-bottom: 14px; }
+.glass-card h3 {
+  margin-bottom: 14px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;                 /* Bold (ronda 2) */
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  color: var(--text-hi);
+  text-decoration: none;            /* sin subrayado */
+}
 
 /* === Premezclado métricas === */
 .metrics-grid {
@@ -828,6 +845,7 @@ footer {
 }
 
 /* === Botón flotante WhatsApp === */
+/* WhatsApp flotante limpio (ronda 2): círculo verde plano, sin anillo/contenedor */
 .wa-floating {
   position: fixed;
   bottom: 24px; right: 24px;
@@ -836,16 +854,11 @@ footer {
   background: var(--wa);
   display: grid; place-items: center;
   z-index: 90;
-  box-shadow: 0 16px 40px -10px rgba(37,211,102,0.55), 0 0 0 6px rgba(37,211,102,0.12);
+  box-shadow: 0 12px 30px -8px rgba(37,211,102,0.5);
   transition: transform var(--t-fast), box-shadow var(--t-fast);
-  animation: wapulse 2.6s ease-in-out infinite;
 }
-.wa-floating:hover { transform: scale(1.06); }
-.wa-floating svg { width: 30px; height: 30px; color: #fff; }
-@keyframes wapulse {
-  0%, 100% { box-shadow: 0 16px 40px -10px rgba(37,211,102,0.55), 0 0 0 0 rgba(37,211,102,0.4); }
-  50% { box-shadow: 0 16px 40px -10px rgba(37,211,102,0.7), 0 0 0 18px rgba(37,211,102,0); }
-}
+.wa-floating:hover { transform: scale(1.08); box-shadow: 0 18px 40px -8px rgba(37,211,102,0.7); }
+.wa-floating svg { width: 34px; height: 34px; color: #fff; fill: #fff; }
 
 .wa-tooltip {
   position: absolute;
@@ -920,6 +933,28 @@ footer {
 }
 .nav-social a:hover { color: var(--text-hi); border-color: rgba(255,255,255,0.28); transform: translateY(-1px); background: rgba(255,255,255,0.06); }
 .nav-social svg { width: 18px; height: 18px; }
+
+/* Hover con color de marca (ronda 2) */
+.nav-social a[aria-label="Facebook"]:hover,
+.footer-social a[aria-label="Facebook"]:hover  { color: #1877F2; border-color: #1877F2; }
+.nav-social a[aria-label="Instagram"]:hover,
+.footer-social a[aria-label="Instagram"]:hover { color: #E4405F; border-color: #E4405F; }
+.nav-social a[aria-label="LinkedIn"]:hover,
+.footer-social a[aria-label="LinkedIn"]:hover  { color: #0A66C2; border-color: #0A66C2; }
+
+/* Íconos sociales en el footer */
+.footer-social { display: inline-flex; gap: 10px; margin-top: 16px; }
+.footer-social a {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--text-mid);
+  transition: color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+.footer-social a:hover { transform: translateY(-2px); }
+.footer-social svg { width: 20px; height: 20px; }
 @media (max-width: 860px) {
   .nav-social { display: none; }
   .nav.open .nav-social { display: inline-flex; align-self: flex-start; margin-top: 10px; }
@@ -975,13 +1010,14 @@ a.hero-eyebrow:hover { border-color: rgba(77,168,255,0.5); color: var(--text-hi)
 /* === Tarjeta línea dentro del carrusel: igualar altura === */
 .car-track .linea-card { display: block; }
 
-/* === Descripción de producto destacado (blanco, Montserrat) === */
-.mini-card .desc {
+/* === Presentación de producto destacado (Montserrat, ronda 2) === */
+.mini-card .presentacion {
   font-family: "Montserrat", sans-serif;
-  font-size: 0.82rem;
-  color: var(--text-hi);
-  margin-bottom: 10px;
-  line-height: 1.5;
+  font-weight: 400;
+  font-size: 0.86rem;
+  color: var(--text-mid);
+  margin-bottom: 12px;
+  line-height: 1.45;
 }
 
 /* === Encabezados de footer como H3 Nunito Medium blanco === */
