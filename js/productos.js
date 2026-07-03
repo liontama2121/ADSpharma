@@ -79,10 +79,10 @@
       card.style.setProperty("--linea-color", color);
       card.dataset.id = p.id;
       card.style.animationDelay = (i * 0.04) + "s";
-      const placeholderHTML = `<div class="placeholder">${escapeHTML(p.nombre)}</div>`;
+      // Sin onerror inline (rompía el HTML y filtraba basura tipo "</>").
       const img = p.imagen
-        ? `<img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" loading="lazy" onerror="this.outerHTML='${placeholderHTML.replace(/'/g, "\\'")}'" />`
-        : placeholderHTML;
+        ? `<img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" loading="lazy" />`
+        : `<div class="placeholder">${escapeHTML(p.nombre)}</div>`;
       const ctxClass = p.imagenContexto ? " has-context" : "";
       const ctxLabel = p.imagenContexto ? `<span class="ctx-label">ADS PHARMA</span>` : "";
       // Ronda 2: la card solo muestra nombre + presentación técnica.
@@ -98,6 +98,16 @@
           </div>
         </div>
       `;
+      // Fallback de imagen sin inyectar HTML.
+      const imgEl = card.querySelector(".img-wrap img");
+      if (imgEl) {
+        imgEl.addEventListener("error", () => {
+          const ph = document.createElement("div");
+          ph.className = "placeholder";
+          ph.textContent = p.nombre;
+          imgEl.replaceWith(ph);
+        });
+      }
       card.addEventListener("click", () => openModal(p.id, card));
       card.addEventListener("keydown", e => {
         if (e.key === "Enter" || e.key === " ") {
@@ -149,7 +159,7 @@
 
     const modalPh = `<div class="modal-placeholder">${escapeHTML(p.nombre.charAt(0))}</div>`;
     const img = p.imagen
-      ? `<img class="modal-img" src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" onerror="this.outerHTML='${modalPh.replace(/'/g, "\\'")}'" />`
+      ? `<img class="modal-img" src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" />`
       : modalPh;
 
     const waText = encodeURIComponent(
@@ -190,6 +200,16 @@
         Información dirigida exclusivamente a profesionales de la salud e instituciones. Los medicamentos aquí presentados son de uso delicado y requieren prescripción y supervisión médica. La información de dosificación es de referencia y no reemplaza el criterio médico ni la ficha técnica oficial aprobada por el INVIMA. ADS PHARMA S.A.S. no comercializa medicamentos directamente al público a través de este sitio.
       </div>
     `;
+
+    const modalImgEl = modalContent.querySelector(".modal-img");
+    if (modalImgEl) {
+      modalImgEl.addEventListener("error", () => {
+        const ph = document.createElement("div");
+        ph.className = "modal-placeholder";
+        ph.textContent = p.nombre.charAt(0);
+        modalImgEl.replaceWith(ph);
+      });
+    }
 
     lastFocusedEl = triggerEl || document.activeElement;
     document.body.classList.add("modal-open");
