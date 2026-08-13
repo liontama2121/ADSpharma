@@ -1,0 +1,18 @@
+{
+  "nombre": "MILRINONA",
+  "principioActivo": "Milrinona 10 mg / 10 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "cardiovascular",
+  "registro": "INVIMA 2009M-0009853",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 4,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Tratamiento de la insuficiencia cardíaca congestiva.",
+  "dosis": "Dosis de carga de 50 mcg/kg en bolo IV durante 10 minutos, luego 0,375–0,75 mcg/kg/min IV; mantenimiento 1,13 mg/kg/día. Monitorear electrolitos, función renal y presión arterial.",
+  "contraindicaciones": "",
+  "precauciones": "Ante fase aguda del infarto y descensos importantes de presión arterial: interrumpir hasta el restablecimiento y reanudar a tasa menor.",
+  "ram": ">10% arritmias ventriculares; arritmia supraventricular (4%), dolor de cabeza (3%), hipotensión (3%), angina/dolor en el pecho (1%).",
+  "disolucion": "Diluir a 200 mcg/mL. Examinar a la luz; no usar si hay decoloración. Compatibles: dextrosa 5%, SSN 0,9% y lactato de Ringer.",
+  "tabla": null
+}

@@ -1,0 +1,11 @@
+{
+  "nombre": "Antidiurético",
+  "color": "#29C5E8",
+  "color2": "#6BDAF0",
+  "orden": 7,
+  "visibleEnHome": false,
+  "iconoPath": "M12 2s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z",
+  "descripcionHome": "",
+  "tituloNosotros": "",
+  "descripcionNosotros": ""
+}

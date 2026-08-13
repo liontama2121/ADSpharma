@@ -1,0 +1,18 @@
+{
+  "nombre": "AZUL DE METILENO",
+  "principioActivo": "Azul de Metileno 50 mg / 5 mL",
+  "presentacion": "Solución inyectable intravenosa",
+  "linea": "antidotos",
+  "registro": "INVIMA 2021M-0020357 · IUM 1A1000281004",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 22,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Coadyuvante en disfunción hepática secundaria a alcoholismo agudo y crónico; intoxicaciones por cianuro, plomo y metanol; tratamiento de la metahemoglobinemia; manejo del shock séptico refractario en UCI (2 mg/kg a criterio médico); identificación y evaluación de ganglio centinela en disección axilar (alta sensibilidad y valor predictivo positivo en el mapeo ganglionar del cáncer de mama).",
+  "dosis": "Adultos: 1 a 2 mg/kg (0,2-0,4 mL/kg) administrada durante 5 minutos. Puede repetirse (1-2 mg/kg) una hora después si hay síntomas persistentes o recurrentes. Pediatría (>3 meses): misma posología que adultos. Bebés ≤3 meses y recién nacidos: 0,3-0,5 mg/kg (0,06-0,1 mL/kg) durante 5 minutos.",
+  "contraindicaciones": "Hipersensibilidad al principio activo o a tintes de tiazina; deficiencia de G6PD (riesgo de anemia hemolítica); metahemoglobinemia inducida por nitrito durante tratamiento de intoxicación por cianuro; intoxicación por clorato; deficiencia de NADPH reductasa.",
+  "precauciones": "Inyectar muy lentamente durante 5 minutos para evitar metahemoglobina adicional. Imparte color azul-verdoso a orina, heces y piel (puede dificultar el diagnóstico de cianosis). Extrema precaución en recién nacidos y lactantes menores de 3 meses.",
+  "ram": "Mareos, parestesia, disgeusia, náuseas, decoloración de la piel, cromaturia, sudoración, dolor en el lugar de la inyección y dolor en las extremidades. Ocasionalmente hipotensión y arritmias cardíacas (raras veces fatales).",
+  "disolucion": "Dextrosa en agua destilada al 5%.",
+  "tabla": null
+}

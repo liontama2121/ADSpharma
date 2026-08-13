@@ -1,0 +1,18 @@
+{
+  "nombre": "METOPROLOL TARTRATO",
+  "principioActivo": "Metoprolol tartrato 5 mg / 5 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "cardiovascular",
+  "registro": "INVIMA 2019M-0019459 · CUM 1M1025331000",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 2,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Antiarrítmico, antianginoso, antihipertensor; taquiarritmias supraventriculares y ventriculares; sospecha o confirmación de infarto agudo de miocardio; prevención secundaria tras infarto.",
+  "dosis": "Ampollas: inicialmente 5 mg en dosis de 1 a 2 mg/min. Puede repetirse a intervalos de 5 minutos hasta el efecto deseado. Dosis usual 10 a 15 mg. Dosis de 20 mg o más no aportan mayor ventaja. Monitorear TA y EKG durante el tratamiento.",
+  "contraindicaciones": "Asma bronquial o broncoespasmo, hipoglicemia, acidosis metabólica, bradicardia sinusal o bloqueo cardíaco parcial, embarazo, lactancia, insuficiencia cardíaca incipiente o manifiesta (salvo digitalización previa). No administrar antagonistas del calcio tipo verapamilo IV en pacientes con betabloqueantes.",
+  "precauciones": "Con clonidina, interrumpir el betabloqueante varios días antes. Potencia efecto inotrópico y dromotrópico negativo de quinidina y amiodarona. Concentración plasmática disminuida por rifampicina, aumentada por cimetidina. Aumenta toxicidad de lidocaína.",
+  "ram": "Muy frecuente: cansancio. Frecuentes: mareos, cefaleas, enlentecimiento del ritmo cardíaco, náuseas, dolor abdominal, sensación de ahogo al esfuerzo, manos y pies fríos, diarrea, estreñimiento, palpitaciones. Poco frecuentes: calambres, depresión, somnolencia, insomnio, pesadillas, vómitos, erupción cutánea, aumento de peso.",
+  "disolucion": "",
+  "tabla": null
+}

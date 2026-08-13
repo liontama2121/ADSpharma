@@ -1,0 +1,20 @@
+---
+import { getEntry } from "astro:content";
+import Base from "../layouts/Base.astro";
+import HomeContenido from "../components/paginas/HomeContenido.astro";
+import { getComingSoon } from "../lib/site";
+
+// Home real. Es la portada visible mientras el modo "proximamente" esta activo;
+// cuando se apaga, la portada pasa a "/" y esta queda como duplicado: se marca
+// noindex + canonical para no competir en buscadores.
+const cs = await getComingSoon();
+
+const entry = await getEntry("home", "home");
+if (!entry) throw new Error("Falta src/content/paginas/home.json");
+
+const seo = cs.activa ? entry.data.seo : { ...entry.data.seo, noindex: true };
+---
+
+<Base seo={seo} activeIndex={0} jsonLd={cs.activa} canonical={cs.activa ? undefined : "/"}>
+  <HomeContenido />
+</Base>

@@ -1,0 +1,18 @@
+{
+  "nombre": "METADOXINA",
+  "principioActivo": "Metadoxina 300 mg por 5 mL ampolla",
+  "presentacion": "Solución inyectable",
+  "linea": "antidotos",
+  "registro": "INVIMA 2019M-0018827",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 21,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Coadyuvante en la disfunción hepática secundaria a alcoholismo agudo y crónico.",
+  "dosis": "Intoxicación alcohólica aguda: 1 ampolla IV o IM (300 mg/5 mL) y repetir tras 1 hora si es necesario. Intoxicación alcohólica crónica: 1 ampolla (300 mg/5 mL) IV o IM cada 12 horas.",
+  "contraindicaciones": "El metabisulfito de sodio puede producir reacciones alérgicas (broncoespasmo) en pacientes susceptibles, particularmente asmáticos.",
+  "precauciones": "Hipersensibilidad. Precaución en enfermos de Parkinson tratados con L-dopa (el metadoxil puede antagonizar su efecto). Embarazo, lactancia. Por el metabisulfito de sodio puede producir reacciones alérgicas y ataques asmáticos severos en pacientes con asma.",
+  "ram": "",
+  "disolucion": "",
+  "tabla": null
+}

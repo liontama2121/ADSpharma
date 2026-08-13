@@ -1,0 +1,96 @@
+---
+import "../styles/styles.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import WaFloating from "../components/WaFloating.astro";
+import { getGlobal, getComingSoon } from "../lib/site";
+
+interface Props {
+  seo: {
+    titulo: string;
+    descripcion: string;
+    ogTitulo?: string;
+    ogDescripcion?: string;
+    noindex?: boolean;
+  };
+  /** Indice del item de navegacion activo. -1 = ninguno. */
+  activeIndex?: number;
+  /** Nav + footer + boton flotante de WhatsApp. La pagina de construccion los oculta. */
+  chrome?: boolean;
+  /** Datos estructurados de la organizacion (solo la home los necesita). */
+  jsonLd?: boolean;
+  canonical?: string;
+}
+
+const { seo, activeIndex = -1, chrome = true, jsonLd = false, canonical } = Astro.props;
+
+const global = await getGlobal();
+const comingSoon = await getComingSoon();
+
+const ogImage = new URL("/image/logo.webp", Astro.site).href;
+const canonicalUrl = canonical ? new URL(canonical, Astro.site).href : undefined;
+
+const organizacion = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: global.empresa,
+  url: Astro.site?.href ?? "",
+  logo: ogImage,
+  description: seo.descripcion,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: global.direccion.linea1,
+    addressLocality: global.direccion.linea2.split(",")[0].trim(),
+    addressCountry: "CO"
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: global.telefonos[0],
+      contactType: "customer service",
+      email: global.emails[0]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{seo.titulo}</title>
+    <meta name="description" content={seo.descripcion} />
+    {seo.noindex && <meta name="robots" content="noindex" />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <meta property="og:title" content={seo.ogTitulo || seo.titulo} />
+    <meta property="og:description" content={seo.ogDescripcion || seo.descripcion} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+
+    <link rel="icon" type="image/webp" href="/image/logo.webp" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(organizacion)} />}
+    <slot name="head" />
+  </head>
+  <body>
+    {chrome && <Nav global={global} comingSoonActiva={comingSoon.activa} activeIndex={activeIndex} />}
+
+    <slot />
+
+    {chrome && <Footer global={global} comingSoonActiva={comingSoon.activa} />}
+    {chrome && <WaFloating whatsapp={global.whatsapp} />}
+
+    <script>
+      import "../scripts/main.js";
+    </script>
+  </body>
+</html>

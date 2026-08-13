@@ -1,0 +1,18 @@
+{
+  "nombre": "TIOSULFATO DE SODIO 20%",
+  "principioActivo": "Tiosulfato de Sodio 20% por 5 mL ampolla",
+  "presentacion": "Solución inyectable",
+  "linea": "antidotos",
+  "registro": "INVIMA 2019M-0018599",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 19,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Coadyuvante en el manejo de intoxicación por cianuro después de la administración de nitrito de sodio o nitrito de amilo.",
+  "dosis": "Adultos: 10 a 12,5 g (10 a 12 ampolletas) diluidos en 200 mL de SSN 0,9% o DAD 5%; goteo de 10 mL/min durante 25 minutos. Si persisten signos de toxicidad por cianuro tras 30 min y hasta 2 h, repetir la misma infusión y continuar 1 ampolla IV lenta cada 8 h hasta las primeras 72 h. Niños: 400 mg/kg (2 mL/kg) de solución al 20% IV diluidos en 100 mL de SSN 0,9% o DAD 5%, a 0,625 a 1,25 g/min (2,5 a 5 mL/min); dosis máxima 12,5 g. Tercera edad: no requiere ajuste en mayores de 65 años.",
+  "contraindicaciones": "Hipersensibilidad al principio activo o a sus excipientes.",
+  "precauciones": "Controle de cerca la hemodinámica durante y después de la administración de Nitrito de Sodio y Tiosulfato de Sodio; reduzca las tasas de infusión si hay hipotensión. Pautas de dosificación reducidas en pediatría. Puede contener trazas de sulfito de sodio (no disuadir su uso en emergencias). Se excreta por vía renal; riesgo aumentado en falla renal.",
+  "ram": "",
+  "disolucion": "",
+  "tabla": null
+}

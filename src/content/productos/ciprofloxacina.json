@@ -1,0 +1,83 @@
+{
+  "nombre": "CIPROFLOXACINA",
+  "principioActivo": "Ciprofloxacina 400 mg / 200 mL",
+  "presentacion": "Solución inyectable premezclada",
+  "linea": "antibioticos",
+  "registro": "INVIMA 2016M-0016972",
+  "imagen": "/image/Ciprofloxacina@3x-8.webp",
+  "orden": 14,
+  "destacado": true,
+  "ordenDestacado": 5,
+  "indicaciones": "Infecciones localizadas en tracto respiratorio, piel y tejidos blandos, tracto urinario y en general contra gérmenes sensibles a esta quinolona.",
+  "dosis": "",
+  "contraindicaciones": "",
+  "precauciones": "Evitar en pacientes con reacciones adversas graves a fluoroquinolonas. En terapia prolongada, evaluaciones periódicas de funciones renal, hepática y hematopoyética; ajustar dosis en insuficiencia renal. Suspender si aparecen signos de hepatitis.",
+  "ram": "Náuseas (3%), dolor abdominal (2%), diarrea (2% adultos, 5% niños), aumento de aminotransferasa (2%), vómitos (1% adultos, 5% niños), dolor de cabeza (1%), aumento de creatinina sérica (1%), erupción cutánea (2%).",
+  "disolucion": "Premezclado en 200 mL de dextrosa 5%.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Infecciones del tracto respiratorio inferior por bacterias gram-negativas",
+          "Leve 400 mg IV cada 12 h durante 7-14 días. Grave 400 mg IV cada 8 h durante 7-14 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Neumonía nosocomial",
+          "Leve/moderado/grave: 400 mg IV cada 8 h durante 10-14 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Sinusitis bacteriana aguda",
+          "400 mg IV cada 12 h durante 10 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones del tracto urinario, genital y gastrointestinal",
+          "Leve 200 mg IV cada 12 h durante 7-14 días. Grave 400 mg IV cada 12 h durante 7-14 días",
+          "1 año (IV): 6-10 mg/kg cada 8 h; dosis individual que no exceda 400 mg durante 10-21 días"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones intraabdominales",
+          "400 mg IV cada 12 h durante 7-14 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones de piel y tejidos blandos por gram-negativas",
+          "Leve/moderado: 400 mg IV cada 12 h durante 7-14 días. Grave/complicado: 400 mg IV cada 8 h durante 7-14 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones óseas y articulares",
+          "Leve/moderada: 400 mg IV cada 12 h durante 4-6 semanas. Grave/complicado: 400 mg IV cada 8 h durante 4-6 semanas",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Prostatitis bacteriana crónica",
+          "400 mg IV cada 12 h durante 28 días",
+          "A criterio médico"
+        ]
+      }
+    ]
+  }
+}

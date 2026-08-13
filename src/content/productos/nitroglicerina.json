@@ -1,0 +1,34 @@
+{
+  "nombre": "NITROGLICERINA",
+  "principioActivo": "Nitroglicerina 0,1 y 0,2 mg/mL",
+  "presentacion": "Solución inyectable premezclada · Presentaciones: 0,1 mg/mL x 200 mL en dextrosa 5%; 0,2 mg/mL x 250 mL en dextrosa 5%",
+  "linea": "cardiovascular",
+  "registro": "INVIMA 2015M-0016180 / 2015M-0016339",
+  "imagen": "/image/Nitroglicerina@3x-8.webp",
+  "orden": 9,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Prevención y tratamiento de la angina de pecho.",
+  "dosis": "",
+  "contraindicaciones": "Hipersensibilidad a nitritos, anemia severa y presión intracraneal o intraocular aumentada.",
+  "precauciones": "La nitroglicerina migra fácilmente en muchos plásticos, incluido el PVC; su absorción por tubos de PVC aumenta cuando la tubería es larga, el flujo bajo y la concentración alta.",
+  "ram": "Dolor de cabeza, hipotensión, taquicardia, disnea, mareos, visión borrosa, nerviosismo, xerostomía.",
+  "disolucion": "Premezclado: 50 mg/250 mL en dextrosa 5%; 20 mg/200 mL en dextrosa 5%.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Angina de pecho",
+          "Inicial: infusión 0,5 mcg/min. Aumentar 5 mcg/min cada 3-5 min hasta respuesta. Si 20 mcg/min es inadecuado, aumentar 10-20 mcg/min cada 3-5 min. Dosis máxima 400 mcg/min",
+          "Inicial 0,25-0,5 mcg/kg/min. Titular en incrementos de 0,5-1 mcg/kg/min cada 3-5 min. Habitual 1-3 mcg/kg/min. Máxima 5 mcg/kg/min (neonatos: no exceder 20 mcg/kg/min)"
+        ]
+      }
+    ]
+  }
+}

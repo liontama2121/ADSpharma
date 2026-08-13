@@ -1,0 +1,55 @@
+{
+  "nombre": "N-ACETILCISTEÍNA",
+  "principioActivo": "N-Acetilcisteína 300 mg / 3 mL",
+  "presentacion": "Solución inyectable IV e inhalatoria",
+  "linea": "respiratorio",
+  "registro": "INVIMA 2021M-0020244 · CUM 20176947-1",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 25,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Coadyuvante en la intoxicación por acetaminofén; medida nefroprotectora; mucolítico. Mucolítico por inhalación por nebulización: Niños 6-14: media ampolla (1,5 mL) 1-2 veces/día (150-300 mg). Adultos: 1 ampolla (3 mL) dos veces/día (600 mg). Por inhalación: solución sin diluir al 10% con nebulizador de compresión.",
+  "dosis": "",
+  "contraindicaciones": "Hipersensibilidad al medicamento. Precaución en insuficiencia respiratoria severa y pacientes asmáticos.",
+  "precauciones": "Precaución en asma bronquial y antecedentes de úlceras (si la falta de aliento empeora por broncoespasmo paradójico, suspender). Precaución en intolerancia a la histamina; evitar terapia a largo plazo.",
+  "ram": "Poco frecuentes: dolor de cabeza, fiebre, reacciones alérgicas (picazón, urticaria, erupción cutánea, broncoespasmo, angioedema, taquicardia, disminución de presión arterial). Muy raros: reacciones anafilácticas hasta el shock.",
+  "disolucion": "Dextrosa 5% o agua para inyección.",
+  "tabla": {
+    "titulo": "Protocolo intravenoso",
+    "headers": [
+      "Dosis",
+      "Volumen DAD 5% adultos",
+      "Volumen DAD 5% niños"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "150 mg/kg infusión 1 h",
+          "200 mL",
+          "3 mL/kg"
+        ]
+      },
+      {
+        "celdas": [
+          "50 mg/kg infusión en las siguientes 4 h",
+          "500 mL",
+          "7 mL/kg"
+        ]
+      },
+      {
+        "celdas": [
+          "100 mg/kg infusión en las siguientes 16 h",
+          "1000 mL",
+          "14 mL/kg"
+        ]
+      },
+      {
+        "celdas": [
+          "Repetir 100 mg/kg en 16 h si requiere continuar con antídoto",
+          "1000 mL",
+          "14 mL/kg"
+        ]
+      }
+    ]
+  }
+}

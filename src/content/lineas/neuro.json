@@ -1,0 +1,11 @@
+{
+  "nombre": "Antiepiléptico",
+  "color": "#4DA8FF",
+  "color2": "#7CC2FF",
+  "orden": 5,
+  "visibleEnHome": true,
+  "iconoPath": "M12 4a4 4 0 0 0-4 4 4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4-4z",
+  "descripcionHome": "Control de estatus epiléptico y convulsiones.",
+  "tituloNosotros": "Control del estatus epiléptico",
+  "descripcionNosotros": "Tratamiento intravenoso de convulsiones parciales complejas, crisis de ausencia y estatus en adultos."
+}

@@ -1,0 +1,19 @@
+---
+interface Props {
+  /** Clase extra para el track (ej. lineas-grid, lineas-extended). */
+  trackClass?: string;
+}
+const { trackClass } = Astro.props;
+---
+
+<div class="carousel reveal">
+  <button class="car-btn car-prev" aria-label="Anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <div class:list={["car-track", trackClass]}>
+    <slot />
+  </div>
+  <button class="car-btn car-next" aria-label="Siguiente">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>

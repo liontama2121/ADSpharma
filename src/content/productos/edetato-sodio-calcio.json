@@ -1,0 +1,18 @@
+{
+  "nombre": "EDETATO DE SODIO Y CALCIO 20%",
+  "principioActivo": "Edetato de Sodio y Calcio 20% por 10 mL vial",
+  "presentacion": "Solución inyectable",
+  "linea": "antidotos",
+  "registro": "INVIMA 2019M-0018905",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 20,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Reducción de los niveles en sangre y reservas de plomo en envenenamiento por plomo (agudo y crónico) y encefalopatía por plomo, en poblaciones pediátricas y adultos.",
+  "dosis": "Adultos: Intoxicación leve: 1 g (3 ampollas) en 500 cc de SSN 0,9% a pasar en 1 hora (8,3 cc/min) cada 12 h x 72 h (promedio 18 ampollas). Moderada y severa: 2 g (6 ampollas) en 500 cc de SSN 0,9% a pasar en 12 h a 46 cc/h, descansar 12 h y repetir 5 ciclos (promedio 30 ampollas). Niños <12 años leve: 25 mg/kg/día dividido cada 12 h por 72 h (promedio 3-6 ampollas). Moderada/severa: 1 g (3 ampollas) en 250 o 500 cc de SSN 0,9% a pasar en 12 h, descansar 12 h y repetir 5 ciclos (promedio 15 ampollas). Asociar gluconato de calcio 1 ampolla IV lenta cada 8 h con monitoreo de calcemia e hiposulfito o tiosulfato de sodio al 20% 1 ampolla IV cada 8 h hasta 24 h después de terminar el esquema de quelación EDTA.",
+  "contraindicaciones": "No administrar durante periodos de anuria; pacientes con enfermedad renal activa; pacientes con hepatitis.",
+  "precauciones": "Capaz de producir efectos tóxicos que pueden ser fatales. Se prefiere la vía intramuscular; evitar la perfusión rápida; seguir el horario de dosificación y no exceder la dosis recomendada.",
+  "ram": "",
+  "disolucion": "El quelante de primera elección en intoxicación por plomo es Edetato Cálcico Disódico 20%, indicado en pacientes sintomáticos con exposición a plomo y en pacientes con niveles tóxicos (>10 mcg/dL) incluso asintomáticos.",
+  "tabla": null
+}

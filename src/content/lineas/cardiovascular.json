@@ -1,0 +1,11 @@
+{
+  "nombre": "Cardiovascular",
+  "color": "#FF5B2E",
+  "color2": "#FF8A3D",
+  "orden": 1,
+  "visibleEnHome": true,
+  "iconoPath": "M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 6.5-7 11-7 11Z",
+  "descripcionHome": "Inotrópicos, antiarrítmicos y vasoactivos.",
+  "tituloNosotros": "Cuidado del corazón crítico",
+  "descripcionNosotros": "Inotrópicos, antiarrítmicos y vasoactivos para insuficiencia cardíaca aguda, arritmias y choque. Incluye productos premezclados listos para uso en UCI."
+}

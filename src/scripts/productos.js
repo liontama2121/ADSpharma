@@ -1,13 +1,20 @@
-// Portafolio: grid + filtros + buscador + modal de detalle.
+// Portafolio: filtros + buscador + modal de detalle.
+// Las tarjetas se renderizan en el servidor; aqui solo se muestran/ocultan.
+// La ficha clinica completa viaja en el <script type="application/json">.
 
 (function () {
-  const grid = document.getElementById("productosGrid");
+  const dataEl = document.getElementById("datos-portafolio");
+  if (!dataEl) return;
+  const DATOS = JSON.parse(dataEl.textContent);
+
   const search = document.getElementById("search");
   const chipsWrap = document.getElementById("chips");
+  const emptyState = document.getElementById("emptyState");
   const modal = document.getElementById("modal");
   const modalBackdrop = document.getElementById("modalBackdrop");
   const modalClose = document.getElementById("modalClose");
   const modalContent = document.getElementById("modalContent");
+  const cards = Array.from(document.querySelectorAll(".producto-card"));
 
   const params = new URLSearchParams(window.location.search);
   let activeLinea = params.get("linea") || "todos";
@@ -24,101 +31,45 @@
       .replace(/'/g, "&#039;");
   }
 
-  // Render chips
-  function renderChips() {
-    const chips = [
-      { id: "todos", nombre: "Todos", color: "" },
-      ...Object.entries(LINEAS).map(([id, l]) => ({ id, nombre: l.nombre, color: l.color }))
-    ];
-    chipsWrap.innerHTML = "";
-    chips.forEach(c => {
-      const btn = document.createElement("button");
-      btn.className = "chip" + (c.id === activeLinea ? " active" : "");
-      btn.textContent = c.nombre;
-      btn.dataset.linea = c.id;
-      if (c.color) btn.style.setProperty("--chip-color", c.color);
-      btn.addEventListener("click", () => {
-        activeLinea = c.id;
-        const url = new URL(window.location);
-        if (c.id === "todos") url.searchParams.delete("linea");
-        else url.searchParams.set("linea", c.id);
-        window.history.replaceState({}, "", url);
-        renderChips();
-        renderGrid();
-      });
-      chipsWrap.appendChild(btn);
+  /* ---------- Filtros ---------- */
+
+  function syncChips() {
+    chipsWrap.querySelectorAll(".chip").forEach(chip => {
+      chip.classList.toggle("active", chip.dataset.linea === activeLinea);
     });
   }
 
-  function filtered() {
+  function applyFilters() {
     const q = activeQuery.trim().toLowerCase();
-    return PRODUCTOS.filter(p => {
-      const lineaOk = activeLinea === "todos" || p.linea === activeLinea;
-      if (!lineaOk) return false;
-      if (!q) return true;
-      return (
-        p.nombre.toLowerCase().includes(q) ||
-        (p.principioActivo || "").toLowerCase().includes(q)
-      );
+    let visibles = 0;
+    cards.forEach(card => {
+      const lineaOk = activeLinea === "todos" || card.dataset.linea === activeLinea;
+      const queryOk = !q || (card.dataset.buscar || "").includes(q);
+      const visible = lineaOk && queryOk;
+      card.style.display = visible ? "" : "none";
+      if (visible) visibles++;
     });
+    if (emptyState) emptyState.hidden = visibles > 0;
   }
 
-  function renderGrid() {
-    const items = filtered();
-    grid.innerHTML = "";
-    if (!items.length) {
-      grid.innerHTML = `<div class="empty-state">Sin resultados. Prueba con otro término o cambia el filtro.</div>`;
-      return;
-    }
-    items.forEach((p, i) => {
-      const linea = LINEAS[p.linea];
-      const color = linea ? linea.color : "var(--glow-cyan)";
-      const tag = linea ? linea.nombre : p.linea;
-      const card = document.createElement("article");
-      card.className = "producto-card";
-      card.style.setProperty("--linea-color", color);
-      card.dataset.id = p.id;
-      card.style.animationDelay = (i * 0.04) + "s";
-      // Sin onerror inline (rompía el HTML y filtraba basura tipo "</>").
-      const img = p.imagen
-        ? `<img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" loading="lazy" />`
-        : `<div class="placeholder">${escapeHTML(p.nombre)}</div>`;
-      const ctxClass = p.imagenContexto ? " has-context" : "";
-      const ctxLabel = p.imagenContexto ? `<span class="ctx-label">ADS PHARMA</span>` : "";
-      // Ronda 2: la card solo muestra nombre + presentación técnica.
-      // Toda la info clínica va en el modal de detalle.
-      card.innerHTML = `
-        <div class="img-wrap${ctxClass}">${img}${ctxLabel}</div>
-        <div class="card-body">
-          <div class="nombre">${escapeHTML(p.nombre)}</div>
-          <div class="presentacion">${escapeHTML(p.principioActivo || "")}</div>
-          <div class="footer-row">
-            <span class="tag-linea">${escapeHTML(tag)}</span>
-            <span class="ver-mas">Ver detalle →</span>
-          </div>
-        </div>
-      `;
-      // Fallback de imagen sin inyectar HTML.
-      const imgEl = card.querySelector(".img-wrap img");
-      if (imgEl) {
-        imgEl.addEventListener("error", () => {
-          const ph = document.createElement("div");
-          ph.className = "placeholder";
-          ph.textContent = p.nombre;
-          imgEl.replaceWith(ph);
-        });
-      }
-      card.addEventListener("click", () => openModal(p.id, card));
-      card.addEventListener("keydown", e => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openModal(p.id, card);
-        }
-      });
-      card.tabIndex = 0;
-      grid.appendChild(card);
-    });
-  }
+  chipsWrap.addEventListener("click", e => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    activeLinea = chip.dataset.linea;
+    const url = new URL(window.location);
+    if (activeLinea === "todos") url.searchParams.delete("linea");
+    else url.searchParams.set("linea", activeLinea);
+    window.history.replaceState({}, "", url);
+    syncChips();
+    applyFilters();
+  });
+
+  search.addEventListener("input", e => {
+    activeQuery = e.target.value;
+    applyFilters();
+  });
+
+  /* ---------- Modal ---------- */
 
   function buildSection(title, body) {
     if (!body || !body.trim()) return "";
@@ -135,7 +86,7 @@
     const titulo = tabla.titulo ? `<div class="tabla-titulo">${escapeHTML(tabla.titulo)}</div>` : "";
     const heads = tabla.headers.map(h => `<th>${escapeHTML(h)}</th>`).join("");
     const rows = tabla.rows.map(r =>
-      `<tr>${r.map(c => `<td>${escapeHTML(c)}</td>`).join("")}</tr>`
+      `<tr>${(r.celdas || []).map(c => `<td>${escapeHTML(c)}</td>`).join("")}</tr>`
     ).join("");
     return `
       <details class="modal-section" open>
@@ -149,23 +100,19 @@
   }
 
   function openModal(id, triggerEl) {
-    const p = PRODUCTOS.find(x => x.id === id);
+    const p = DATOS.productos[id];
     if (!p) return;
-    const linea = LINEAS[p.linea];
-    const color = linea ? linea.color : "var(--glow-cyan)";
-    const lineaNombre = linea ? linea.nombre : p.linea;
 
-    modal.style.setProperty("--linea-color", color);
+    modal.style.setProperty("--linea-color", p.lineaColor);
 
-    const modalPh = `<div class="modal-placeholder">${escapeHTML(p.nombre.charAt(0))}</div>`;
     const img = p.imagen
       ? `<img class="modal-img" src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.nombre)}" />`
-      : modalPh;
+      : `<div class="modal-placeholder">${escapeHTML(p.nombre.charAt(0))}</div>`;
 
     const waText = encodeURIComponent(
-      `Hola ADS PHARMA, me interesa el producto ${p.nombre} (${p.registro || ""}). ¿Me pueden dar más información?`
+      `Hola ${DATOS.empresa}, me interesa el producto ${p.nombre} (${p.registro || ""}). ¿Me pueden dar más información?`
     );
-    const waHref = `https://wa.me/573203035503?text=${waText}`;
+    const waHref = `https://wa.me/${DATOS.whatsapp.numero}?text=${waText}`;
 
     const sections =
       buildSection("Indicaciones", p.indicaciones) +
@@ -180,25 +127,23 @@
       <div class="modal-grid">
         <div class="modal-col-image">
           <div class="modal-img-wrap">${img}</div>
-          <span class="tag-linea">${escapeHTML(lineaNombre)}</span>
+          <span class="tag-linea">${escapeHTML(p.lineaNombre)}</span>
           <h2 id="modalTitle">${escapeHTML(p.nombre)}</h2>
           <div class="pa-mono">${escapeHTML(p.principioActivo || "")}</div>
           ${p.presentacion ? `<p class="modal-presentacion">${escapeHTML(p.presentacion)}</p>` : ""}
           ${p.registro ? `<span class="badge-registro">${escapeHTML(p.registro)}</span>` : ""}
           <a class="btn btn-wa modal-wa" href="${waHref}" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.9 11.9 0 0 0 3 18.5L1.5 24l5.7-1.5A11.9 11.9 0 1 0 20.5 3.5Zm-8.4 18.3a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.4.9.9-3.3-.2-.4a9.9 9.9 0 1 1 8.1 4.4Z"/></svg>
-            Solicitar info por WhatsApp
+            ${escapeHTML(DATOS.textos.solicitarInfo)}
           </a>
         </div>
 
         <div class="modal-col-sections">
-          ${sections || `<p class="modal-empty">Sin información clínica adicional disponible.</p>`}
+          ${sections || `<p class="modal-empty">${escapeHTML(DATOS.textos.sinFicha)}</p>`}
         </div>
       </div>
 
-      <div class="modal-disclaimer">
-        Información dirigida exclusivamente a profesionales de la salud e instituciones. Los medicamentos aquí presentados son de uso delicado y requieren prescripción y supervisión médica. La información de dosificación es de referencia y no reemplaza el criterio médico ni la ficha técnica oficial aprobada por el INVIMA. ADS PHARMA S.A.S. no comercializa medicamentos directamente al público a través de este sitio.
-      </div>
+      <div class="modal-disclaimer">${escapeHTML(DATOS.disclaimer)}</div>
     `;
 
     const modalImgEl = modalContent.querySelector(".modal-img");
@@ -222,7 +167,7 @@
     });
 
     const url = new URL(window.location);
-    url.searchParams.set("id", p.id);
+    url.searchParams.set("id", id);
     window.history.replaceState({}, "", url);
   }
 
@@ -252,18 +197,30 @@
   modalClose.addEventListener("click", closeModal);
   modalBackdrop.addEventListener("click", closeModal);
 
-  // Eventos
-  search.addEventListener("input", e => {
-    activeQuery = e.target.value;
-    renderGrid();
+  cards.forEach(card => {
+    // Fallback de imagen sin inyectar HTML.
+    const imgEl = card.querySelector(".img-wrap img");
+    if (imgEl) {
+      imgEl.addEventListener("error", () => {
+        const ph = document.createElement("div");
+        ph.className = "placeholder";
+        ph.textContent = card.querySelector(".nombre")?.textContent || "";
+        imgEl.replaceWith(ph);
+      });
+    }
+    card.addEventListener("click", () => openModal(card.dataset.id, card));
+    card.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModal(card.dataset.id, card);
+      }
+    });
   });
 
-  renderChips();
-  renderGrid();
+  syncChips();
+  applyFilters();
 
   // Abrir modal por ?id= directo
   const initialId = params.get("id");
-  if (initialId) {
-    setTimeout(() => openModal(initialId, null), 50);
-  }
+  if (initialId) setTimeout(() => openModal(initialId, null), 50);
 })();

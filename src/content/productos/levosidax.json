@@ -1,0 +1,18 @@
+{
+  "nombre": "LEVOSIDAX",
+  "principioActivo": "Levosimendan 12,5 mg / 5 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "cardiovascular",
+  "registro": "INVIMA 2015M-0016519",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 1,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Tratamiento a corto plazo de falla cardíaca crónica severa agudamente descompensada; falla cardíaca aguda; falla cardíaca aguda postquirúrgica; falla cardíaca aguda post infarto agudo de miocardio. Coadyuvante cuando la terapia convencional es insuficiente y se requiere terapia inotrópica de apoyo.",
+  "dosis": "Iniciar con dosis de carga de 6 a 12 µg/kg infundidos durante 10 minutos, seguidos de infusión continua de 0,1 µg/kg/min. La dosis de carga más baja (6 µg/kg) se recomienda para pacientes que reciben vasodilatadores e inotrópicos. Duración recomendada de la infusión en ICC descompensada: 24 horas.",
+  "contraindicaciones": "Hipersensibilidad a sus excipientes; hipotensión severa y taquicardia; obstrucción mecánica marcada que afecta el llenado ventricular y/o el flujo de salida; deterioro renal severo (depuración de creatinina < 30 mL/min) y deterioro hepático severo; historial de torsades de pointes.",
+  "precauciones": "Usar con precaución en daño hepático o renal leve a moderado; en hipotensión, taquicardia o fibrilación auricular con respuesta ventricular rápida; monitorización ECG estricta en alargamiento del intervalo QT; administrar bajo monitorización continua del gasto cardíaco y la presión de llenado.",
+  "ram": "En estudios clínicos controlados con placebo en ICAD (REVIVE), 53% de los pacientes experimentaron reacciones adversas; las más frecuentes: taquicardia ventricular, hipotensión y cefalea.",
+  "disolucion": "Para infusión de 0,025 mg/mL, mezclar 5 mL de Levosimendan concentrado (2,5 mg/mL) en 500 mL de dextrosa al 5%. Si se requiere, usar 495 mL de SSN 0,9%. Estabilidad química y física demostrada en 24 horas a 25 °C.",
+  "tabla": null
+}

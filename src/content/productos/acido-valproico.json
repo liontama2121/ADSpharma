@@ -1,0 +1,18 @@
+{
+  "nombre": "ÁCIDO VALPROICO",
+  "principioActivo": "Valproato de Sodio equivalente a Ácido Valproico 100 mg/mL",
+  "presentacion": "Solución inyectable",
+  "linea": "neuro",
+  "registro": "INVIMA 2016M-0016861",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 23,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Tratamiento de convulsiones parciales complejas y crisis de ausencia simple y compleja. El ácido valproico (como valproato de sodio) IV está indicado en los estatus epilépticos de adultos.",
+  "dosis": "10-15 mg/kg/día IV dividido cada 12 h, infundido durante 1 hora; dosis máxima 60 mg/kg/día; no exceder 14 días. Pediatría (>10 años): valproato sódico IV 10-15 mg/kg/día dividido cada 12 h, infundido durante 1 h; máxima 60 mg/kg/día; no exceder 14 días.",
+  "contraindicaciones": "No administrar en enfermedad hepática o disfunción hepática significativa. Contraindicado en enfermedad de Alpers o Alpers-Huttenlocher, hipersensibilidad conocida y trastornos del ciclo de la urea. En menores de 10 años no se ha establecido seguridad y eficacia.",
+  "precauciones": "",
+  "ram": ">10% náusea (31%), dolor de cabeza (<31%), aumento del tiempo de sangrado (26-30%), trombocitopenia (26-30%), temblor (25%), alopecia (<24%), astenia (16-20%), infección (16-20%), somnolencia (16-20%).",
+  "disolucion": "Infusión de 60 minutos, diluida con al menos 50 mL de solución compatible: dextrosa 5%, SSN 0,9%, lactato de Ringer.",
+  "tabla": null
+}

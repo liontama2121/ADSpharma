@@ -1,0 +1,200 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Carousel from "../Carousel.astro";
+import Marquee from "../Marquee.astro";
+import { getGlobal } from "../../lib/site";
+
+const entry = await getEntry("home", "home");
+if (!entry) throw new Error("Falta src/content/paginas/home.json");
+const home = entry.data;
+const global = await getGlobal();
+
+const lineas = (await getCollection("lineas"))
+  .filter((l) => l.data.visibleEnHome)
+  .sort((a, b) => a.data.orden - b.data.orden);
+
+const todasLasLineas = new Map((await getCollection("lineas")).map((l) => [l.id, l.data]));
+
+const destacados = (await getCollection("productos"))
+  .filter((p) => p.data.destacado)
+  .sort((a, b) => a.data.ordenDestacado - b.data.ordenDestacado);
+
+// El titulo se parte en palabras para la animacion de entrada del hero.
+const palabrasHero = home.hero.titulo.split(/\s+/).filter(Boolean);
+---
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-orbs" aria-hidden="true">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-orb hero-orb-4"></div>
+      <div class="hero-orb hero-orb-5"></div>
+    </div>
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+    <div class="container hero-container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <a class="hero-eyebrow" href={global.direccion.mapsUrl} target="_blank" rel="noopener">
+            <span class="dot"></span>{home.hero.eyebrow}
+          </a>
+          <h1 class="hero-title solid h-azul" id="heroTitle">
+            {palabrasHero.map((w, i) => (
+              <Fragment>{i > 0 ? " " : ""}<span class="word">{w}</span></Fragment>
+            ))}
+          </h1>
+          <p class="hero-sub">{home.hero.subtitulo}</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href={home.hero.ctaPrimario.url}>
+              {home.hero.ctaPrimario.texto}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href={home.hero.ctaSecundario.url}>{home.hero.ctaSecundario.texto}</a>
+          </div>
+          <div class="hero-divider" aria-hidden="true"></div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-logo-glow"></div>
+          <img class="hero-logo" src="/image/logo_home.webp" alt={global.empresa} loading="eager" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Líneas terapéuticas -->
+  <section class="container">
+    <div class="section-head reveal">
+      <h1 class="sec-title h-azul">{home.lineas.titulo}</h1>
+      <h2 class="sec-sub">{home.lineas.subtitulo}</h2>
+      <p>{home.lineas.texto}</p>
+    </div>
+    <Carousel trackClass="lineas-grid">
+      {lineas.map((l) => (
+        <a class="linea-card" href={`/productos?linea=${l.id}`} style={`--linea-color: ${l.data.color};`}>
+          <div class="linea-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d={l.data.iconoPath}/></svg>
+          </div>
+          <h3>{l.data.nombre}</h3>
+          <p>{l.data.descripcionHome}</p>
+        </a>
+      ))}
+    </Carousel>
+  </section>
+
+  <!-- Quiénes somos -->
+  <section class="container">
+    <div class="section-head reveal">
+      <h1 class="sec-title h-azul">{home.quienesSomos.titulo}</h1>
+      <h2 class="sec-sub">{home.quienesSomos.subtitulo}</h2>
+    </div>
+    <div class="cards-3 reveal-stagger reveal">
+      {home.quienesSomos.cards.map((c) => (
+        <div class="glass-card">
+          <h3>{c.titulo}</h3>
+          <p>{c.texto}</p>
+        </div>
+      ))}
+    </div>
+    <div style="margin-top:30px;" class="reveal">
+      <a class="btn btn-orange" href={home.quienesSomos.cta.url}>{home.quienesSomos.cta.texto}</a>
+    </div>
+  </section>
+
+  <!-- Premezclado -->
+  <section class="container">
+    <div class="section-head reveal">
+      <h1 class="sec-title h-naranja">{home.premezclado.titulo}</h1>
+      <h2 class="sec-sub">{home.premezclado.subtitulo}</h2>
+      <p>{home.premezclado.texto}</p>
+    </div>
+    <div class="metrics-grid reveal-stagger reveal">
+      {home.premezclado.metricas.map((m) => (
+        <div class="metric">
+          <div class="num">{m.simbolo}</div>
+          <h4>{m.titulo}</h4>
+          <p>{m.texto}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Portafolio destacado -->
+  <section class="container">
+    <div class="section-head reveal">
+      <h1 class="sec-title h-naranja">{home.portafolio.titulo}</h1>
+      <h2 class="sec-sub">{home.portafolio.subtitulo}</h2>
+    </div>
+    <Carousel>
+      {destacados.map((p) => {
+        const linea = todasLasLineas.get(p.data.linea);
+        return (
+          <a
+            class="mini-card"
+            href={`/productos?id=${p.id}`}
+            style={`--linea-color: ${linea ? linea.color : "var(--glow-cyan)"};`}
+          >
+            <div class="img-wrap">
+              {p.data.imagen
+                ? <img src={p.data.imagen} alt={p.data.nombre} loading="lazy" />
+                : <div class="placeholder">{p.data.nombre}</div>}
+            </div>
+            <div class="nombre">{p.data.nombre}</div>
+            <div class="presentacion">{p.data.principioActivo}</div>
+            <span class="tag-linea">{linea ? linea.nombre : p.data.linea}</span>
+          </a>
+        );
+      })}
+    </Carousel>
+    <div style="margin-top:30px; text-align:center;" class="reveal">
+      <a class="btn btn-orange" href={home.portafolio.cta.url}>
+        {home.portafolio.cta.texto}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Confían en nosotros -->
+  <section>
+    <div class="container section-head reveal" style="margin-bottom:30px;">
+      <h1 class="sec-title h-morado">{home.clientes.titulo}</h1>
+    </div>
+    <Marquee items={global.clientesInstitucionales} />
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="cta-contacto">
+    <div class="container contenido reveal">
+      <h1 class="sec-title h-verde">{home.contacto.titulo}</h1>
+      <h2 class="sec-sub">{home.contacto.subtitulo}</h2>
+      <p>{home.contacto.texto}</p>
+      <div class="cta-info">
+        <div class="cta-info-item">
+          <h3 class="label">Dirección</h3>
+          <div class="value">{global.direccion.linea1}<br />{global.direccion.linea2}</div>
+        </div>
+        <div class="cta-info-item">
+          <h3 class="label">Teléfonos</h3>
+          <div class="value">
+            {global.telefonos[0]}<br />{global.telefonos.slice(1).join(" · ")}
+          </div>
+        </div>
+        <div class="cta-info-item">
+          <h3 class="label">Email</h3>
+          <div class="value">
+            {global.emails.map((e) => <a class="mail" href={`mailto:${e}`}>{e}</a>)}
+          </div>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src={global.direccion.mapsEmbed}
+          title={`Ubicación ${global.empresa}`}
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</main>

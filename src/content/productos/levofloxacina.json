@@ -1,0 +1,69 @@
+{
+  "nombre": "LEVOFLOXACINA",
+  "principioActivo": "Levofloxacina 5 mg/mL x 100 mL",
+  "presentacion": "Solución premezclada",
+  "linea": "antibioticos",
+  "registro": "INVIMA 2014M-0015067",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 17,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Infecciones localizadas en tracto respiratorio, piel y tejidos blandos, tracto urinario y en general contra gérmenes sensibles a esta quinolona.",
+  "dosis": "",
+  "contraindicaciones": "Hipersensibilidad a quinolonas, embarazo, lactancia y niños menores de 18 años; precaución en síndrome convulsivo y riesgo de exacerbación de miastenia gravis asociada a fluoroquinolonas.",
+  "precauciones": "Casos de hipersensibilidad y reacciones anafilácticas serias y ocasionalmente fatales. Precaución en insuficiencia renal (se excreta principalmente por los riñones). Asociada con prolongación del intervalo QT y casos poco frecuentes de arritmia.",
+  "ram": "Náuseas (7%), dolor de cabeza (6%), diarrea (5%), insomnio (4%), estreñimiento (3%), mareos (3%), dispepsia (2%), erupción cutánea (2%), vómitos (2%).",
+  "disolucion": "Dextrosa en agua destilada al 5%.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Neumonía adquirida en la comunidad y nosocomial",
+          "500 mg IV una vez al día durante 7-14 días o 750 mg IV una vez al día durante 5 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Sinusitis bacteriana aguda",
+          "500 mg IV una vez al día durante 10-14 días o 750 mg IV una vez al día durante 5 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Exacerbación bacteriana de bronquitis",
+          "500 mg IV una vez al día durante 7 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones complicadas de piel y tejidos blandos",
+          "Sin complicaciones: 500 mg IV una vez al día durante 7-10 días. Complicado: 750 mg IV una vez al día durante 7-14 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones complicadas del tracto urinario y pielonefritis aguda",
+          "250 mg IV una vez al día durante 10 días o 750 mg IV una vez al día durante 5 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Prostatitis bacteriana crónica",
+          "500 mg IV una vez al día durante 28 días",
+          "A criterio médico"
+        ]
+      }
+    ]
+  }
+}

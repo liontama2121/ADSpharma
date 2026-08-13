@@ -1,0 +1,18 @@
+{
+  "nombre": "AMIODARONA",
+  "principioActivo": "Amiodarona Clorhidrato 150 mg / 3 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "cardiovascular",
+  "registro": "INVIMA 2008M-0008550",
+  "imagen": "/image/Amiodarona@3x-8.webp",
+  "orden": 8,
+  "destacado": true,
+  "ordenDestacado": 3,
+  "indicaciones": "Taquiarritmias supraventriculares nodales y ventriculares, y síndrome de Wolff-Parkinson-White.",
+  "dosis": "Infusión IV con bomba mediante catéter venoso central. Dosis usual 5 mg/kg en 250 mL de dextrosa 5%, a pasar entre 20 minutos y 2 horas. Mantenimiento: 10 a 20 mg/kg/24 h (usualmente 600 a 800 mg/24 h y hasta 1.200 mg/24 h) diluidos en 250 mL de dextrosa 5% durante 5 días.",
+  "contraindicaciones": "",
+  "precauciones": "Monitoreo continuo de TA y ECG. Especial atención en hipotensión arterial, insuficiencia respiratoria severa, cardiomiopatía descompensada o insuficiencia cardíaca severa.",
+  "ram": "Aumento de AST/ALT (3-20%, hasta 40-50% en algunos estudios), hipotensión (16%), mareos (3-40%), dolor de cabeza (3-40%) y malestar (3-40%).",
+  "disolucion": "Diluir a 1-2 mg/mL. Infundir durante 60 minutos. Compatibles: dextrosa 5%; SSN 0,9%.",
+  "tabla": null
+}

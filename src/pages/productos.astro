@@ -1,0 +1,122 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { getGlobal, IMG_CONTEXTO } from "../lib/site";
+import "../styles/productos.css";
+
+const entry = await getEntry("portafolio", "portafolio");
+if (!entry) throw new Error("Falta src/content/paginas/portafolio.json");
+const pagina = entry.data;
+const global = await getGlobal();
+
+const productos = (await getCollection("productos")).sort(
+  (a, b) => a.data.orden - b.data.orden
+);
+
+const lineas = (await getCollection("lineas")).sort(
+  (a, b) => a.data.orden - b.data.orden
+);
+const lineaPorId = new Map(lineas.map((l) => [l.id, l.data]));
+
+// Solo se ofrecen como filtro las lineas que realmente tienen productos.
+const lineasConProductos = lineas.filter((l) =>
+  productos.some((p) => p.data.linea === l.id)
+);
+
+// Las tarjetas se renderizan en el servidor (SEO); el JS solo filtra y abre el modal.
+// Este bloque alimenta el modal de detalle.
+const datosModal = {
+  textos: {
+    solicitarInfo: pagina.textoSolicitarInfo,
+    sinFicha: pagina.textoSinFicha
+  },
+  whatsapp: global.whatsapp,
+  empresa: global.empresa.replace(/\s*S\.A\.S\.\s*$/, ""),
+  disclaimer: global.disclaimer,
+  productos: Object.fromEntries(
+    productos.map((p) => [
+      p.id,
+      {
+        ...p.data,
+        lineaNombre: lineaPorId.get(p.data.linea)?.nombre ?? p.data.linea,
+        lineaColor: lineaPorId.get(p.data.linea)?.color ?? "var(--glow-cyan)"
+      }
+    ])
+  )
+};
+---
+
+<Base seo={pagina.seo} activeIndex={1}>
+  <main>
+    <section class="portafolio-head container">
+      <h1>{pagina.titulo}</h1>
+      <p class="sub">{pagina.subtitulo}</p>
+    </section>
+
+    <div class="toolbar">
+      <div class="container toolbar-inner">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="search" id="search" placeholder={pagina.buscadorPlaceholder} aria-label="Buscar" />
+        </div>
+        <div class="chips" id="chips">
+          <button class="chip active" data-linea="todos">{pagina.chipTodos}</button>
+          {lineasConProductos.map((l) => (
+            <button class="chip" data-linea={l.id} style={`--chip-color: ${l.data.color};`}>
+              {l.data.nombre}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <section class="container">
+      <div class="productos-grid" id="productosGrid">
+        {productos.map((p) => {
+          const linea = lineaPorId.get(p.data.linea);
+          const esContexto = p.data.imagen === IMG_CONTEXTO;
+          return (
+            <article
+              class="producto-card"
+              data-id={p.id}
+              data-linea={p.data.linea}
+              data-buscar={`${p.data.nombre} ${p.data.principioActivo}`.toLowerCase()}
+              style={`--linea-color: ${linea ? linea.color : "var(--glow-cyan)"};`}
+              tabindex="0"
+            >
+              <div class:list={["img-wrap", esContexto && "has-context"]}>
+                {p.data.imagen
+                  ? <img src={p.data.imagen} alt={p.data.nombre} loading="lazy" />
+                  : <div class="placeholder">{p.data.nombre}</div>}
+                {esContexto && <span class="ctx-label">{global.empresa.replace(" S.A.S.", "")}</span>}
+              </div>
+              <div class="card-body">
+                <div class="nombre">{p.data.nombre}</div>
+                <div class="presentacion">{p.data.principioActivo}</div>
+                <div class="footer-row">
+                  <span class="tag-linea">{linea ? linea.nombre : p.data.linea}</span>
+                  <span class="ver-mas">{pagina.textoVerDetalle}</span>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+        <div class="empty-state" id="emptyState" hidden>{pagina.textoSinResultados}</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <aside class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div id="modalContent"></div>
+  </aside>
+
+  <script type="application/json" id="datos-portafolio" set:html={JSON.stringify(datosModal)}></script>
+  <script>
+    import "../scripts/productos.js";
+  </script>
+</Base>

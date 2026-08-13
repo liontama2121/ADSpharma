@@ -1,0 +1,18 @@
+{
+  "nombre": "NOLTRON",
+  "principioActivo": "Norepinefrina Bitartrato 4 mg / 4 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "cardiovascular",
+  "registro": "INVIMA 2014M-0003455-R1",
+  "imagen": "/image/Noltron@3x-8.webp",
+  "orden": 5,
+  "destacado": true,
+  "ordenDestacado": 2,
+  "indicaciones": "Estados hipotensivos agudos, paro cardíaco, sepsis y choque séptico.",
+  "dosis": "Generalmente por infusión IV como solución de 4 mcg/mL de norepinefrina base. Inicial: 8–12 mcg/min, titular según efecto. Mantenimiento: 2–4 mcg/min IV.",
+  "contraindicaciones": "",
+  "precauciones": "Pacientes con IMAO o antidepresivos tricíclicos y con antecedentes de reacciones alérgicas al bisulfito de sodio: vigilar la presión arterial por riesgo de hipertensión y por posibilidad de extravasación.",
+  "ram": "Bradicardia, hipertensión, arritmias, confusión, ansiedad, disnea, dolor de cabeza, náuseas y vómitos.",
+  "disolucion": "Diluir en 250 a 1000 mL de solución compatible (16 mcg–4 mcg respectivamente), según necesidad. Dextrosa 5%.",
+  "tabla": null
+}

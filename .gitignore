@@ -2,3 +2,9 @@
 .vscode/
 node_modules/
 .DS_Store
+
+# Astro
+dist/
+.astro/
+.env
+.env.production

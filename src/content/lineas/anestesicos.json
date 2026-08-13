@@ -1,0 +1,11 @@
+{
+  "nombre": "Anestésicos",
+  "color": "#2ED47A",
+  "color2": "#7CE6A8",
+  "orden": 2,
+  "visibleEnHome": true,
+  "iconoPath": "M14 3l7 7M3 21l8-8M8 18l-2-2-1 1 2 2zM21 10 13 18l-2-2 8-8z",
+  "descripcionHome": "Bloqueantes neuromusculares y sedación.",
+  "tituloNosotros": "Soporte quirúrgico y de UCI",
+  "descripcionNosotros": "Bloqueantes neuromusculares y sedantes para anestesia general, intubación de secuencia rápida y ventilación mecánica."
+}

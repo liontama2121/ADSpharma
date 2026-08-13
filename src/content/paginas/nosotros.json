@@ -1,0 +1,41 @@
+{
+  "seo": {
+    "titulo": "Nosotros — ADS PHARMA",
+    "descripcion": "Misión, visión, política de calidad y líneas terapéuticas de ADS PHARMA S.A.S. Laboratorio farmacéutico colombiano.",
+    "ogTitulo": "",
+    "ogDescripcion": "",
+    "noindex": false
+  },
+  "intro": {
+    "titulo": "Sobre ADS",
+    "subtitulo": "Ciencia con perspectiva humana.",
+    "texto": "ADS PHARMA nació en Colombia en 2007 con la misión de acercar al país soluciones farmacéuticas de alta complejidad. Especializada en medicamentos genéricos para cuidados intensivos y urgencias, la compañía combina innovación, tecnología y altos estándares de calidad para contribuir al bienestar de miles de personas en Colombia y América Latina. Nuestro compromiso es claro: darlo todo por la salud y la vida."
+  },
+  "valores": [
+    {
+      "titulo": "Misión",
+      "texto": "Bajo una perspectiva científico-humana, ser una alternativa terapéutica confiable al desarrollar, producir y comercializar medicamentos con calidad global, soportada en estudios acreditados que demuestren su efectividad."
+    },
+    {
+      "titulo": "Visión",
+      "texto": "Consolidarnos en el mercado farmacéutico nacional e internacional como una compañía confiable e innovadora, con un portafolio de productos y servicios dirigidos al cuidado vital del paciente."
+    },
+    {
+      "titulo": "Políticas de calidad",
+      "texto": "ADS PHARMA S.A.S. se compromete a diseñar, fabricar y comercializar productos farmacéuticos bajo los más altos estándares de calidad, basados en normas vigentes de BPM, con personal competente, mejora continua del Sistema de Calidad y responsabilidad social y ambiental."
+    }
+  ],
+  "lineas": {
+    "titulo": "Líneas terapéuticas",
+    "texto": "Cada línea reúne medicamentos clave para escenarios clínicos específicos. Filtra el portafolio por categoría para ver las fichas."
+  },
+  "clientes": {
+    "titulo": "Instituciones de salud que confían en nuestros productos"
+  },
+  "cta": {
+    "eyebrow": "¿Trabajamos juntos?",
+    "titulo": "Hablemos por WhatsApp.",
+    "texto": "Si representas una institución de salud, escríbenos y te enviaremos el portafolio detallado.",
+    "boton": "Escribir por WhatsApp"
+  }
+}

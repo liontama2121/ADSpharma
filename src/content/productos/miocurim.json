@@ -1,0 +1,48 @@
+{
+  "nombre": "MIOCURIM",
+  "principioActivo": "Cisatracurio 10 mg / 5 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "anestesicos",
+  "registro": "INVIMA 2012M-0012873",
+  "imagen": "/image/Miocurim@3x-8.webp",
+  "orden": 11,
+  "destacado": true,
+  "ordenDestacado": 7,
+  "indicaciones": "Facilita la entubación endotraqueal, coadyuvante de la anestesia general y relajación muscular durante la cirugía y ventilación mecánica en cirugía y UCI.",
+  "dosis": "",
+  "contraindicaciones": "",
+  "precauciones": "Hipersensibilidad a otros bloqueantes neuromusculares (sensibilidad cruzada), miastenia gravis y otras enfermedades neuromusculares (dosis inicial máxima 0,02 mg/kg) y pacientes quemados. Puede ocurrir bradicardia. Instituciones que lo utilizan: Fundación Santa Fe (Bogotá), Fundación Valle de Lili (Cali), Clínica General del Norte (Barranquilla), Clínica Chicamocha (Bucaramanga).",
+  "ram": "",
+  "disolucion": "Diluir a 0,1-0,4 mg/mL para infusión continua y administrar a 1-2 mcg/kg/min; bolo no requiere dilución, administrar durante 5-10 segundos. Compatibles: dextrosa 5% y SSN 0,9%.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Complemento en anestesia general",
+          "Intubación 0,15-0,2 mg/kg IV. Mantenimiento 0,03 mg/kg IV",
+          "1-24 meses: 0,15 mcg/kg durante 5-10 s. 2-12 años: 0,1-0,15 mg/kg durante 5-15 s"
+        ]
+      },
+      {
+        "celdas": [
+          "Intubación endotraqueal",
+          "Intubación 0,15-0,2 mg/kg IV. Mantenimiento 0,03 mg/kg IV",
+          "1-24 meses: 0,15 mcg/kg durante 5-10 s. 2-12 años: 0,1-0,15 mg/kg durante 5-15 s"
+        ]
+      },
+      {
+        "celdas": [
+          "Relajante neuromuscular en cirugía o ventilación mecánica en UCI",
+          "3 mcg/kg/min postbolo. Mantenimiento 1-2 mcg/kg/min",
+          "Mayores de 2 años: 3 mcg/kg/min postbolo. Mantenimiento 1-2 mcg/kg/min"
+        ]
+      }
+    ]
+  }
+}

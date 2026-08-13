@@ -1,0 +1,65 @@
+/* === Coming soon: reusa el sistema del hero, centrado === */
+.cs {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: clamp(2.5rem, 6vh, 5rem) 24px;
+  overflow: hidden;
+}
+.cs-inner {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.4rem;
+  max-width: 640px; width: 100%;
+}
+.cs-logo-wrap { position: relative; display: grid; place-items: center; }
+.cs-logo {
+  position: relative; z-index: 2;
+  width: clamp(180px, 42vw, 300px);
+  height: auto;
+  filter: drop-shadow(0 20px 50px rgba(77,168,255,0.25));
+  animation: heroFloat 4s ease-in-out infinite;
+}
+.cs-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 16px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-mid);
+  backdrop-filter: blur(8px);
+}
+.cs-badge .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--glow-cyan);
+  box-shadow: 0 0 12px var(--glow-cyan);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.cs-title {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  background: var(--brand);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.cs-sub { color: var(--text-mid); font-size: clamp(1rem, 1.4vw, 1.18rem); max-width: 520px; }
+.cs-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 0.4rem; }
+.cs-foot {
+  margin-top: 1.6rem;
+  font-size: 0.82rem; color: var(--text-low);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.cs-foot a { color: var(--text-mid); }
+.cs-foot a:hover { color: var(--text-hi); }
+@media (max-width: 768px) {
+  .cs-ctas { width: 100%; }
+  .cs-ctas .btn { flex: 1 1 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-logo, .hero-orb { animation: none; }
+}

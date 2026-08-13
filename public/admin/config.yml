@@ -1,0 +1,367 @@
+# Panel de contenido de ADS PHARMA (Decap CMS).
+#
+# El cliente NO necesita cuenta de GitHub: entra con su Google desde
+# Cloudflare Access y la Pages Function /cms-api firma los commits con el
+# token del repositorio. Ver functions/cms-api/[[path]].js
+#
+# Cambia `branch` si el sitio se publica desde otra rama.
+
+# Solo aplica cuando el panel se abre desde localhost: Decap lo ignora en
+# produccion. Permite probar el panel contra los archivos locales, sin GitHub
+# ni Cloudflare Access. Requiere `npm run cms` en otra terminal.
+local_backend: true
+
+backend:
+  name: github
+  repo: liontama2121/ADSpharma
+  branch: main
+  # Mismo dominio que el sitio: asi la peticion lleva la cookie de Cloudflare Access.
+  base_url: https://adspharma.co
+  auth_endpoint: cms-api/auth
+  api_root: https://adspharma.co/cms-api/github
+  commit_messages:
+    create: 'contenido: crea {{collection}} "{{slug}}"'
+    update: 'contenido: actualiza {{collection}} "{{slug}}"'
+    delete: 'contenido: elimina {{collection}} "{{slug}}"'
+    uploadMedia: 'contenido: sube imagen {{path}}'
+    deleteMedia: 'contenido: elimina imagen {{path}}'
+
+media_folder: public/image
+public_folder: /image
+
+locale: es
+site_url: https://adspharma.co
+display_url: https://adspharma.co
+
+collections:
+  # ------------------------------------------------------------------
+  - name: productos
+    label: Productos
+    label_singular: Producto
+    description: Catálogo clínico. Cada ficha alimenta el portafolio y el buscador.
+    folder: src/content/productos
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: nombre
+    # Sin panel de vista previa: el generico de Decap no usa los estilos del
+    # sitio y da una idea equivocada de como se ve la ficha.
+    editor:
+      preview: false
+    summary: '{{nombre}} — {{principioActivo}}'
+    sortable_fields: [orden, nombre, linea]
+    view_groups:
+      - label: Línea terapéutica
+        field: linea
+    fields:
+      - { label: Nombre comercial, name: nombre, widget: string }
+      - { label: Principio activo y concentración, name: principioActivo, widget: string, required: false }
+      - { label: Presentación, name: presentacion, widget: string, required: false }
+      - label: Línea terapéutica
+        name: linea
+        widget: relation
+        collection: lineas
+        value_field: '{{slug}}'
+        search_fields: [nombre]
+        display_fields: [nombre]
+      - { label: Registro INVIMA / CUM, name: registro, widget: string, required: false }
+      - { label: Imagen del producto, name: imagen, widget: image, required: false, hint: 'Si se deja vacío se usa la imagen genérica de ADS PHARMA.' }
+      - { label: Orden en el portafolio, name: orden, widget: number, value_type: int, default: 999 }
+      - { label: Mostrar en destacados del inicio, name: destacado, widget: boolean, default: false }
+      - { label: Posición entre los destacados, name: ordenDestacado, widget: number, value_type: int, default: 0, required: false }
+      - { label: Indicaciones, name: indicaciones, widget: text, required: false }
+      - { label: Dosis y administración, name: dosis, widget: text, required: false }
+      - { label: Contraindicaciones, name: contraindicaciones, widget: text, required: false }
+      - { label: Precauciones y advertencias, name: precauciones, widget: text, required: false }
+      - { label: RAM / Efectos adversos, name: ram, widget: text, required: false }
+      - { label: Disolución y soluciones compatibles, name: disolucion, widget: text, required: false }
+      - label: Tabla de dosificación
+        name: tabla
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Título de la tabla, name: titulo, widget: string, required: false }
+          - { label: Encabezados de columna, name: headers, widget: list, field: { label: Encabezado, name: encabezado, widget: string } }
+          - label: Filas
+            name: rows
+            widget: list
+            required: false
+            fields:
+              - { label: Celdas (una por columna, en orden), name: celdas, widget: list, field: { label: Celda, name: celda, widget: text } }
+
+  # ------------------------------------------------------------------
+  - name: lineas
+    label: Líneas terapéuticas
+    label_singular: Línea
+    description: Categorías del portafolio. El color se usa en tarjetas, chips y fichas.
+    folder: src/content/lineas
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: nombre
+    editor:
+      preview: false
+    summary: '{{nombre}}'
+    sortable_fields: [orden, nombre]
+    fields:
+      - { label: Nombre, name: nombre, widget: string }
+      - { label: Color principal, name: color, widget: color, allow_input: true }
+      - { label: Color secundario, name: color2, widget: color, allow_input: true }
+      - { label: Orden, name: orden, widget: number, value_type: int }
+      - { label: Mostrar en inicio y nosotros, name: visibleEnHome, widget: boolean, default: true }
+      - { label: Ícono (atributo d del SVG), name: iconoPath, widget: string, required: false, hint: 'Trazo del ícono. Cambiar solo con apoyo técnico.' }
+      - { label: Descripción corta (inicio), name: descripcionHome, widget: text, required: false }
+      - { label: Título (página Nosotros), name: tituloNosotros, widget: string, required: false }
+      - { label: Descripción larga (página Nosotros), name: descripcionNosotros, widget: text, required: false }
+
+  # ------------------------------------------------------------------
+  - name: paginas
+    label: Páginas y textos
+    description: Textos fijos del sitio y datos de contacto.
+    editor:
+      preview: false
+    files:
+      # ---------- Datos globales ----------
+      - name: global
+        label: Datos generales de la empresa
+        file: src/content/paginas/global.json
+        description: Contacto, redes, menú y aviso legal. Aparecen en todas las páginas.
+        fields:
+          - { label: Razón social, name: empresa, widget: string }
+          - { label: Frase de marca, name: tagline, widget: string }
+          - label: Dirección
+            name: direccion
+            widget: object
+            fields:
+              - { label: Calle, name: linea1, widget: string }
+              - { label: Ciudad y país, name: linea2, widget: string }
+              - { label: Enlace a Google Maps, name: mapsUrl, widget: string }
+              - { label: Enlace del mapa incrustado, name: mapsEmbed, widget: string }
+          - { label: Teléfonos, name: telefonos, widget: list, field: { label: Teléfono, name: telefono, widget: string } }
+          - label: WhatsApp
+            name: whatsapp
+            widget: object
+            fields:
+              - { label: Número con indicativo (sin + ni espacios), name: numero, widget: string, pattern: ['^[0-9]{8,15}$', 'Solo números, ejemplo 573203035503'] }
+              - { label: Mensaje precargado, name: mensaje, widget: text }
+          - { label: Correos, name: emails, widget: list, field: { label: Correo, name: email, widget: string } }
+          - label: Redes sociales
+            name: redes
+            widget: object
+            fields:
+              - { label: Facebook, name: facebook, widget: string }
+              - { label: Instagram, name: instagram, widget: string }
+              - { label: LinkedIn, name: linkedin, widget: string }
+          - label: Menú de navegación
+            name: navegacion
+            widget: list
+            fields:
+              - { label: Texto, name: texto, widget: string }
+              - { label: Enlace, name: url, widget: string, hint: 'Usa / para el inicio, /productos, /nosotros, /#contacto' }
+          - { label: Aviso legal, name: disclaimer, widget: text }
+          - { label: Aviso de copyright, name: copyright, widget: string }
+          - label: Créditos del pie
+            name: creditos
+            widget: object
+            fields:
+              - { label: Texto, name: texto, widget: string }
+              - { label: Nombre, name: nombre, widget: string }
+              - { label: Enlace, name: url, widget: string }
+          - { label: Instituciones que confían en ADS, name: clientesInstitucionales, widget: list, field: { label: Institución, name: institucion, widget: string } }
+
+      # ---------- Inicio ----------
+      - name: home
+        label: Página de inicio
+        file: src/content/paginas/home.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Título de la pestaña, name: titulo, widget: string }
+              - { label: Descripción para buscadores, name: descripcion, widget: text }
+              - { label: Título al compartir, name: ogTitulo, widget: string, required: false }
+              - { label: Descripción al compartir, name: ogDescripcion, widget: text, required: false }
+              - { label: Ocultar de buscadores, name: noindex, widget: boolean, default: false }
+          - label: Portada
+            name: hero
+            widget: object
+            fields:
+              - { label: Etiqueta superior, name: eyebrow, widget: string }
+              - { label: Titular, name: titulo, widget: string }
+              - { label: Subtítulo, name: subtitulo, widget: text }
+              - label: Botón principal
+                name: ctaPrimario
+                widget: object
+                fields:
+                  - { label: Texto, name: texto, widget: string }
+                  - { label: Enlace, name: url, widget: string }
+              - label: Botón secundario
+                name: ctaSecundario
+                widget: object
+                fields:
+                  - { label: Texto, name: texto, widget: string }
+                  - { label: Enlace, name: url, widget: string }
+          - label: Sección Líneas terapéuticas
+            name: lineas
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Subtítulo, name: subtitulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+          - label: Sección Quiénes somos
+            name: quienesSomos
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Subtítulo, name: subtitulo, widget: string }
+              - label: Tarjetas
+                name: cards
+                widget: list
+                fields:
+                  - { label: Título, name: titulo, widget: string }
+                  - { label: Texto, name: texto, widget: text }
+              - label: Botón
+                name: cta
+                widget: object
+                fields:
+                  - { label: Texto, name: texto, widget: string }
+                  - { label: Enlace, name: url, widget: string }
+          - label: Sección Por qué premezclado
+            name: premezclado
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Subtítulo, name: subtitulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+              - label: Métricas
+                name: metricas
+                widget: list
+                fields:
+                  - { label: Símbolo, name: simbolo, widget: string }
+                  - { label: Título, name: titulo, widget: string }
+                  - { label: Texto, name: texto, widget: text }
+          - label: Sección Portafolio destacado
+            name: portafolio
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Subtítulo, name: subtitulo, widget: string }
+              - label: Botón
+                name: cta
+                widget: object
+                fields:
+                  - { label: Texto, name: texto, widget: string }
+                  - { label: Enlace, name: url, widget: string }
+          - label: Sección Instituciones
+            name: clientes
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+          - label: Sección Contacto
+            name: contacto
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Subtítulo, name: subtitulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+
+      # ---------- Nosotros ----------
+      - name: nosotros
+        label: Página Nosotros
+        file: src/content/paginas/nosotros.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Título de la pestaña, name: titulo, widget: string }
+              - { label: Descripción para buscadores, name: descripcion, widget: text }
+              - { label: Título al compartir, name: ogTitulo, widget: string, required: false }
+              - { label: Descripción al compartir, name: ogDescripcion, widget: text, required: false }
+              - { label: Ocultar de buscadores, name: noindex, widget: boolean, default: false }
+          - label: Introducción
+            name: intro
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Subtítulo, name: subtitulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+          - label: Misión, visión y calidad
+            name: valores
+            widget: list
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+          - label: Sección Líneas terapéuticas
+            name: lineas
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+          - label: Sección Instituciones
+            name: clientes
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+          - label: Llamado final
+            name: cta
+            widget: object
+            fields:
+              - { label: Etiqueta superior, name: eyebrow, widget: string }
+              - { label: Título, name: titulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+              - { label: Texto del botón, name: boton, widget: string }
+
+      # ---------- Portafolio ----------
+      - name: portafolio
+        label: Página Portafolio
+        file: src/content/paginas/portafolio.json
+        description: Textos de la página de catálogo. Los productos se editan en su propia sección.
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Título de la pestaña, name: titulo, widget: string }
+              - { label: Descripción para buscadores, name: descripcion, widget: text }
+              - { label: Título al compartir, name: ogTitulo, widget: string, required: false }
+              - { label: Descripción al compartir, name: ogDescripcion, widget: text, required: false }
+              - { label: Ocultar de buscadores, name: noindex, widget: boolean, default: false }
+          - { label: Título, name: titulo, widget: string }
+          - { label: Subtítulo, name: subtitulo, widget: text }
+          - { label: Texto del buscador, name: buscadorPlaceholder, widget: string }
+          - { label: Etiqueta del filtro "todos", name: chipTodos, widget: string }
+          - { label: Mensaje cuando no hay resultados, name: textoSinResultados, widget: string }
+          - { label: Enlace "ver detalle", name: textoVerDetalle, widget: string }
+          - { label: Botón de WhatsApp en la ficha, name: textoSolicitarInfo, widget: string }
+          - { label: Mensaje cuando la ficha está vacía, name: textoSinFicha, widget: string }
+
+      # ---------- Próximamente ----------
+      - name: coming-soon
+        label: Página Próximamente
+        file: src/content/paginas/coming-soon.json
+        description: 'Apaga "Sitio en construcción" para publicar el sitio real en la portada.'
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Título de la pestaña, name: titulo, widget: string }
+              - { label: Descripción para buscadores, name: descripcion, widget: text }
+              - { label: Título al compartir, name: ogTitulo, widget: string, required: false }
+              - { label: Descripción al compartir, name: ogDescripcion, widget: text, required: false }
+              - { label: Ocultar de buscadores, name: noindex, widget: boolean, default: true }
+          - { label: Sitio en construcción, name: activa, widget: boolean, default: true, hint: 'Encendido = la portada muestra "Próximamente". Apagado = la portada muestra el sitio real.' }
+          - { label: Etiqueta, name: badge, widget: string }
+          - { label: Titular, name: titulo, widget: string }
+          - { label: Subtítulo, name: subtitulo, widget: text }
+          - { label: Texto del botón de WhatsApp, name: ctaWhatsapp, widget: string }
+          - { label: Texto del botón de correo, name: ctaEmail, widget: string }

@@ -1,0 +1,55 @@
+{
+  "nombre": "FLOXANAR",
+  "principioActivo": "Moxifloxacino 400 mg / 250 mL",
+  "presentacion": "Solución para infusión IV premezclada",
+  "linea": "antibioticos",
+  "registro": "INVIMA 2014M-0015308",
+  "imagen": "/image/Floxanar@3x-8.webp",
+  "orden": 16,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Mayores de 18 años con infecciones del tracto respiratorio superior e inferior (sinusitis aguda, exacerbaciones agudas de bronquitis crónica y neumonía adquirida en la comunidad); infecciones cutáneas y tejidos blandos; infecciones intraabdominales complicadas, incluidas polimicrobianas como abscesos.",
+  "dosis": "",
+  "contraindicaciones": "Hipersensibilidad a quinolonas. Niños/adolescentes en crecimiento, embarazadas y lactantes.",
+  "precauciones": "No mezclar con otros fármacos sin compatibilidad comprobada. Precaución en ancianos, daño renal, trastornos hepáticos, prolongación del intervalo QT, tendinopatías y antecedentes convulsivos. Incrementa el riesgo de exacerbación de miastenia gravis.",
+  "ram": "Náuseas (7%), diarrea (6%), mareos (3%), disminución de amilasa (2%), basófilos disminuidos, eosinófilos, hemoglobina, tiempo de protrombina, glóbulos rojos y neutrófilos (2%).",
+  "disolucion": "Premezclado en 250 mL. Cloruro de sodio 0,9% compatible; infundir durante 60 minutos.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Neumonía adquirida en la comunidad",
+          "400 mg IV diarios durante 7-14 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Sinusitis bacteriana aguda",
+          "400 mg IV diarios durante 5-10 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Exacerbación bacteriana de bronquitis",
+          "400 mg IV diarios durante 5 días",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones complicadas de piel y tejidos blandos",
+          "Sin complicaciones: 400 mg IV diarios durante 7 días. Complicado: 400 mg IV diarios durante 7-21 días",
+          "A criterio médico"
+        ]
+      }
+    ]
+  }
+}

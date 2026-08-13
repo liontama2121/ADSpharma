@@ -1,0 +1,38 @@
+{
+  "nombre": "DIAZENIL",
+  "principioActivo": "Flumazenil 0,5 mg / 5 mL",
+  "presentacion": "Solución inyectable intravenosa",
+  "linea": "antidotos",
+  "registro": "INVIMA 2019M-0013278 · CUM 20044623-1",
+  "imagen": "/image/Diazenil@3x-8.webp",
+  "orden": 18,
+  "destacado": true,
+  "ordenDestacado": 6,
+  "indicaciones": "Reversión de sedación consciente y anestesia general mediada por benzodiazepinas y en sobredosis por benzodiazepinas.",
+  "dosis": "",
+  "contraindicaciones": "",
+  "precauciones": "Pacientes con lesiones cerebrales graves y/o presión intracraneal inestable y durante el embarazo.",
+  "ram": "Náuseas y vómitos (11%), mareos (10%), visión anormal/borrosa (3-9%), agitación (3-9%), disnea (3-9%), hiperventilación (3-9%), dolor en el lugar de la inyección (3-9%), xerostomía (3-9%).",
+  "disolucion": "Administrar según tabla de dosificación. Compatibles: dextrosa 5%, SSN 0,9% y lactato de Ringer.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Esquema de dosis"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Reversión de sedación consciente y anestesia general",
+          "0,2 mg IV durante 15 s. Si tras 45 s no hay respuesta, administrar de nuevo 0,2 mg durante 1 min; puede repetirse a intervalos de 1 min; no exceder 4 dosis (1 mg). Si reaparece la sedación, repetir a intervalos de 20 min; no exceder 1 mg/dosis o 3 mg/h"
+        ]
+      },
+      {
+        "celdas": [
+          "Sobredosis por benzodiazepinas",
+          "0,2 mg IV durante 15-30 s. Si tras 30 s no hay respuesta, 0,3 mg durante 30 s. Si no hay respuesta, repetir 0,5 mg IV durante 30 s a intervalos de 1 min hasta dosis máxima acumulativa de 3 mg/h. Raramente hasta 5 mg total; si tras 5 min no hay respuesta, es poco probable que la sedación sea por benzodiazepinas"
+        ]
+      }
+    ]
+  }
+}

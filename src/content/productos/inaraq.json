@@ -1,0 +1,34 @@
+{
+  "nombre": "INARAQ",
+  "principioActivo": "Budesonida 0,5 mg / mL",
+  "presentacion": "Suspensión estéril para nebulizadores/inhaladores",
+  "linea": "respiratorio",
+  "registro": "INVIMA 2015M-0016088",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 24,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Asma bronquial.",
+  "dosis": "",
+  "contraindicaciones": "",
+  "precauciones": "La comida alta en grasas retrasa la absorción y puede aumentar el riesgo de infección grave o mortal en personas expuestas a varicela o sarampión. Precaución en diabetes mellitus, hipertensión, hipotiroidismo, alteraciones electrolíticas, retención de sodio y agua, infecciones, inmunizaciones, herpes simple ocular, miastenia gravis, úlcera péptica, psicosis o insuficiencia renal. Pueden producirse trastornos tromboembólicos y miopatía. La tuberculosis latente puede reactivarse. El uso prolongado puede elevar la presión intraocular, glaucoma o cataratas y asociarse al sarcoma de Kaposi.",
+  "ram": "Infección respiratoria (34-38%), rinitis (7-12%), otitis media (1-12%).",
+  "disolucion": "Administrar con equipo de nebulización jet con boquilla o mascarilla; compresor con flujo de aire 5-8 L/min; volumen de llenado 2-4 mL. Usar agua estéril para inyección.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Asma",
+          "Dosis diaria total 1-2 mg. En casos muy graves incrementar hasta 4 mg",
+          "Suspensión nebulizada 0,5 mg una vez al día o cada 12 h; no exceder 1 mg/día"
+        ]
+      }
+    ]
+  }
+}

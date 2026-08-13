@@ -1,0 +1,11 @@
+{
+  "nombre": "Respiratorio",
+  "color": "#C08B5C",
+  "color2": "#D9B187",
+  "orden": 6,
+  "visibleEnHome": true,
+  "iconoPath": "M12 3v18M6 8c0 4 6 7 6 7s6-3 6-7M4 12c0 5 8 9 8 9s8-4 8-9",
+  "descripcionHome": "Broncodilatación y mucolíticos.",
+  "tituloNosotros": "Vía aérea y antídoto hepático",
+  "descripcionNosotros": "Corticosteroide nebulizado para asma y N-Acetilcisteína IV para intoxicación por acetaminofén."
+}

@@ -1,0 +1,54 @@
+{
+  "empresa": "ADS PHARMA S.A.S.",
+  "tagline": "Somos el instrumento en las manos que salvan vidas.",
+  "direccion": {
+    "linea1": "Calle 102A No. 70 - 77/79",
+    "linea2": "Bogotá D.C., Colombia",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Calle+102A+No.+70-77%2F79+Bogot%C3%A1+D.C.",
+    "mapsEmbed": "https://www.google.com/maps?q=Calle%20102A%20%2370-79%20Bogot%C3%A1&output=embed"
+  },
+  "telefonos": ["(601) 745 0880", "320 303 5503", "320 828 2507"],
+  "whatsapp": {
+    "numero": "573203035503",
+    "mensaje": "Hola ADS PHARMA, quiero más información sobre su portafolio."
+  },
+  "emails": ["comunicaciones@adspharma.co", "administracionventas@adspharma.com.co"],
+  "redes": {
+    "facebook": "https://www.facebook.com/profile.php?id=100064834157576&locale=es_LA",
+    "instagram": "https://www.instagram.com/adspharma/",
+    "linkedin": "https://www.linkedin.com/in/adspharma/"
+  },
+  "navegacion": [
+    { "texto": "Inicio", "url": "/" },
+    { "texto": "Portafolio", "url": "/productos" },
+    { "texto": "Nosotros", "url": "/nosotros" },
+    { "texto": "Contacto", "url": "/#contacto" }
+  ],
+  "disclaimer": "Información dirigida exclusivamente a profesionales de la salud e instituciones. Los medicamentos aquí presentados son de uso delicado y requieren prescripción y supervisión médica. La información de dosificación es de referencia y no reemplaza el criterio médico ni la ficha técnica oficial aprobada por el INVIMA. ADS PHARMA S.A.S. no comercializa medicamentos directamente al público a través de este sitio.",
+  "copyright": "© 2026 ADS PHARMA S.A.S. — Todos los derechos reservados.",
+  "creditos": {
+    "texto": "Hecho con amor por",
+    "nombre": "JuanCode",
+    "url": "#"
+  },
+  "clientesInstitucionales": [
+    "Méderi",
+    "CAFAM",
+    "Cruz Verde",
+    "SyD Colombia",
+    "Hospital Universitario de Santander",
+    "Fundación Santa Fe de Bogotá",
+    "Fundación Valle del Lili",
+    "Clínica Imbanaco",
+    "Fundación Cardioinfantil (FCV)",
+    "Clínica Shaio",
+    "Colsubsidio",
+    "Audifarma",
+    "Droguería Inglesa",
+    "Clínica Palma Real",
+    "Clínica Farallones",
+    "Clínica General del Norte",
+    "Clínica Chicamocha",
+    "Clínica de Marly"
+  ]
+}

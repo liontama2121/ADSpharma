@@ -1,0 +1,41 @@
+{
+  "nombre": "MYORITMO",
+  "principioActivo": "Betametildigoxina",
+  "presentacion": "Ampolla 0,2 mg/2 mL · Frasco 0,6 mg/10 mL · Tableta 0,1 mg",
+  "linea": "cardiovascular",
+  "registro": "INVIMA Ampolla 2018M-0018409 / Frasco 2008M-0008861 / Tableta 2013M-0014399",
+  "imagen": "/image/Myoritmo@3x-8.webp",
+  "orden": 6,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Arritmias supraventriculares como fibrilación auricular e insuficiencia cardíaca congestiva.",
+  "dosis": "",
+  "contraindicaciones": "",
+  "precauciones": "Precaución en bloqueo cardíaco, miocarditis aguda, daño renal o con diuréticos. Dosis cuidadosamente controlada. No administrar con calcio IV, extractos de paratiroides ni vitamina D. Precaución en bloqueo parcial del corazón (puede inducir bloqueo completo), alteraciones del nodo sinusal, infarto agudo, ICC avanzada y neumopatía grave.",
+  "ram": "Mareos (4,9%), alteraciones mentales (4,1%), diarrea (3,2%), cefalea (3,2%), náusea (3,2%), vómitos (1,6%), erupción maculopapular (1,6%).",
+  "disolucion": "VO no requiere dilución. Ampolla compatible con SSN y/o dextrosa; si se diluye, administrar en menos de 5 minutos por infusión.",
+  "tabla": {
+    "titulo": "Ampolla IV",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Arritmias supraventriculares (fibrilación auricular)",
+          "IV: 8-12 mcg/kg (0,008-0,012 mg/kg) dosis de carga total; administrar 50% inicialmente, luego 1/4 de la carga q6-8 h dos veces; evaluación cuidadosa antes de cada dosis",
+          ">10 años y <100 kg. Primera dosis de carga 4-6 mcg/kg; 2a y 3a 2-3 mcg/kg q6-8 h; mantenimiento 2-3 mcg/kg/día"
+        ]
+      },
+      {
+        "celdas": [
+          "Insuficiencia cardíaca congestiva",
+          "0,125-0,25 mg PO/IV día; dosis más altas (0,375-0,5 mg/día) raras veces",
+          ">10 años y <100 kg. Carga 4-6 mcg/kg; 2a y 3a 2-3 mcg/kg q6-8 h; mantenimiento 2-3 mcg/kg/día"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import SocialLinks from "./SocialLinks.astro";
+import { resolveUrl } from "../lib/site";
+
+interface Props {
+  global: any;
+  comingSoonActiva: boolean;
+}
+const { global, comingSoonActiva } = Astro.props;
+
+const lineas = (await getCollection("lineas"))
+  .filter((l) => l.data.visibleEnHome)
+  .sort((a, b) => a.data.orden - b.data.orden);
+
+const inicio = resolveUrl("/", comingSoonActiva);
+---
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a class="nav-logo" href={inicio}>
+          <img src="/image/logo.webp" alt={global.empresa} />
+        </a>
+        <p>{global.tagline}</p>
+        <SocialLinks redes={global.redes} class="footer-social" />
+      </div>
+
+      <div class="footer-col">
+        <h3>Sitio</h3>
+        <ul>
+          {global.navegacion.map((item: { texto: string; url: string }) => (
+            <li><a href={resolveUrl(item.url, comingSoonActiva)}>{item.texto}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Líneas</h3>
+        <ul>
+          {lineas.map((l) => (
+            <li><a href={`/productos?linea=${l.id}`}>{l.data.nombre}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contacto</h3>
+        <ul>
+          <li>{global.direccion.linea1}, {global.direccion.linea2.split(",")[0]}</li>
+          {global.telefonos.slice(0, 2).map((t: string) => <li>{t}</li>)}
+          {global.emails.map((e: string) => (
+            <li><a href={`mailto:${e}`}>{e}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="disclaimer">{global.disclaimer}</div>
+
+    <div class="footer-bottom">
+      <span>{global.copyright}</span>
+      <span>{global.creditos.texto} <a href={global.creditos.url}>{global.creditos.nombre}</a></span>
+    </div>
+  </div>
+</footer>

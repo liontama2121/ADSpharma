@@ -1,0 +1,55 @@
+{
+  "nombre": "VASOPRESINA",
+  "principioActivo": "Vasopresina 20 UI / mL",
+  "presentacion": "Solución inyectable",
+  "linea": "cardiovascular",
+  "registro": "INVIMA 2015M-0016458",
+  "imagen": "/image/Vasopresina@3x-8.webp",
+  "orden": 10,
+  "destacado": true,
+  "ordenDestacado": 8,
+  "indicaciones": "Distensión abdominal, diabetes insípida, hemorragias gastrointestinales y choque séptico.",
+  "dosis": "",
+  "contraindicaciones": "",
+  "precauciones": "En hemorragia intestinal continuar la infusión 12-24 h tras detenerse; disminuir la dosis en 24-48 h. Infusión continua mediante dispositivo controlado. Precaución en nefritis crónica con retención de nitrógeno, pre/postoperatorios con poliuria, convulsiones, migraña, asma, ICC, enfermedad vascular, angina de pecho, trombosis coronaria y enfermedad renal.",
+  "ram": "Calambres abdominales, reacción alérgica, angina, constricción bronquial, palidez circumoral, diarrea, náusea, transpiración, temblor, contracción uterina y vértigo.",
+  "disolucion": "Diluir a concentraciones de 0,1-1 unidad. Velocidad inicial 0,2-0,4 U/min, aumentar hasta 0,9; dextrosa 5%.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Distensión abdominal",
+          "5 U IM inicialmente; repetir cada 3-4 h PRN; puede aumentarse a 10 U",
+          "A criterio médico"
+        ]
+      },
+      {
+        "celdas": [
+          "Diabetes insípida",
+          "5-10 U IM/SC cada 8-12 h. Titular con base en suero sódico, osmolaridad sérica, balance de fluidos y producción de orina",
+          "2,5-10 U IM/SC cada 8-12 h. Infusión IV continua: 0,0005 U/kg/h inicialmente, doblar cada 30 min; no exceder 0,01 U/kg/h"
+        ]
+      },
+      {
+        "celdas": [
+          "Hemorragias gastrointestinales",
+          "0,2-0,4 U/min IV inicialmente; puede aumentarse a 0,8 U/min IV PRN",
+          "0,3 U/kg IV; no exceder 20 U. 0,002-0,005 U/kg/min; puede aumentar a 0,01 U/kg/min. Si se controla 12-24 h, reducir gradualmente 24-36 h"
+        ]
+      },
+      {
+        "celdas": [
+          "Shock séptico",
+          "0,01-0,04 U/min IV",
+          "A criterio médico"
+        ]
+      }
+    ]
+  }
+}

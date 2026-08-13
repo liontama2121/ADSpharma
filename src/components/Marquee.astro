@@ -1,0 +1,14 @@
+---
+interface Props {
+  items: string[];
+}
+const { items } = Astro.props;
+// La lista va duplicada para que el desplazamiento sea continuo.
+const doble = [...items, ...items];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {doble.map((c) => <span>{c}</span>)}
+  </div>
+</div>

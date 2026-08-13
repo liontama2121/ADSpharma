@@ -1,0 +1,17 @@
+{
+  "seo": {
+    "titulo": "Portafolio — ADS PHARMA",
+    "descripcion": "Portafolio completo de medicamentos inyectables de ADS PHARMA. Filtra por línea terapéutica y consulta la ficha clínica de cada producto.",
+    "ogTitulo": "",
+    "ogDescripcion": "",
+    "noindex": false
+  },
+  "titulo": "Portafolio",
+  "subtitulo": "Toda la información clínica de los productos de ADS PHARMA lista para consulta del profesional de salud.",
+  "buscadorPlaceholder": "Buscar producto o principio activo...",
+  "chipTodos": "Todos",
+  "textoSinResultados": "Sin resultados. Prueba con otro término o cambia el filtro.",
+  "textoVerDetalle": "Ver detalle →",
+  "textoSolicitarInfo": "Solicitar info por WhatsApp",
+  "textoSinFicha": "Sin información clínica adicional disponible."
+}

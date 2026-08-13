@@ -1,0 +1,30 @@
+---
+import SocialLinks from "./SocialLinks.astro";
+import { resolveUrl } from "../lib/site";
+
+interface Props {
+  global: any;
+  comingSoonActiva: boolean;
+  /** Indice del item de navegacion marcado como activo. -1 = ninguno. */
+  activeIndex?: number;
+}
+const { global, comingSoonActiva, activeIndex = -1 } = Astro.props;
+const inicio = resolveUrl("/", comingSoonActiva);
+---
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href={inicio} class="nav-logo" aria-label={`${global.empresa} — Inicio`}>
+      <img src="/image/logo.webp" alt={global.empresa} />
+    </a>
+    <nav class="nav-links">
+      {global.navegacion.map((item: { texto: string; url: string }, i: number) => (
+        <a href={resolveUrl(item.url, comingSoonActiva)} class={i === activeIndex ? "active" : undefined}>
+          {item.texto}
+        </a>
+      ))}
+    </nav>
+    <SocialLinks redes={global.redes} />
+    <button class="nav-burger" id="navBurger" aria-label="Menú"><span></span></button>
+  </div>
+</header>

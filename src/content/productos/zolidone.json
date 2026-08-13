@@ -1,0 +1,50 @@
+{
+  "nombre": "ZOLIDONE",
+  "principioActivo": "Linezolid 600 mg / 300 mL",
+  "presentacion": "Solución inyectable premezclada",
+  "linea": "antibioticos",
+  "registro": "INVIMA 2017M-0012334-R1",
+  "imagen": "/image/Artboard-1@3x-8.webp",
+  "orden": 15,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Efectivo en neumonía adquirida en la comunidad y nosocomial; infecciones complicadas de piel y tejidos blandos, incluido pie diabético; infecciones enterocócicas resistentes a vancomicina; infecciones estreptocócicas e infecciones por staphylococcus aureus resistentes y sensibles a meticilina.",
+  "dosis": "",
+  "contraindicaciones": "Hipersensibilidad. No aprobado contra bacterias gram-negativas ni infecciones por catéter.",
+  "precauciones": "Considerar suspensión si hay empeoramiento de la mielosupresión. Puede causar hipoglucemia; controlar glucosa y evitar coadministración con fármacos psiquiátricos serotoninérgicos.",
+  "ram": "Diarrea (10%), dolor de cabeza (8%), náusea (6%), vómitos (4%), mareos (6%), erupción (2%), moniliasis vaginal (1%), alteración del sabor (1%).",
+  "disolucion": "Premezclado en 300 mL de dextrosa 5%, infundir durante 20 minutos (concentración 2 mg/mL).",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Neumonía adquirida en la comunidad y nosocomial",
+          "600 mg IV cada 12 h durante 10-14 días"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones complicadas de piel y tejidos blandos, incluido pie diabético",
+          "600 mg IV cada 12 h durante 10-14 días"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones enterocócicas resistentes a vancomicina",
+          "600 mg IV cada 12 h durante 14-28 días"
+        ]
+      },
+      {
+        "celdas": [
+          "Infecciones estreptocócicas e infecciones por S. aureus resistente y sensible a meticilina",
+          "600 mg IV cada 12 h durante 10-14 días"
+        ]
+      }
+    ]
+  }
+}

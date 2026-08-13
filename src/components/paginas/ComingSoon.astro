@@ -1,0 +1,43 @@
+---
+import "../../styles/coming-soon.css";
+import { getGlobal, getComingSoon, waHref } from "../../lib/site";
+
+const cs = await getComingSoon();
+const global = await getGlobal();
+---
+
+<section class="cs hero">
+  <div class="hero-orbs" aria-hidden="true">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-orb hero-orb-4"></div>
+    <div class="hero-orb hero-orb-5"></div>
+  </div>
+
+  <div class="cs-inner">
+    <div class="cs-logo-wrap">
+      <div class="hero-logo-glow"></div>
+      <img class="cs-logo" src="/image/logo_home.webp" alt={global.empresa} loading="eager" />
+    </div>
+
+    <span class="cs-badge"><span class="dot"></span>{cs.badge}</span>
+
+    <h1 class="cs-title">{cs.titulo}</h1>
+    <p class="cs-sub">{cs.subtitulo}</p>
+
+    <div class="cs-ctas">
+      <a class="btn btn-wa" href={waHref(global.whatsapp)} target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.9 11.9 0 0 0 3 18.5L1.5 24l5.7-1.5A11.9 11.9 0 1 0 20.5 3.5Z"/></svg>
+        {cs.ctaWhatsapp}
+      </a>
+      <a class="btn btn-ghost" href={`mailto:${global.emails[0]}`}>{cs.ctaEmail}</a>
+    </div>
+
+    <div class="cs-foot">
+      <span>{global.direccion.linea1}, {global.direccion.linea2}</span>
+      <span>{global.telefonos[0]} · <a href={`mailto:${global.emails[0]}`}>{global.emails[0]}</a></span>
+      <span>{global.copyright}</span>
+    </div>
+  </div>
+</section>

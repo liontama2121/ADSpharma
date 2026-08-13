@@ -1,0 +1,21 @@
+{
+  "name": "adspharma",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio institucional y portafolio de ADS PHARMA S.A.S.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "cms": "decap-server"
+  },
+  "dependencies": {
+    "astro": "^7.2.2"
+  },
+  "devDependencies": {
+    "decap-server": "^3.10.0"
+  }
+}

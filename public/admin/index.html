@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/webp" href="/image/logo.webp" />
+    <title>Panel de contenido — ADS PHARMA</title>
+  </head>
+  <body>
+    <!--
+      Decap CMS. Lee la configuracion de /admin/config.yml.
+      Quien puede entrar aqui lo decide Cloudflare Access (Google + lista de correos);
+      quien firma los commits es la Pages Function /cms-api. El cliente nunca
+      necesita cuenta de GitHub.
+    -->
+    <script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
+
+    <script>
+      // Decap rotula el boton de entrada como "Iniciar sesion con GitHub", pero
+      // aqui quien autentica es Cloudflare Access con Google. Se renombra para
+      // que el texto coincida con lo que la persona realmente hace.
+      // Se busca solo durante los primeros segundos y se detiene apenas
+      // encuentra el boton: un MutationObserver permanente sobre todo el DOM
+      // del panel lo vuelve inusable.
+      (function () {
+        var intentos = 0;
+        var temporizador = setInterval(function () {
+          var boton = document.querySelector("button");
+          if (boton && /GitHub/i.test(boton.textContent)) {
+            var icono = boton.querySelector("svg");
+            boton.textContent = "Entrar al panel";
+            if (icono) boton.prepend(icono);
+            clearInterval(temporizador);
+            return;
+          }
+          if (++intentos > 40) clearInterval(temporizador);
+        }, 200);
+      })();
+    </script>
+  </body>
+</html>

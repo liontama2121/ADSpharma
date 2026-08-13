@@ -1,0 +1,75 @@
+{
+  "seo": {
+    "titulo": "ADS PHARMA — Medicamentos inyectables para el cuidado vital",
+    "descripcion": "ADS PHARMA S.A.S. — Laboratorio farmacéutico colombiano especialista en medicamentos inyectables premezclados de calidad global para América Latina.",
+    "ogTitulo": "ADS PHARMA S.A.S.",
+    "ogDescripcion": "Somos el instrumento en las manos que salvan vidas. Medicamentos inyectables de calidad global.",
+    "noindex": false
+  },
+  "hero": {
+    "eyebrow": "Calle 102A No. 70-77/79, Bogotá D.C.",
+    "titulo": "El instrumento de las manos que salvan vidas",
+    "subtitulo": "Medicamentos inyectables de calidad global para el cuidado vital del paciente. Especialistas en medicina premezclada lista para uso.",
+    "ctaPrimario": { "texto": "Ver portafolio", "url": "/productos" },
+    "ctaSecundario": { "texto": "Contáctanos", "url": "#contacto" }
+  },
+  "lineas": {
+    "titulo": "Líneas terapéuticas",
+    "subtitulo": "Seis sistemas. Un compromiso clínico.",
+    "texto": "Cada línea responde a una necesidad crítica del paciente. Filtra el portafolio por categoría y consulta la ficha clínica completa."
+  },
+  "quienesSomos": {
+    "titulo": "Quiénes somos",
+    "subtitulo": "Ciencia con perspectiva humana.",
+    "cards": [
+      {
+        "titulo": "Misión",
+        "texto": "Bajo una perspectiva científico-humana somos una alternativa terapéutica confiable al desarrollar, producir y comercializar medicamentos con calidad global; soportada en estudios acreditados que demuestren su efectividad."
+      },
+      {
+        "titulo": "Visión",
+        "texto": "En el año 2025, bajo la dirección de Dios, consolidarnos en el mercado farmacéutico nacional e internacional, como una compañía farmacéutica confiable e innovadora, con un portafolio de productos y servicios dirigidos al cuidado vital del paciente."
+      },
+      {
+        "titulo": "Políticas de calidad",
+        "texto": "ADS PHARMA S.A.S se compromete a diseñar, fabricar y comercializar productos farmacéuticos bajo los más altos estándares de calidad, basados en normas vigentes de BPM, haciendo uso racional de sus recursos, con personal competente; promoviendo la mejora continua del Sistema de Calidad y con sentido de responsabilidad Social y respeto al medio ambiente."
+      }
+    ],
+    "cta": { "texto": "Conoce más", "url": "/nosotros" }
+  },
+  "premezclado": {
+    "titulo": "¿Por qué premezclado?",
+    "subtitulo": "Listo para uso. Pensado para el paciente.",
+    "texto": "Los medicamentos premezclados, según lo reportado en la literatura, reducen errores de medicación, son estandarizados y más costo-efectivos, lo que representa eficiencia y seguridad del paciente para hospitales e instituciones de salud.",
+    "metricas": [
+      {
+        "simbolo": "↓",
+        "titulo": "Reducción de errores",
+        "texto": "Menos manipulación, menos riesgo de error de medicación en el punto de atención."
+      },
+      {
+        "simbolo": "✓",
+        "titulo": "Estandarización",
+        "texto": "Concentración y diluyente uniformes. Protocolos clínicos reproducibles."
+      },
+      {
+        "simbolo": "$",
+        "titulo": "Costo-efectividad",
+        "texto": "Optimiza tiempos del personal y reduce desperdicio de insumos."
+      }
+    ]
+  },
+  "portafolio": {
+    "titulo": "Portafolio Destacado",
+    "subtitulo": "Productos representativos del catálogo.",
+    "cta": { "texto": "Ver todo el portafolio", "url": "/productos" }
+  },
+  "clientes": {
+    "titulo": "Instituciones de salud que confían en nuestros productos"
+  },
+  "contacto": {
+    "titulo": "Contacto institucional",
+    "subtitulo": "Nos encantaría saber de ti",
+    "texto": "¿Tienes alguna pregunta o necesitas más información sobre nuestros productos y servicios? No dudes en ponerte en contacto con nosotros. Estaremos encantados de brindarte el soporte que necesitas."
+  }
+}

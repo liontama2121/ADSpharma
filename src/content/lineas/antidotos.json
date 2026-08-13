@@ -1,0 +1,11 @@
+{
+  "nombre": "Antídotos",
+  "color": "#B7295A",
+  "color2": "#E54E85",
+  "orden": 4,
+  "visibleEnHome": true,
+  "iconoPath": "M12 2v6M5 8h14l-1 12H6L5 8zM9 13v4M15 13v4",
+  "descripcionHome": "Reversión y quelación de intoxicaciones.",
+  "tituloNosotros": "Toxicología clínica",
+  "descripcionNosotros": "Reversión de benzodiazepinas, manejo de intoxicación por cianuro, plomo, alcohol y metahemoglobinemia."
+}

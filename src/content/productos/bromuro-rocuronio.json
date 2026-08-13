@@ -1,0 +1,18 @@
+{
+  "nombre": "BROMURO DE ROCURONIO",
+  "principioActivo": "Rocuronio Bromuro 50 mg / 5 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "anestesicos",
+  "registro": "INVIMA 2016M-0016861",
+  "imagen": "/image/Bromuro@3x-8.webp",
+  "orden": 13,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Coadyuvante de la anestesia general para facilitar la intubación traqueal durante la inducción de secuencia rápida. Relaja la musculatura esquelética durante la cirugía y coadyuva en la intubación y ventilación mecánica en UCI.",
+  "dosis": "Adulto: 0,45-0,6 mg/kg IV, mantenimiento 0,1-0,2 mg/kg IV, infusión continua 0,01-0,012 mg/kg/min IV. Como coadyuvante de anestesia general 0,6-1,2 mg/kg IV. Pediatría (3 meses a 14 años): inicial 0,6 mg/kg IV, mantenimiento 0,075-0,125 mg/kg IV, infusión continua 0,012 mcg/kg/min. Mayores de 14 años: 0,45-0,6 mg/kg IV, mantenimiento 0,1-0,2 mg/kg IV, infusión continua 0,01-0,012 mg/kg/min IV.",
+  "contraindicaciones": "",
+  "precauciones": "Precaución en enfermedad hepática significativa; en inducción de secuencia rápida en pacientes con ascitis puede requerir dosis inicial incrementada. Algunos pacientes pueden experimentar recuperación prolongada (parálisis) de la función neuromuscular.",
+  "ram": "Hipotensión transitoria (1-2%) e hipertensión (1-2%).",
+  "disolucion": "Compatible con dextrosa 5% (estable 24 h) y cloruro de sodio 0,9% (estable 24 h).",
+  "tabla": null
+}

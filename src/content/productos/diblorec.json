@@ -1,0 +1,41 @@
+{
+  "nombre": "DIBLOREC",
+  "principioActivo": "Labetalol Clorhidrato 100 mg / 20 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "cardiovascular",
+  "registro": "INVIMA 2011M-0011837",
+  "imagen": "/image/Diblorec@3x-8.webp",
+  "orden": 7,
+  "destacado": false,
+  "ordenDestacado": 0,
+  "indicaciones": "Emergencia hipertensiva, incluida la del embarazo; episodios hipertensivos tras infarto agudo de miocardio; hipotensión controlada durante la cirugía.",
+  "dosis": "",
+  "contraindicaciones": "",
+  "precauciones": "Precaución en anestesia/cirugía por depresión miocárdica, insuficiencia cerebrovascular, diabetes mellitus, hipertiroidismo o tirotoxicosis, insuficiencia hepática, insuficiencia renal, enfermedad vascular periférica, función ventricular izquierda comprometida, ICC y feocromocitoma. Riesgo aumentado de ACV tras cirugía; lesión hepática grave reportada. En uso prolongado, la interrupción súbita puede exacerbar angina y conducir a infarto. No recomendado en enfermedad broncoespástica.",
+  "ram": "Mareo (1-20%), náuseas (≤19%), fatiga (1-11%).",
+  "disolucion": "Premezclado en 250 mL de dextrosa 5%. Diluir en 100-150 mL de solución compatible. Compatibles: dextrosa 5%; SSN 0,9%.",
+  "tabla": {
+    "titulo": "",
+    "headers": [
+      "Indicación",
+      "Dosis adulto",
+      "Dosis pediatría"
+    ],
+    "rows": [
+      {
+        "celdas": [
+          "Emergencia hipertensiva (incl. embarazo)",
+          "20 mg IV durante 2 min inicialmente, luego 40-80 mg IV cada 10 min; dosis total no superior a 300 mg. Alternativa: 1-2 mg/min por infusión IV continua (dosis total usada 300 mg)",
+          "0,4-1 mg/kg/h por infusión IV continua; no exceder 3 mg/kg/h"
+        ]
+      },
+      {
+        "celdas": [
+          "Episodios hipertensivos tras infarto agudo de miocardio",
+          "20 mg IV durante 2 min inicialmente, luego 40-80 mg IV cada 10 min; total no superior a 300 mg. Alternativa: 1-2 mg/min infusión IV continua",
+          "0,4-1 mg/kg/h por infusión IV continua; no exceder 3 mg/kg/h"
+        ]
+      }
+    ]
+  }
+}

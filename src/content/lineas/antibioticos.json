@@ -1,0 +1,11 @@
+{
+  "nombre": "Antibióticos",
+  "color": "#25B7E8",
+  "color2": "#6DD3F1",
+  "orden": 3,
+  "visibleEnHome": true,
+  "iconoPath": "M9 3l12 12-6 6L3 9zM7 5l4 4M5 7l4 4",
+  "descripcionHome": "Quinolonas y oxazolidinonas premezclados.",
+  "tituloNosotros": "Quinolonas y oxazolidinonas",
+  "descripcionNosotros": "Antimicrobianos premezclados para infecciones respiratorias, urinarias, intraabdominales y de piel y tejidos blandos."
+}

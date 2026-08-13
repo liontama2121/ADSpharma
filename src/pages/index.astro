@@ -1,0 +1,20 @@
+---
+import { getEntry } from "astro:content";
+import Base from "../layouts/Base.astro";
+import ComingSoon from "../components/paginas/ComingSoon.astro";
+import HomeContenido from "../components/paginas/HomeContenido.astro";
+import { getComingSoon } from "../lib/site";
+
+// Mientras "activa" este en true, la raiz muestra la pagina de construccion.
+// Al apagarla desde el dashboard, la raiz pasa a ser la home real.
+const cs = await getComingSoon();
+
+const homeEntry = await getEntry("home", "home");
+if (!homeEntry) throw new Error("Falta src/content/paginas/home.json");
+
+const seo = cs.activa ? cs.seo : homeEntry.data.seo;
+---
+
+<Base seo={seo} chrome={!cs.activa} jsonLd={!cs.activa} activeIndex={cs.activa ? -1 : 0}>
+  {cs.activa ? <ComingSoon /> : <HomeContenido />}
+</Base>

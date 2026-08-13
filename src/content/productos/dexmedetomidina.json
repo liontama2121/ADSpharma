@@ -1,0 +1,18 @@
+{
+  "nombre": "DEXMEDETOMIDINA",
+  "principioActivo": "Dexmedetomidina 0,2 mg / 2 mL",
+  "presentacion": "Solución inyectable",
+  "linea": "anestesicos",
+  "registro": "INVIMA 2015M-0016106",
+  "imagen": "/image/Dexmedetomidina@3x-8.webp",
+  "orden": 12,
+  "destacado": true,
+  "ordenDestacado": 4,
+  "indicaciones": "Sedación de pacientes con y sin ventilación mecánica en UCI, quirófanos y procedimientos diagnósticos. La dexmedetomidina de ADS PHARMA no causa depresión respiratoria. Permite sedación de ligera a moderada, mejorar la capacidad de respuesta del paciente, facilitar la respuesta a estímulos y disminuir el tiempo de extubación y la ocupación en UCI.",
+  "dosis": "Carga 1 mcg/kg IV durante 10 minutos. Mantenimiento 0,2-1,4 mcg/kg/h IV.",
+  "contraindicaciones": "",
+  "precauciones": "Precaución en abuso y dependencia de drogas, trastornos bradicárdicos severos (bloqueo cardíaco avanzado), disfunción ventricular severa preexistente, ICC e insuficiencia cardíaca.",
+  "ram": "Hipotensión (28%); 1-10%: anemia, bradicardia, fiebre, derrame pleural, leucocitosis y edema pulmonar.",
+  "disolucion": "Diluir con 48 mL de solución compatible. Compatibles: dextrosa 5%; SSN 0,9% y lactato de Ringer.",
+  "tabla": null
+}
