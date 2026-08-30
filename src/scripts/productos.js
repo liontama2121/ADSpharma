@@ -1,6 +1,14 @@
 // Portafolio: filtros + buscador + modal de detalle.
+//
 // Las tarjetas se renderizan en el servidor; aqui solo se muestran/ocultan.
-// La ficha clinica completa viaja en el <script type="application/json">.
+//
+// La ficha clinica NO viaja en el HTML de esta pagina. El modal publico solo
+// muestra lo identificativo (nombre, principio activo, presentacion, INVIMA,
+// linea, imagen y WhatsApp). Indicaciones, dosis, contraindicaciones,
+// precauciones y RAM se piden a /api/productos/:id, que exige sesion. Ocultarlas
+// con CSS o JS no seria proteccion: el texto seguiria en el codigo fuente.
+
+import { estadoSesion } from "./sesion.js";
 
 (function () {
   const dataEl = document.getElementById("datos-portafolio");
@@ -20,6 +28,12 @@
   let activeLinea = params.get("linea") || "todos";
   let activeQuery = "";
   let lastFocusedEl = null;
+
+  // Rol actual (null mientras /api/auth/me no responde) y fichas ya descargadas.
+  let sesion = null;
+  const fichasCache = new Map();
+  // Solo se pinta la ficha si el modal sigue mostrando el producto que se pidio.
+  let idAbierto = null;
 
   function escapeHTML(s) {
     if (s == null) return "";
@@ -71,32 +85,129 @@
 
   /* ---------- Modal ---------- */
 
-  function buildSection(title, body) {
-    if (!body || !body.trim()) return "";
-    return `
-      <details class="modal-section" open>
-        <summary>${escapeHTML(title)}</summary>
-        <div class="content">${escapeHTML(body).replace(/\n/g, "<br/>")}</div>
-      </details>
-    `;
+  /* ---------- Ficha clinica (solo con sesion) ---------- */
+
+  const CANDADO = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" />
+    </svg>`;
+
+  /** Convierte saltos de linea en <br> sobre texto ya escapado. */
+  function parrafo(texto) {
+    return escapeHTML(texto).replace(/\r?\n/g, "<br />");
   }
 
-  function buildTabla(tabla) {
-    if (!tabla || !tabla.rows || !tabla.rows.length) return "";
-    const titulo = tabla.titulo ? `<div class="tabla-titulo">${escapeHTML(tabla.titulo)}</div>` : "";
-    const heads = tabla.headers.map(h => `<th>${escapeHTML(h)}</th>`).join("");
-    const rows = tabla.rows.map(r =>
-      `<tr>${(r.celdas || []).map(c => `<td>${escapeHTML(c)}</td>`).join("")}</tr>`
-    ).join("");
+  function bloqueSeccion(titulo, texto) {
+    return `
+      <details class="modal-section" open>
+        <summary>${escapeHTML(titulo)}</summary>
+        <div class="content">${parrafo(texto)}</div>
+      </details>`;
+  }
+
+  function bloqueTabla(tabla) {
+    const headers = (tabla.headers || []).map(h => `<th>${escapeHTML(h)}</th>`).join("");
+    const filas = (tabla.rows || [])
+      .map(r => `<tr>${(r.celdas || []).map(c => `<td>${escapeHTML(c)}</td>`).join("")}</tr>`)
+      .join("");
     return `
       <details class="modal-section" open>
         <summary>Tabla de dosificación</summary>
         <div class="content">
-          ${titulo}
-          <table class="tabla-dosif"><thead><tr>${heads}</tr></thead><tbody>${rows}</tbody></table>
+          ${tabla.titulo ? `<div class="tabla-titulo">${escapeHTML(tabla.titulo)}</div>` : ""}
+          <table class="tabla-dosif">
+            <thead><tr>${headers}</tr></thead>
+            <tbody>${filas}</tbody>
+          </table>
         </div>
-      </details>
-    `;
+      </details>`;
+  }
+
+  /** Aviso + boton de acceso para quien no tiene sesion. */
+  function bloqueBloqueado(id) {
+    const volver = encodeURIComponent(`${window.location.pathname}?id=${encodeURIComponent(id)}`);
+    return `
+      <div class="modal-reservado">
+        ${CANDADO}
+        <p>${escapeHTML(DATOS.textos.avisoReservado)}</p>
+        <a class="btn btn-juancode" href="/login?volver=${volver}">
+          🔒 ${escapeHTML(DATOS.textos.iniciarSesion)}
+        </a>
+      </div>`;
+  }
+
+  function bloqueFicha(id, ficha) {
+    const secciones = [
+      ["Indicaciones", ficha.indicaciones],
+      ["Dosis y administración", ficha.dosis],
+      ["Contraindicaciones", ficha.contraindicaciones],
+      ["Precauciones y advertencias", ficha.precauciones],
+      ["RAM / Efectos adversos", ficha.ram],
+      ["Disolución y soluciones compatibles", ficha.disolucion]
+    ].filter(([, texto]) => texto && texto.trim());
+
+    const tabla = ficha.tabla && ficha.tabla.rows?.length ? ficha.tabla : null;
+
+    if (!secciones.length && !tabla) {
+      return `<p class="modal-empty">${escapeHTML(DATOS.textos.sinFicha)}</p>`;
+    }
+
+    return (
+      secciones.map(([titulo, texto]) => bloqueSeccion(titulo, texto)).join("") +
+      (tabla ? bloqueTabla(tabla) : "") +
+      `<a class="btn btn-ghost modal-ficha-link" href="/fichas/${encodeURIComponent(id)}">
+        ${escapeHTML(DATOS.textos.verFicha)}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>`
+    );
+  }
+
+  /**
+   * Pinta la columna derecha del modal segun el estado de sesion.
+   * Se llama dos veces cuando aun no se sabe el rol: una con el aviso de carga
+   * y otra cuando /api/auth/me y /api/productos/:id ya respondieron.
+   */
+  async function pintarSecciones(id) {
+    const destino = document.getElementById("modalSecciones");
+    if (!destino) return;
+
+    if (sesion === null) {
+      destino.innerHTML = `<p class="modal-cargando">Comprobando acceso…</p>`;
+      sesion = await estadoSesion();
+      if (idAbierto !== id) return;
+    }
+
+    if (!sesion.logueado) {
+      destino.innerHTML = bloqueBloqueado(id);
+      return;
+    }
+
+    if (fichasCache.has(id)) {
+      destino.innerHTML = bloqueFicha(id, fichasCache.get(id));
+      return;
+    }
+
+    destino.innerHTML = `<p class="modal-cargando">Cargando ficha clínica…</p>`;
+    try {
+      const res = await fetch(`/api/productos/${encodeURIComponent(id)}`, {
+        credentials: "same-origin"
+      });
+      if (idAbierto !== id) return;
+
+      if (res.status === 401) {
+        // La sesion expiro mientras navegaba.
+        sesion = { logueado: false, rol: null };
+        destino.innerHTML = bloqueBloqueado(id);
+        return;
+      }
+      const datos = await res.json();
+      if (!res.ok || !datos.ok) throw new Error(datos.mensaje || "error");
+
+      fichasCache.set(id, datos.ficha);
+      if (idAbierto === id) destino.innerHTML = bloqueFicha(id, datos.ficha);
+    } catch {
+      if (idAbierto !== id) return;
+      destino.innerHTML = `<p class="modal-empty">No se pudo cargar la ficha clínica. Intenta de nuevo.</p>`;
+    }
   }
 
   function openModal(id, triggerEl) {
@@ -114,15 +225,6 @@
     );
     const waHref = `https://wa.me/${DATOS.whatsapp.numero}?text=${waText}`;
 
-    const sections =
-      buildSection("Indicaciones", p.indicaciones) +
-      buildSection("Dosis y administración", p.dosis) +
-      buildSection("Contraindicaciones", p.contraindicaciones) +
-      buildSection("Precauciones y advertencias", p.precauciones) +
-      buildSection("RAM / Efectos adversos", p.ram) +
-      buildSection("Disolución y soluciones compatibles", p.disolucion) +
-      buildTabla(p.tabla);
-
     modalContent.innerHTML = `
       <div class="modal-grid">
         <div class="modal-col-image">
@@ -138,9 +240,7 @@
           </a>
         </div>
 
-        <div class="modal-col-sections">
-          ${sections || `<p class="modal-empty">${escapeHTML(DATOS.textos.sinFicha)}</p>`}
-        </div>
+        <div class="modal-col-sections" id="modalSecciones"></div>
       </div>
 
       <div class="modal-disclaimer">${escapeHTML(DATOS.disclaimer)}</div>
@@ -169,9 +269,13 @@
     const url = new URL(window.location);
     url.searchParams.set("id", id);
     window.history.replaceState({}, "", url);
+
+    idAbierto = id;
+    pintarSecciones(id);
   }
 
   function closeModal() {
+    idAbierto = null;
     modal.classList.remove("open");
     modalBackdrop.classList.remove("open");
     document.body.classList.remove("modal-open");

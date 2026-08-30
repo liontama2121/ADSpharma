@@ -172,7 +172,9 @@ const portafolio = defineCollection({
     textoSinResultados: z.string(),
     textoVerDetalle: z.string(),
     textoSolicitarInfo: z.string(),
-    textoSinFicha: z.string()
+    textoSinFicha: z.string(),
+    textoVerFicha: z.string(),
+    avisoReservado: z.string()
   })
 });
 

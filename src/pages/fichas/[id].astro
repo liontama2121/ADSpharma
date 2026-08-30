@@ -1,0 +1,122 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { getGlobal, waHref } from "../../lib/site";
+import "../../styles/productos.css";
+import "../../styles/ficha.css";
+
+// Una pagina por producto. Todo /fichas lo protege functions/_middleware.js:
+// sin sesion iniciada (cliente o admin) no se sirve nada.
+export async function getStaticPaths() {
+  const productos = await getCollection("productos");
+  const lineas = await getCollection("lineas");
+  const porId = new Map(lineas.map((l) => [l.id, l.data]));
+
+  return productos.map((p) => ({
+    params: { id: p.id },
+    props: { producto: p.data, linea: porId.get(p.data.linea) ?? null }
+  }));
+}
+
+const { producto, linea } = Astro.props;
+
+const entry = await getEntry("portafolio", "portafolio");
+if (!entry) throw new Error("Falta src/content/paginas/portafolio.json");
+const pagina = entry.data;
+const global = await getGlobal();
+
+const color = linea ? linea.color : "var(--glow-cyan)";
+const lineaNombre = linea ? linea.nombre : producto.linea;
+
+const secciones = [
+  { titulo: "Indicaciones", texto: producto.indicaciones },
+  { titulo: "Dosis y administración", texto: producto.dosis },
+  { titulo: "Contraindicaciones", texto: producto.contraindicaciones },
+  { titulo: "Precauciones y advertencias", texto: producto.precauciones },
+  { titulo: "RAM / Efectos adversos", texto: producto.ram },
+  { titulo: "Disolución y soluciones compatibles", texto: producto.disolucion }
+].filter((s) => s.texto && s.texto.trim());
+
+const tabla = producto.tabla && producto.tabla.rows?.length ? producto.tabla : null;
+
+const mensajeWa = `Hola ${global.empresa.replace(/\s*S\.A\.S\.\s*$/, "")}, me interesa el producto ${producto.nombre} (${producto.registro || ""}). ¿Me pueden dar más información?`;
+
+const seo = {
+  titulo: `${producto.nombre} — Ficha clínica — ${global.empresa}`,
+  descripcion: `Ficha clínica de ${producto.nombre}. Información reservada a profesionales de la salud.`,
+  noindex: true
+};
+---
+
+<Base seo={seo} activeIndex={1}>
+  <main class="container ficha" style={`--linea-color: ${color};`}>
+    <a class="ficha-volver" href="/productos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Volver al portafolio
+    </a>
+
+    <div class="ficha-reservada">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" />
+      </svg>
+      <span>{pagina.avisoReservado}</span>
+    </div>
+
+    <div class="modal-grid">
+      <div class="modal-col-image">
+        <div class="modal-img-wrap">
+          {producto.imagen
+            ? <img class="modal-img" src={producto.imagen} alt={producto.nombre} />
+            : <div class="modal-placeholder">{producto.nombre.charAt(0)}</div>}
+        </div>
+        <span class="tag-linea">{lineaNombre}</span>
+        <h2>{producto.nombre}</h2>
+        <div class="pa-mono">{producto.principioActivo}</div>
+        {producto.presentacion && <p class="modal-presentacion">{producto.presentacion}</p>}
+        {producto.registro && <span class="badge-registro">{producto.registro}</span>}
+        <a class="btn btn-wa modal-wa" href={waHref(global.whatsapp, mensajeWa)} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.9 11.9 0 0 0 3 18.5L1.5 24l5.7-1.5A11.9 11.9 0 1 0 20.5 3.5Z"/></svg>
+          {pagina.textoSolicitarInfo}
+        </a>
+      </div>
+
+      <div class="modal-col-sections">
+        {secciones.length === 0 && !tabla && (
+          <p class="modal-empty">{pagina.textoSinFicha}</p>
+        )}
+
+        {secciones.map((s) => (
+          <details class="modal-section" open>
+            <summary>{s.titulo}</summary>
+            <div class="content">
+              {s.texto.split("\n").map((linea, i) => (
+                <Fragment>{i > 0 && <br />}{linea}</Fragment>
+              ))}
+            </div>
+          </details>
+        ))}
+
+        {tabla && (
+          <details class="modal-section" open>
+            <summary>Tabla de dosificación</summary>
+            <div class="content">
+              {tabla.titulo && <div class="tabla-titulo">{tabla.titulo}</div>}
+              <table class="tabla-dosif">
+                <thead>
+                  <tr>{tabla.headers.map((h) => <th>{h}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {tabla.rows.map((r) => (
+                    <tr>{r.celdas.map((c) => <td>{c}</td>)}</tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </details>
+        )}
+      </div>
+    </div>
+
+    <div class="ficha-disclaimer">{global.disclaimer}</div>
+  </main>
+</Base>

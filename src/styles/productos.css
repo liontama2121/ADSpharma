@@ -363,6 +363,30 @@
   border-radius: var(--radius-md);
 }
 
+/* Aviso que reemplaza la ficha clinica en la vista publica.
+   La informacion real la sirve /api/productos/:id solo con sesion iniciada. */
+.modal-reservado {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 28px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}
+.modal-reservado > svg {
+  width: 26px;
+  height: 26px;
+  color: var(--linea-color, var(--glow-cyan));
+}
+.modal-reservado p {
+  margin: 0;
+  color: var(--text-mid);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
   .modal-grid {
     grid-template-columns: 1fr;
@@ -464,4 +488,19 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 700px) {
   .modal-hero, .modal-body { padding-left: 22px; padding-right: 22px; }
   .modal { width: 100vw; }
+}
+
+/* Estado de carga de la ficha clinica dentro del modal */
+.modal-cargando {
+  font-family: "Nunito", sans-serif;
+  color: var(--text-low);
+  font-size: 0.9rem;
+  padding: 18px 4px;
+}
+
+/* Enlace a la ficha completa al final de las secciones (solo con sesion) */
+.modal-ficha-link {
+  margin-top: 6px;
+  align-self: flex-start;
+  justify-content: center;
 }

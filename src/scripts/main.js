@@ -1,3 +1,8 @@
+import { pintarSesionEnNav } from "./sesion.js";
+
+// El indicador de sesion se pinta en cuanto responde /api/auth/me.
+pintarSesionEnNav();
+
 // Navbar, reveal scroll, partículas hero, etc.
 
 (function () {

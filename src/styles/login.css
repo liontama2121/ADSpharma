@@ -1,0 +1,126 @@
+/* Pantalla de acceso. Estetica JuanCode: fondo oscuro, vidrio, degradado naranja -> cyan. */
+
+.login-wrap {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: clamp(28px, 5vw, 44px);
+  border-radius: var(--radius-xl);
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Filo superior con el degradado de marca */
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cardio-2) 0%, var(--cardio) 40%, var(--glow-cyan) 100%);
+  opacity: 0.9;
+}
+
+.login-logo {
+  display: block;
+  width: 128px;
+  height: auto;
+  margin: 0 auto 22px;
+}
+
+.login-card h1 {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3.4vw, 1.75rem);
+  color: var(--h1-azul);
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.login-sub {
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+  color: var(--text-mid);
+  font-size: 0.92rem;
+  margin-bottom: 26px;
+}
+
+.login-form { display: grid; gap: 16px; }
+
+.login-field { display: grid; gap: 7px; }
+
+.login-field label {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-low);
+}
+
+.login-field input {
+  width: 100%;
+  padding: 13px 15px;
+  border-radius: var(--radius-md);
+  background: rgba(5, 8, 16, 0.6);
+  border: 1px solid var(--glass-border);
+  color: var(--text-hi);
+  font-family: "Nunito", sans-serif;
+  font-size: 0.98rem;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.login-field input::placeholder { color: var(--text-low); }
+
+.login-field input:focus {
+  outline: none;
+  border-color: rgba(37, 183, 232, 0.55);
+  box-shadow: 0 0 0 3px rgba(37, 183, 232, 0.14);
+}
+
+.login-error {
+  font-family: "Nunito", sans-serif;
+  font-size: 0.88rem;
+  color: #ff9c86;
+  background: rgba(183, 41, 90, 0.14);
+  border: 1px solid rgba(255, 91, 46, 0.32);
+  border-radius: var(--radius-md);
+  padding: 10px 13px;
+  text-align: center;
+}
+
+.login-error[hidden] { display: none; }
+
+.login-nota {
+  margin-top: 22px;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-low);
+  letter-spacing: 0.02em;
+}
+
+.login-volver {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  text-decoration: none;
+}
+
+.login-volver:hover { color: var(--glow-cyan); }

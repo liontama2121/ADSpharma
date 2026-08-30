@@ -25,6 +25,9 @@ const inicio = resolveUrl("/", comingSoonActiva);
       ))}
     </nav>
     <SocialLinks redes={global.redes} />
+    <!-- Lo rellena src/scripts/sesion.js con el estado real; oculto hasta saberlo
+         para no parpadear entre "Ingresar" y "Hola, ..." en cada carga. -->
+    <div class="nav-sesion" id="navSesion" hidden></div>
     <button class="nav-burger" id="navBurger" aria-label="Menú"><span></span></button>
   </div>
 </header>

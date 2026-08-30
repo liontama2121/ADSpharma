@@ -1059,3 +1059,79 @@ a.hero-eyebrow:hover { border-color: rgba(77,168,255,0.5); color: var(--text-hi)
 .sec-lead { max-width: 880px; margin-bottom: 30px; }
 .sec-lead .sec-sub { margin-bottom: 0; }
 .under { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; color: var(--text-hi); }
+
+/* === Estado de sesion en el navbar === */
+.nav-sesion {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Nunito", sans-serif;
+}
+.nav-sesion[hidden] { display: none; }
+
+.nav-sesion-link {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text-mid);
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+.nav-sesion-link:hover {
+  color: var(--text-hi);
+  border-color: rgba(37, 183, 232, 0.5);
+  transform: translateY(-1px);
+}
+
+.nav-sesion-saludo {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  white-space: nowrap;
+}
+
+.nav-sesion-salir {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text-low);
+  font-family: "Nunito", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.nav-sesion-salir:hover { color: #FF8A3D; border-color: rgba(255, 138, 61, 0.5); }
+.nav-sesion-salir:disabled { opacity: 0.5; cursor: progress; }
+
+@media (max-width: 860px) {
+  .nav-sesion-saludo { display: none; }
+  .nav-sesion-link, .nav-sesion-salir { padding: 7px 12px; font-size: 0.78rem; }
+}
+
+/* === Boton JuanCode: degradado naranja -> cyan ===
+   Lo usan la pantalla de acceso y el aviso de ficha reservada del portafolio. */
+.btn-juancode {
+  width: 100%;
+  justify-content: center;
+  color: #06121b;
+  /* El cyan tiene que verse en reposo, no solo al pasar el mouse: por eso el
+     stop final va antes del 100% y el lienzo solo se agranda un 40%. */
+  background: linear-gradient(110deg, var(--cardio-2) 0%, var(--cardio) 26%, var(--glow-cyan) 82%);
+  background-size: 140% 100%;
+  background-position: 0% 50%;
+  box-shadow: 0 12px 36px -14px rgba(255, 138, 61, 0.6);
+  transition: background-position var(--t-med), transform var(--t-fast), box-shadow var(--t-fast);
+  margin-top: 4px;
+}
+
+.btn-juancode:hover:not(:disabled) {
+  background-position: 100% 50%;
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px -14px rgba(37, 183, 232, 0.7);
+}
+
+.btn-juancode:disabled { opacity: 0.6; cursor: progress; transform: none; }

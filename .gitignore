@@ -8,3 +8,6 @@ dist/
 .astro/
 .env
 .env.production
+
+# Generado por scripts/generar-fichas.mjs en cada build
+lib/fichas-data.json

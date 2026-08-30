@@ -1,21 +1,21 @@
 # Panel de contenido de ADS PHARMA (Decap CMS).
 #
-# El cliente NO necesita cuenta de GitHub: entra con su Google desde
-# Cloudflare Access y la Pages Function /cms-api firma los commits con el
-# token del repositorio. Ver functions/cms-api/[[path]].js
+# El cliente NO necesita cuenta de GitHub: entra en /login con el usuario
+# administrador y la Pages Function /cms-api firma los commits con el token del
+# repositorio. Ver functions/cms-api/[[path]].js
 #
 # Cambia `branch` si el sitio se publica desde otra rama.
 
 # Solo aplica cuando el panel se abre desde localhost: Decap lo ignora en
 # produccion. Permite probar el panel contra los archivos locales, sin GitHub
-# ni Cloudflare Access. Requiere `npm run cms` en otra terminal.
+# ni sesion. Requiere `npm run cms` en otra terminal.
 local_backend: true
 
 backend:
   name: github
   repo: liontama2121/ADSpharma
   branch: main
-  # Mismo dominio que el sitio: asi la peticion lleva la cookie de Cloudflare Access.
+  # Mismo dominio que el sitio: asi la peticion lleva la cookie de sesion.
   base_url: https://adspharma.co
   auth_endpoint: cms-api/auth
   api_root: https://adspharma.co/cms-api/github

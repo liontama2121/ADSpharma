@@ -13,5 +13,7 @@
   "textoSinResultados": "Sin resultados. Prueba con otro término o cambia el filtro.",
   "textoVerDetalle": "Ver detalle →",
   "textoSolicitarInfo": "Solicitar info por WhatsApp",
-  "textoSinFicha": "Sin información clínica adicional disponible."
+  "textoSinFicha": "Sin información clínica adicional disponible.",
+  "textoVerFicha": "Ver ficha clínica completa",
+  "avisoReservado": "Indicaciones, dosis, contraindicaciones y reacciones adversas están reservadas a profesionales de la salud e instituciones autorizadas por ADS PHARMA."
 }

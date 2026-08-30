@@ -24,11 +24,18 @@ const lineasConProductos = lineas.filter((l) =>
 );
 
 // Las tarjetas se renderizan en el servidor (SEO); el JS solo filtra y abre el modal.
-// Este bloque alimenta el modal de detalle.
+//
+// IMPORTANTE: aqui viaja unicamente lo que identifica al producto. Indicaciones,
+// dosis, contraindicaciones, RAM y tablas NO salen en esta pagina. El modal las
+// pide a /api/productos/:id, que exige sesion iniciada. Ocultarlas con CSS o JS
+// no seria proteccion, porque el texto seguiria estando en el HTML.
 const datosModal = {
   textos: {
     solicitarInfo: pagina.textoSolicitarInfo,
-    sinFicha: pagina.textoSinFicha
+    verFicha: pagina.textoVerFicha,
+    avisoReservado: pagina.avisoReservado,
+    sinFicha: pagina.textoSinFicha,
+    iniciarSesion: "Iniciar sesión para ver ficha clínica completa"
   },
   whatsapp: global.whatsapp,
   empresa: global.empresa.replace(/\s*S\.A\.S\.\s*$/, ""),
@@ -37,7 +44,11 @@ const datosModal = {
     productos.map((p) => [
       p.id,
       {
-        ...p.data,
+        nombre: p.data.nombre,
+        principioActivo: p.data.principioActivo,
+        presentacion: p.data.presentacion,
+        registro: p.data.registro,
+        imagen: p.data.imagen,
         lineaNombre: lineaPorId.get(p.data.linea)?.nombre ?? p.data.linea,
         lineaColor: lineaPorId.get(p.data.linea)?.color ?? "var(--glow-cyan)"
       }

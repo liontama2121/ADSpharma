@@ -1,0 +1,62 @@
+---
+import Base from "../layouts/Base.astro";
+import { getGlobal } from "../lib/site";
+import "../styles/login.css";
+
+// Pagina publica y estatica: quien valida es /api/auth/login.
+const global = await getGlobal();
+
+const seo = {
+  titulo: `Acceso — ${global.empresa}`,
+  descripcion: "Acceso para personal autorizado de ADS PHARMA S.A.S.",
+  noindex: true
+};
+---
+
+<Base seo={seo} chrome={false}>
+  <main class="login-wrap">
+    <div class="login-card">
+      <a href="/"><img class="login-logo" src="/image/logo.webp" alt={global.empresa} /></a>
+
+      <h1>Iniciar sesión</h1>
+      <p class="login-sub">Ingresa para consultar la ficha clínica completa.</p>
+
+      <form class="login-form" id="loginForm" novalidate>
+        <p class="login-error" id="loginError" hidden role="alert"></p>
+
+        <div class="login-field">
+          <label for="usuario">Usuario</label>
+          <input
+            type="text"
+            id="usuario"
+            name="usuario"
+            autocomplete="username"
+            placeholder="Tu usuario"
+            required
+          />
+        </div>
+
+        <div class="login-field">
+          <label for="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button class="btn btn-juancode" type="submit" id="loginSubmit">Ingresar</button>
+      </form>
+
+      <p class="login-nota">Acceso restringido a personal autorizado</p>
+      <a class="login-volver" href="/">← Volver al sitio</a>
+    </div>
+  </main>
+
+  <script>
+    import "../scripts/login.js";
+  </script>
+</Base>
