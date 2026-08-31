@@ -14,7 +14,29 @@
       sesion con rol admin. Quien firma los commits es la Pages Function /cms-api.
       El cliente nunca necesita cuenta de GitHub.
     -->
+    <!--
+      Init manual para poder apuntar el backend al origen donde esta abierto el
+      panel. En config.yml el dominio iria escrito a mano y el panel solo
+      funcionaria en produccion: desde un preview *.pages.dev Decap abriria la
+      ventana de login contra adspharma.co, otro dominio que ni siquiera recibe
+      la cookie de sesion (SameSite=Strict). Lo que se pasa aqui pisa a
+      config.yml; el resto de la configuracion se sigue leyendo de ahi.
+    -->
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
     <script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
+
+    <script>
+      window.CMS.init({
+        config: {
+          backend: {
+            base_url: window.location.origin,
+            api_root: window.location.origin + "/cms-api/github"
+          }
+        }
+      });
+    </script>
 
     <script>
       // Decap rotula el boton de entrada como "Iniciar sesion con GitHub", pero

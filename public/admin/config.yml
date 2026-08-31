@@ -15,7 +15,9 @@ backend:
   name: github
   repo: liontama2121/ADSpharma
   branch: main
-  # Mismo dominio que el sitio: asi la peticion lleva la cookie de sesion.
+  # base_url y api_root los pisa /admin/index.html con el origen real donde
+  # esta abierto el panel, para que tambien funcione en los previews de Pages.
+  # Los valores de aqui son solo el respaldo de produccion.
   base_url: https://adspharma.co
   auth_endpoint: cms-api/auth
   api_root: https://adspharma.co/cms-api/github
