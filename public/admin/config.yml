@@ -4,7 +4,9 @@
 # administrador y la Pages Function /cms-api firma los commits con el token del
 # repositorio. Ver functions/cms-api/[[path]].js
 #
-# Cambia `branch` si el sitio se publica desde otra rama.
+# `branch` tiene que ser la misma rama que Cloudflare Pages usa para produccion.
+# Si no coinciden, el panel guarda commits en una rama que nadie despliega y los
+# cambios no aparecen en el sitio.
 
 # Solo aplica cuando el panel se abre desde localhost: Decap lo ignora en
 # produccion. Permite probar el panel contra los archivos locales, sin GitHub
@@ -14,7 +16,7 @@ local_backend: true
 backend:
   name: github
   repo: liontama2121/ADSpharma
-  branch: main
+  branch: feat/astro-cms
   # base_url y api_root los pisa /admin/index.html con el origen real donde
   # esta abierto el panel, para que tambien funcione en los previews de Pages.
   # Los valores de aqui son solo el respaldo de produccion.
