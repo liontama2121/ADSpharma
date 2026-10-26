@@ -6,6 +6,243 @@
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/webp" href="/image/logo.webp" />
     <title>Panel de contenido — ADS PHARMA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Montserrat:wght@400;500;600&display=swap"
+    />
+    <!--
+      Tema del panel con los colores y fuentes del sitio.
+      Decap usa clases generadas (css-<hash>-NombreComponente): el hash cambia
+      entre versiones pero el nombre del componente no, asi que los selectores
+      buscan por "-NombreComponente".
+    -->
+    <style>
+      :root {
+        --ads-navy: #0A0F1C;
+        --ads-navy-2: #101829;
+        --ads-navy-3: #18233B;
+        --ads-cyan: #25B7E8;
+        --ads-cyan-hover: #1C9FCC;
+        --ads-azul: #4DA8FF;
+        --ads-fondo: #EEF2F8;
+        --ads-texto: #18233B;
+        --ads-texto-suave: #5B6785;
+        --ads-borde: #DCE3EE;
+        --ads-brand: linear-gradient(110deg, #FF5B2E 0%, #B7295A 30%, #4DA8FF 65%, #2ED47A 100%);
+      }
+
+      body {
+        background: var(--ads-fondo) !important;
+        font-family: "Montserrat", system-ui, sans-serif !important;
+        color: var(--ads-texto);
+      }
+      h1, h2, h3,
+      [class*="-SidebarHeading"],
+      [class*="-CollectionTopHeading"],
+      [class*="-ListCardTitle"] {
+        font-family: "Nunito", system-ui, sans-serif !important;
+        letter-spacing: -0.01em;
+      }
+
+      /* ---------- Barra superior ---------- */
+      [class*="-AppHeader-"],
+      [class*="-ToolbarContainer"] {
+        background: var(--ads-navy) !important;
+        border-bottom: 0 !important;
+        box-shadow: 0 6px 24px -12px rgba(5, 8, 16, 0.6) !important;
+      }
+      [class*="-AppHeader-"]::after,
+      [class*="-ToolbarContainer"]::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3px;
+        background: var(--ads-brand);
+      }
+      [class*="-AppHeaderContent"]::before {
+        content: "";
+        width: 120px;
+        height: 34px;
+        margin-right: 28px;
+        flex-shrink: 0;
+        align-self: center;
+        background: url("/image/logo.webp") left center / contain no-repeat;
+      }
+      [class*="-AppHeaderButton"],
+      [class*="-AppHeaderSiteLink"],
+      [class*="-ToolbarContainer"] [class*="-BackCollection"],
+      [class*="-ToolbarContainer"] [class*="-BackArrow"],
+      [class*="-ToolbarContainer"] [class*="-AppHeaderSiteLink"] {
+        color: #AEB9D4 !important;
+      }
+      [class*="-AppHeaderButton"]:hover,
+      [class*="-AppHeaderSiteLink"]:hover,
+      [class*="-AppHeaderButton"][aria-current="page"] {
+        color: #FFFFFF !important;
+      }
+      [class*="-AppHeaderButton"][aria-current="page"] svg,
+      [class*="-AppHeaderButton"]:hover svg {
+        color: var(--ads-cyan) !important;
+      }
+      [class*="-ToolbarSectionBackLink"],
+      [class*="-ToolbarSectionMeta"] {
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      [class*="-ToolbarSectionBackLink"]:hover {
+        background: var(--ads-navy-2) !important;
+      }
+      [class*="-AvatarDropdownButton"] svg {
+        color: #AEB9D4 !important;
+      }
+
+      /* ---------- Botones de accion ---------- */
+      [class*="-CollectionTopNewButton"],
+      [class*="-AppHeaderQuickNewButton"],
+      [class*="-ToolbarSubSectionFirst"] [class*="-StyledDropdownButton"],
+      [class*="-ToolbarSubSectionFirst"] button:not([class*="-DeleteButton"]) {
+        background: var(--ads-cyan) !important;
+        color: #FFFFFF !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 8px 20px -10px rgba(37, 183, 232, 0.8) !important;
+        transition: background 160ms ease;
+      }
+      [class*="-CollectionTopNewButton"]:hover,
+      [class*="-AppHeaderQuickNewButton"]:hover,
+      [class*="-ToolbarSubSectionFirst"] button:not([class*="-DeleteButton"]):hover {
+        background: var(--ads-cyan-hover) !important;
+      }
+      [class*="-DeleteButton"] {
+        background: rgba(255, 91, 46, 0.12) !important;
+        color: #FF8A6B !important;
+        border-radius: 10px !important;
+      }
+      [class*="-DeleteButton"]:hover {
+        background: #D9442A !important;
+        color: #FFFFFF !important;
+      }
+
+      /* ---------- Tarjetas ---------- */
+      [class*="-SidebarContainer"],
+      [class*="-CollectionTopContainer"],
+      [class*="-ListCard"]:not([class*="-ListCardLink"]):not([class*="-ListCardTitle"]) {
+        border-radius: 16px !important;
+        border: 1px solid var(--ads-borde) !important;
+        box-shadow: 0 10px 30px -22px rgba(10, 15, 28, 0.45) !important;
+      }
+      [class*="-CollectionTopContainer"] {
+        border-top: 3px solid var(--ads-azul) !important;
+      }
+      [class*="-CollectionTopHeading"] {
+        color: var(--ads-navy) !important;
+        font-weight: 800 !important;
+      }
+      [class*="-CollectionTopDescription"] {
+        color: var(--ads-texto-suave) !important;
+      }
+
+      /* Menu lateral de colecciones */
+      [class*="-SidebarHeading"] {
+        color: var(--ads-navy) !important;
+        font-weight: 800 !important;
+      }
+      [class*="-SidebarNavLink"] {
+        color: var(--ads-texto-suave) !important;
+        font-weight: 500;
+        border-left-width: 3px !important;
+      }
+      [class*="-SidebarNavLink"]:hover {
+        color: var(--ads-navy) !important;
+        background: #F3F7FC !important;
+      }
+      [class*="-SidebarNavLink"][aria-current="page"] {
+        color: var(--ads-navy) !important;
+        font-weight: 600;
+        background: rgba(37, 183, 232, 0.1) !important;
+        border-left-color: var(--ads-cyan) !important;
+      }
+      [class*="-SidebarNavLink"] svg {
+        color: var(--ads-cyan) !important;
+      }
+
+      /* Lista de productos: numero + nombre, con hover de marca */
+      [class*="-ListCard"]:not([class*="-ListCardLink"]):not([class*="-ListCardTitle"]) {
+        margin-bottom: 10px !important;
+        transition: border-color 160ms ease, transform 160ms ease;
+      }
+      [class*="-ListCard"]:not([class*="-ListCardLink"]):not([class*="-ListCardTitle"]):hover {
+        border-color: var(--ads-cyan) !important;
+        transform: translateX(3px);
+      }
+      [class*="-ListCardTitle"] {
+        color: var(--ads-navy) !important;
+        font-weight: 700 !important;
+        font-size: 15px !important;
+      }
+      /* Encabezado de cada grupo al usar "Agrupar por" */
+      [class*="-GroupHeading"] {
+        font-family: "Nunito", system-ui, sans-serif !important;
+        color: var(--ads-navy) !important;
+        font-weight: 800 !important;
+        padding-left: 12px;
+        border-left: 4px solid var(--ads-cyan);
+      }
+      [class*="-ViewControlsButton"][class*="isActive"],
+      [class*="-ViewControlsButton"]:hover {
+        color: var(--ads-cyan) !important;
+      }
+
+      /* ---------- Editor ---------- */
+      [class*="-ControlPaneContainer"] {
+        font-family: "Montserrat", system-ui, sans-serif !important;
+      }
+      [class*="-FieldLabel"] {
+        background: var(--ads-navy-3) !important;
+        color: #FFFFFF !important;
+        border-radius: 8px 8px 0 0 !important;
+        font-family: "Nunito", system-ui, sans-serif !important;
+        letter-spacing: 0.04em;
+      }
+      [class*="-ControlContainer"] input:not([type="checkbox"]),
+      [class*="-ControlContainer"] textarea {
+        border-radius: 0 10px 10px 10px !important;
+      }
+      [class*="-ControlContainer"] input:focus,
+      [class*="-ControlContainer"] textarea:focus {
+        border-color: var(--ads-cyan) !important;
+      }
+      [class*="-ControlHint"] {
+        color: var(--ads-texto-suave) !important;
+      }
+      [class*="-ToggleBackground"] {
+        background: var(--ads-borde) !important;
+      }
+      [class*="-ToggleContainer"][aria-checked="true"] [class*="-ToggleBackground"],
+      [class*="-ToggleBackground"][class*="-active"] {
+        background: var(--ads-cyan) !important;
+      }
+
+      /* Widget "numero" */
+      .ads-numero-info {
+        margin: 8px 0 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ads-navy);
+      }
+      .ads-numero-aviso {
+        margin: 6px 0 0;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #8A1F44;
+        background: rgba(183, 41, 90, 0.08);
+        border-left: 3px solid #B7295A;
+      }
+    </style>
   </head>
   <body>
     <!--
@@ -24,8 +261,123 @@
     -->
     <script>
       window.CMS_MANUAL_INIT = true;
+
+      // Decap 3 no permite fijar el orden por defecto en config.yml; lo guarda
+      // en localStorage cuando la persona elige "Ordenar por". Si todavia no
+      // eligio nada, se deja preseleccionado el numero de la lista (1..N).
+      // Va antes de cargar decap-cms.js: Decap lee esta clave al arrancar.
+      (function () {
+        var CLAVE = "decap-cms.entries.sort";
+        try {
+          var orden = JSON.parse(localStorage.getItem(CLAVE) || "{}");
+          ["productos", "lineas"].forEach(function (coleccion) {
+            if (!orden[coleccion]) {
+              orden[coleccion] = { orden: { key: "orden", direction: "Ascending", index: 0 } };
+            }
+          });
+          localStorage.setItem(CLAVE, JSON.stringify(orden));
+        } catch (e) {
+          // Sin localStorage el panel funciona igual, solo sin orden inicial.
+        }
+      })();
+
     </script>
     <script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
+
+    <script>
+      // Widget "numero" para el campo `orden` de los productos.
+      // Lee /admin/catalogo.json (lo genera Astro en cada deploy) para:
+      //   - proponer el siguiente numero libre cuando se crea un producto,
+      //   - decir "producto #X de N",
+      //   - avisar si el numero ya lo tiene otro producto.
+      (function () {
+        var h = window.h;
+        var catalogo = null;
+
+        function cargarCatalogo() {
+          if (!catalogo) {
+            catalogo = fetch("/admin/catalogo.json", { credentials: "same-origin" })
+              .then(function (r) { return r.ok ? r.json() : { productos: [] }; })
+              .then(function (d) { return d.productos || []; })
+              .catch(function () { return []; });
+          }
+          return catalogo;
+        }
+
+        var NumeroControl = window.createClass({
+          getInitialState: function () {
+            return { productos: null };
+          },
+          componentDidMount: function () {
+            var self = this;
+            cargarCatalogo().then(function (lista) {
+              self.setState({ productos: lista });
+              var v = self.props.value;
+              if (v === undefined || v === null || v === "") {
+                var max = lista.reduce(function (m, p) {
+                  return p.orden < 999 ? Math.max(m, p.orden) : m;
+                }, 0);
+                self.props.onChange(max + 1);
+              }
+            });
+          },
+          isValid: function () {
+            var v = this.props.value;
+            if (typeof v === "number" && v >= 1 && Math.floor(v) === v) return true;
+            return { error: { message: "Escribe un número entero desde 1." } };
+          },
+          render: function () {
+            var self = this;
+            var valor = this.props.value;
+            var lista = this.state.productos;
+            var slug = this.props.entry && this.props.entry.get("slug");
+            var info = "Cargando la lista de productos…";
+            var aviso = null;
+
+            if (lista) {
+              var esNuevo = !lista.some(function (p) { return p.id === slug; });
+              var total = lista.length + (esNuevo ? 1 : 0);
+              info = (esNuevo ? "Producto nuevo · " : "") +
+                "Este es el producto #" + (valor || "?") + " de " + total + ".";
+              var choque = lista.find(function (p) {
+                return p.orden === valor && p.id !== slug;
+              });
+              if (choque) {
+                aviso = "El #" + valor + " ya lo tiene " + choque.nombre +
+                  ". Cambia uno de los dos para que no queden repetidos.";
+              }
+            }
+
+            return h("div", { className: "ads-numero" },
+              h("input", {
+                id: this.props.forID,
+                type: "number",
+                min: 1,
+                step: 1,
+                className: this.props.classNameWrapper,
+                value: valor === undefined || valor === null ? "" : valor,
+                onFocus: this.props.setActiveStyle,
+                onBlur: this.props.setInactiveStyle,
+                onChange: function (e) {
+                  var n = parseInt(e.target.value, 10);
+                  self.props.onChange(isNaN(n) ? "" : n);
+                }
+              }),
+              h("p", { className: "ads-numero-info" }, info),
+              aviso && h("p", { className: "ads-numero-aviso" }, aviso)
+            );
+          }
+        });
+
+        var NumeroPreview = window.createClass({
+          render: function () {
+            return h("span", {}, "#" + (this.props.value || ""));
+          }
+        });
+
+        window.CMS.registerWidget("numero", NumeroControl, NumeroPreview);
+      })();
+    </script>
 
     <script>
       window.CMS.init({

@@ -33,12 +33,12 @@ const productos = await leerColeccion(DIR_PRODUCTOS);
 const lineas = await leerColeccion(DIR_LINEAS);
 
 // Solo los campos reservados: lo publico ya lo renderiza Astro en la tarjeta.
+// Las indicaciones NO se exportan: quedan ocultas para todos, con o sin sesion.
 const fichas = {};
 for (const [id, p] of Object.entries(productos)) {
   fichas[id] = {
     nombre: p.nombre ?? "",
     lineaNombre: lineas[p.linea]?.nombre ?? p.linea ?? "",
-    indicaciones: p.indicaciones ?? "",
     dosis: p.dosis ?? "",
     contraindicaciones: p.contraindicaciones ?? "",
     precauciones: p.precauciones ?? "",

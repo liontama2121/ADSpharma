@@ -15,5 +15,14 @@
   "textoSolicitarInfo": "Solicitar info por WhatsApp",
   "textoSinFicha": "Sin información clínica adicional disponible.",
   "textoVerFicha": "Ver ficha clínica completa",
-  "avisoReservado": "Indicaciones, dosis, contraindicaciones y reacciones adversas están reservadas a profesionales de la salud e instituciones autorizadas por ADS PHARMA."
+  "textoIniciarSesion": "Iniciar sesión para ver ficha clínica completa",
+  "textoVolver": "Volver al portafolio",
+  "titulosFicha": {
+    "dosis": "Dosis y administración",
+    "contraindicaciones": "Contraindicaciones",
+    "precauciones": "Precauciones y advertencias",
+    "ram": "RAM / Efectos adversos",
+    "disolucion": "Disolución y soluciones compatibles",
+    "tabla": "Tabla de dosificación"
+  }
 }

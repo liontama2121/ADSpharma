@@ -34,12 +34,22 @@ const productos = defineCollection({
     nombre: z.string(),
     principioActivo: z.string().default(""),
     presentacion: z.string().default(""),
+    // Linea principal: da el color de la tarjeta y agrupa la lista del panel.
     linea: z.string(),
+    // Lineas extra donde tambien aparece el producto al filtrar el portafolio.
+    // El CMS guarda null cuando se vacia la lista.
+    lineasAdicionales: z
+      .array(z.string())
+      .nullable()
+      .default([])
+      .transform((v) => v ?? []),
     registro: z.string().default(""),
     imagen: z.string().default(""),
+    // Numero del producto en la lista (1..N). El panel lo propone solo al crear.
     orden: z.number().default(999),
     destacado: z.boolean().default(false),
     ordenDestacado: z.number().default(0),
+    // Se conserva en los archivos pero NO se publica en ninguna parte del sitio.
     indicaciones: z.string().default(""),
     dosis: z.string().default(""),
     contraindicaciones: z.string().default(""),
@@ -174,7 +184,18 @@ const portafolio = defineCollection({
     textoSolicitarInfo: z.string(),
     textoSinFicha: z.string(),
     textoVerFicha: z.string(),
-    avisoReservado: z.string()
+    textoIniciarSesion: z.string().default("Iniciar sesión para ver ficha clínica completa"),
+    textoVolver: z.string().default("Volver al portafolio"),
+    titulosFicha: z
+      .object({
+        dosis: z.string().default("Dosis y administración"),
+        contraindicaciones: z.string().default("Contraindicaciones"),
+        precauciones: z.string().default("Precauciones y advertencias"),
+        ram: z.string().default("RAM / Efectos adversos"),
+        disolucion: z.string().default("Disolución y soluciones compatibles"),
+        tabla: z.string().default("Tabla de dosificación")
+      })
+      .default({})
   })
 });
 

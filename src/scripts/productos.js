@@ -4,8 +4,8 @@
 //
 // La ficha clinica NO viaja en el HTML de esta pagina. El modal publico solo
 // muestra lo identificativo (nombre, principio activo, presentacion, INVIMA,
-// linea, imagen y WhatsApp). Indicaciones, dosis, contraindicaciones,
-// precauciones y RAM se piden a /api/productos/:id, que exige sesion. Ocultarlas
+// linea, imagen y WhatsApp). Dosis, contraindicaciones, precauciones y RAM
+// se piden a /api/productos/:id, que exige sesion. Ocultarlas
 // con CSS o JS no seria proteccion: el texto seguiria en el codigo fuente.
 
 import { estadoSesion } from "./sesion.js";
@@ -57,7 +57,9 @@ import { estadoSesion } from "./sesion.js";
     const q = activeQuery.trim().toLowerCase();
     let visibles = 0;
     cards.forEach(card => {
-      const lineaOk = activeLinea === "todos" || card.dataset.linea === activeLinea;
+      // Un producto puede estar en varias lineas (principal + adicionales).
+      const lineaOk =
+        activeLinea === "todos" || (card.dataset.lineas || "").split(" ").includes(activeLinea);
       const queryOk = !q || (card.dataset.buscar || "").includes(q);
       const visible = lineaOk && queryOk;
       card.style.display = visible ? "" : "none";
@@ -111,7 +113,7 @@ import { estadoSesion } from "./sesion.js";
       .join("");
     return `
       <details class="modal-section" open>
-        <summary>Tabla de dosificación</summary>
+        <summary>${escapeHTML(DATOS.textos.titulosFicha.tabla)}</summary>
         <div class="content">
           ${tabla.titulo ? `<div class="tabla-titulo">${escapeHTML(tabla.titulo)}</div>` : ""}
           <table class="tabla-dosif">
@@ -122,13 +124,12 @@ import { estadoSesion } from "./sesion.js";
       </details>`;
   }
 
-  /** Aviso + boton de acceso para quien no tiene sesion. */
+  /** Boton de acceso para quien no tiene sesion. */
   function bloqueBloqueado(id) {
     const volver = encodeURIComponent(`${window.location.pathname}?id=${encodeURIComponent(id)}`);
     return `
       <div class="modal-reservado">
         ${CANDADO}
-        <p>${escapeHTML(DATOS.textos.avisoReservado)}</p>
         <a class="btn btn-juancode" href="/login?volver=${volver}">
           🔒 ${escapeHTML(DATOS.textos.iniciarSesion)}
         </a>
@@ -136,13 +137,14 @@ import { estadoSesion } from "./sesion.js";
   }
 
   function bloqueFicha(id, ficha) {
+    // Las indicaciones no se muestran: la API ya no las envia.
+    const t = DATOS.textos.titulosFicha;
     const secciones = [
-      ["Indicaciones", ficha.indicaciones],
-      ["Dosis y administración", ficha.dosis],
-      ["Contraindicaciones", ficha.contraindicaciones],
-      ["Precauciones y advertencias", ficha.precauciones],
-      ["RAM / Efectos adversos", ficha.ram],
-      ["Disolución y soluciones compatibles", ficha.disolucion]
+      [t.dosis, ficha.dosis],
+      [t.contraindicaciones, ficha.contraindicaciones],
+      [t.precauciones, ficha.precauciones],
+      [t.ram, ficha.ram],
+      [t.disolucion, ficha.disolucion]
     ].filter(([, texto]) => texto && texto.trim());
 
     const tabla = ficha.tabla && ficha.tabla.rows?.length ? ficha.tabla : null;

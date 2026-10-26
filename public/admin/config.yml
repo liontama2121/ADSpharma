@@ -34,6 +34,8 @@ media_folder: public/image
 public_folder: /image
 
 locale: es
+# Logo de ADS en la pantalla de entrada del panel (en vez del de Decap).
+logo_url: /image/logo.webp
 site_url: https://adspharma.co
 display_url: https://adspharma.co
 
@@ -42,7 +44,7 @@ collections:
   - name: productos
     label: Productos
     label_singular: Producto
-    description: Catálogo clínico. Cada ficha alimenta el portafolio y el buscador.
+    description: Catálogo numerado. Cada producto alimenta el portafolio y el buscador. Usa "Group by → Categoría principal" para verlos por categoría.
     folder: src/content/productos
     extension: json
     format: json
@@ -53,28 +55,41 @@ collections:
     # sitio y da una idea equivocada de como se ve la ficha.
     editor:
       preview: false
-    summary: '{{nombre}} — {{principioActivo}}'
+    summary: '#{{orden}} · {{nombre}} — {{principioActivo}}'
     sortable_fields: [orden, nombre, linea]
     view_groups:
-      - label: Línea terapéutica
+      - label: Categoría principal
         field: linea
     fields:
+      # Widget propio (ver /admin/index.html): al crear propone el siguiente
+      # numero libre y avisa si el numero ya lo usa otro producto.
+      - { label: Número en la lista, name: orden, widget: numero, hint: 'Posición del producto en el portafolio. Al crear uno nuevo se asigna solo el siguiente número.' }
       - { label: Nombre comercial, name: nombre, widget: string }
       - { label: Principio activo y concentración, name: principioActivo, widget: string, required: false }
       - { label: Presentación, name: presentacion, widget: string, required: false }
-      - label: Línea terapéutica
+      - label: Categoría principal
         name: linea
         widget: relation
         collection: lineas
         value_field: '{{slug}}'
         search_fields: [nombre]
         display_fields: [nombre]
+        hint: Da el color de la tarjeta y agrupa la lista del panel.
+      - label: Otras categorías
+        name: lineasAdicionales
+        widget: relation
+        collection: lineas
+        value_field: '{{slug}}'
+        search_fields: [nombre]
+        display_fields: [nombre]
+        multiple: true
+        required: false
+        hint: El producto también aparece al filtrar por estas categorías en el portafolio.
       - { label: Registro INVIMA / CUM, name: registro, widget: string, required: false }
       - { label: Imagen del producto, name: imagen, widget: image, required: false, hint: 'Si se deja vacío se usa la imagen genérica de ADS PHARMA.' }
-      - { label: Orden en el portafolio, name: orden, widget: number, value_type: int, default: 999 }
       - { label: Mostrar en destacados del inicio, name: destacado, widget: boolean, default: false }
       - { label: Posición entre los destacados, name: ordenDestacado, widget: number, value_type: int, default: 0, required: false }
-      - { label: Indicaciones, name: indicaciones, widget: text, required: false }
+      # Las indicaciones no se editan ni se publican: estan ocultas en todo el sitio.
       - { label: Dosis y administración, name: dosis, widget: text, required: false }
       - { label: Contraindicaciones, name: contraindicaciones, widget: text, required: false }
       - { label: Precauciones y advertencias, name: precauciones, widget: text, required: false }
@@ -97,9 +112,9 @@ collections:
 
   # ------------------------------------------------------------------
   - name: lineas
-    label: Líneas terapéuticas
-    label_singular: Línea
-    description: Categorías del portafolio. El color se usa en tarjetas, chips y fichas.
+    label: Categorías
+    label_singular: Categoría
+    description: Líneas terapéuticas del portafolio. Crea aquí nuevas categorías; el color se usa en tarjetas, filtros y fichas.
     folder: src/content/lineas
     extension: json
     format: json
@@ -108,7 +123,7 @@ collections:
     identifier_field: nombre
     editor:
       preview: false
-    summary: '{{nombre}}'
+    summary: '#{{orden}} · {{nombre}}'
     sortable_fields: [orden, nombre]
     fields:
       - { label: Nombre, name: nombre, widget: string }
@@ -346,6 +361,20 @@ collections:
           - { label: Enlace "ver detalle", name: textoVerDetalle, widget: string }
           - { label: Botón de WhatsApp en la ficha, name: textoSolicitarInfo, widget: string }
           - { label: Mensaje cuando la ficha está vacía, name: textoSinFicha, widget: string }
+          - { label: Enlace "ver ficha completa", name: textoVerFicha, widget: string }
+          - { label: Botón para desbloquear la ficha, name: textoIniciarSesion, widget: string }
+          - { label: Enlace "volver" en la ficha, name: textoVolver, widget: string }
+          - label: Títulos de las secciones de la ficha
+            name: titulosFicha
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Dosis, name: dosis, widget: string }
+              - { label: Contraindicaciones, name: contraindicaciones, widget: string }
+              - { label: Precauciones, name: precauciones, widget: string }
+              - { label: Efectos adversos, name: ram, widget: string }
+              - { label: Disolución, name: disolucion, widget: string }
+              - { label: Tabla, name: tabla, widget: string }
 
       # ---------- Próximamente ----------
       - name: coming-soon

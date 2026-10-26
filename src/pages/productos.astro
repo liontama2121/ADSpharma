@@ -18,24 +18,30 @@ const lineas = (await getCollection("lineas")).sort(
 );
 const lineaPorId = new Map(lineas.map((l) => [l.id, l.data]));
 
+// Todas las lineas de un producto: la principal y las adicionales, sin repetir.
+const lineasDe = (p: (typeof productos)[number]) => [
+  ...new Set([p.data.linea, ...p.data.lineasAdicionales])
+];
+
 // Solo se ofrecen como filtro las lineas que realmente tienen productos.
 const lineasConProductos = lineas.filter((l) =>
-  productos.some((p) => p.data.linea === l.id)
+  productos.some((p) => lineasDe(p).includes(l.id))
 );
 
 // Las tarjetas se renderizan en el servidor (SEO); el JS solo filtra y abre el modal.
 //
-// IMPORTANTE: aqui viaja unicamente lo que identifica al producto. Indicaciones,
-// dosis, contraindicaciones, RAM y tablas NO salen en esta pagina. El modal las
-// pide a /api/productos/:id, que exige sesion iniciada. Ocultarlas con CSS o JS
-// no seria proteccion, porque el texto seguiria estando en el HTML.
+// IMPORTANTE: aqui viaja unicamente lo que identifica al producto. Dosis,
+// contraindicaciones, RAM y tablas NO salen en esta pagina. El modal las pide a
+// /api/productos/:id, que exige sesion iniciada. Ocultarlas con CSS o JS no
+// seria proteccion, porque el texto seguiria estando en el HTML. Las
+// indicaciones no se publican en ningun lado.
 const datosModal = {
   textos: {
     solicitarInfo: pagina.textoSolicitarInfo,
     verFicha: pagina.textoVerFicha,
-    avisoReservado: pagina.avisoReservado,
     sinFicha: pagina.textoSinFicha,
-    iniciarSesion: "Iniciar sesión para ver ficha clínica completa"
+    iniciarSesion: pagina.textoIniciarSesion,
+    titulosFicha: pagina.titulosFicha
   },
   whatsapp: global.whatsapp,
   empresa: global.empresa.replace(/\s*S\.A\.S\.\s*$/, ""),
@@ -90,7 +96,7 @@ const datosModal = {
             <article
               class="producto-card"
               data-id={p.id}
-              data-linea={p.data.linea}
+              data-lineas={lineasDe(p).join(" ")}
               data-buscar={`${p.data.nombre} ${p.data.principioActivo}`.toLowerCase()}
               style={`--linea-color: ${linea ? linea.color : "var(--glow-cyan)"};`}
               tabindex="0"
