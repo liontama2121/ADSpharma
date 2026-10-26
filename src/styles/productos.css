@@ -329,12 +329,17 @@
   color: var(--text-mid);
   word-break: break-word;
 }
+/* Presentacion y registro pueden venir en varias lineas desde el CMS
+   (ej. un registro por vial y otro por ampolla). */
 .modal-presentacion {
   font-size: 0.88rem;
   color: var(--text-mid);
   margin: 0;
+  white-space: pre-line;
 }
 .badge-registro {
+  white-space: pre-line;
+  line-height: 1.7;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.74rem;
   padding: 6px 12px;

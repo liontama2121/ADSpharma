@@ -223,7 +223,7 @@ import { estadoSesion } from "./sesion.js";
       : `<div class="modal-placeholder">${escapeHTML(p.nombre.charAt(0))}</div>`;
 
     const waText = encodeURIComponent(
-      `Hola ${DATOS.empresa}, me interesa el producto ${p.nombre} (${p.registro || ""}). ¿Me pueden dar más información?`
+      `Hola ${DATOS.empresa}, me interesa el producto ${p.nombre} (${(p.registro || "").replace(/\s*\n\s*/g, "; ")}). ¿Me pueden dar más información?`
     );
     const waHref = `https://wa.me/${DATOS.whatsapp.numero}?text=${waText}`;
 

@@ -66,7 +66,7 @@ collections:
       - { label: Número en la lista, name: orden, widget: numero, hint: 'Posición del producto en el portafolio. Al crear uno nuevo se asigna solo el siguiente número.' }
       - { label: Nombre comercial, name: nombre, widget: string }
       - { label: Principio activo y concentración, name: principioActivo, widget: string, required: false }
-      - { label: Presentación, name: presentacion, widget: string, required: false }
+      - { label: Presentación, name: presentacion, widget: text, required: false, hint: 'Puede ir en varias líneas, ej. "Solución inyectable" y abajo "Ampolla y Vial".' }
       - label: Categoría principal
         name: linea
         widget: relation
@@ -85,7 +85,7 @@ collections:
         multiple: true
         required: false
         hint: El producto también aparece al filtrar por estas categorías en el portafolio.
-      - { label: Registro INVIMA / CUM, name: registro, widget: string, required: false }
+      - { label: Registro INVIMA / CUM, name: registro, widget: text, required: false, hint: 'Un registro por línea si hay varios, ej. "Vial: INVIMA …" y abajo "Ampolla: INVIMA …".' }
       - { label: Imagen del producto, name: imagen, widget: image, required: false, hint: 'Si se deja vacío se usa la imagen genérica de ADS PHARMA.' }
       - { label: Mostrar en destacados del inicio, name: destacado, widget: boolean, default: false }
       - { label: Posición entre los destacados, name: ordenDestacado, widget: number, value_type: int, default: 0, required: false }

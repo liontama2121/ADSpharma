@@ -40,7 +40,7 @@ const secciones = [
 
 const tabla = producto.tabla && producto.tabla.rows?.length ? producto.tabla : null;
 
-const mensajeWa = `Hola ${global.empresa.replace(/\s*S\.A\.S\.\s*$/, "")}, me interesa el producto ${producto.nombre} (${producto.registro || ""}). ¿Me pueden dar más información?`;
+const mensajeWa = `Hola ${global.empresa.replace(/\s*S\.A\.S\.\s*$/, "")}, me interesa el producto ${producto.nombre} (${(producto.registro || "").replace(/\s*\n\s*/g, "; ")}). ¿Me pueden dar más información?`;
 
 const seo = {
   titulo: `${producto.nombre} — Ficha clínica — ${global.empresa}`,
